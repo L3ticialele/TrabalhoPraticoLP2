@@ -1,0 +1,6 @@
+br\cefetmg\gestaoentregasview\MainFX.class
+br\cefetmg\gestaoentregasview\controllers\CadastrarClienteController.class
+br\cefetmg\gestaoentregasview\controllers\LoginController.class
+br\cefetmg\gestaoentregasview\controllers\CadastrarPedidoController.class
+br\cefetmg\gestaoentregasview\controllers\CadastrarFuncionarioController.class
+br\cefetmg\gestaoentregasview\MainFX$OnChangeScreen.class

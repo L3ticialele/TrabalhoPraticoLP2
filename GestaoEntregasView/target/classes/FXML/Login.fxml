@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="227.0" prefWidth="376.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.gestaoentregasview.controllers.LoginController">
+   <children>
+      <GridPane layoutY="86.0" prefHeight="139.0" prefWidth="399.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="191.33331298828125" minWidth="10.0" prefWidth="86.6666259765625" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="306.66668701171875" minWidth="10.0" prefWidth="305.3333740234375" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="49.66668701171875" minHeight="10.0" prefHeight="35.66668701171875" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.33331298828125" minHeight="10.0" prefHeight="38.33331298828125" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="38.33331298828125" minHeight="10.0" prefHeight="38.33331298828125" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Telefone:">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Senha:" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Label>
+            <TextField fx:id="textFieldTelefone" GridPane.columnIndex="1">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <TextField fx:id="textFieldSenha" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="20.0" />
+               </GridPane.margin>
+            </TextField>
+            <Button fx:id="entrar" mnemonicParsing="false" prefHeight="29.0" prefWidth="69.0" text="Entrar" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="70.0" />
+               </GridPane.margin>
+            </Button>
+         </children>
+      </GridPane>
+      <Label layoutX="136.0" layoutY="21.0" text="LOGIN">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
