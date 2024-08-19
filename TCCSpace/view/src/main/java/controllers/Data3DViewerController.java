@@ -1,5 +1,6 @@
 package controllers;
 
+import br.cefetmg.space.model.dto.CubeSatDTO;
 import br.cefetmg.space.model.dto.UsuarioDTO;
 import br.cefetmg.space.view.MainFX;
 import gui3d.LineChartManager;
@@ -21,7 +22,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.MeshView;
 
 public class Data3DViewerController {
-
 
     @FXML
     private Label labelAccelerationX;
@@ -127,7 +127,7 @@ public class Data3DViewerController {
 
     @FXML
     private MenuItem menuItemUmidade;
-    
+
     @FXML
     private MenuItem menuItemTemperatura;
 
@@ -157,43 +157,43 @@ public class Data3DViewerController {
 
     @FXML
     private MeshView meshVIew3D;
-    
+
     private UsuarioDTO usuario;
-    
+
+    private CubeSatDTO cubesat;
+
     @FXML
-    void explorarToPourple(MouseEvent event){
+    void explorarToPourple(MouseEvent event) {
         botaoExplorar.setStyle("-fx-text-fill: #8C52FF;"
                 + "-fx-background-color: 0;");
         iconeExplorar.setImage(new Image("file:src/main/resources/images/iconeExplorarLilas.png"));
     }
-    
-    
+
     @FXML
-    void explorarToWhite(MouseEvent event){
+    void explorarToWhite(MouseEvent event) {
         botaoExplorar.setStyle("-fx-text-fill: white;"
                 + "-fx-background-color: 0;");
         iconeExplorar.setImage(new Image("file:src/main/resources/images/iconeExplorar.png"));
     }
-    
+
     @FXML
-    void equipesToPourple(MouseEvent event){
+    void equipesToPourple(MouseEvent event) {
         botaoEquipe.setStyle("-fx-text-fill: #8C52FF;"
                 + "-fx-background-color: 0;");
         iconeEquipes.setImage(new Image("file:src/main/resources/images/iconeEquipesLilas.png"));
     }
-    
+
     @FXML
-    void equipesToWhite(MouseEvent event){
+    void equipesToWhite(MouseEvent event) {
         botaoEquipe.setStyle("-fx-text-fill: white;"
                 + "-fx-background-color: 0;");
         iconeEquipes.setImage(new Image("file:src/main/resources/images/iconeEquipes.png"));
     }
-    
+
     @FXML
-    void telaCadastrarCubesat(ActionEvent event){
+    void telaCadastrarCubesat(ActionEvent event) {
         MainFX.changedScreen("Cadastrar Cubesat", usuario);
     }
-    
 
     @FXML
     void apresentaTelaCubesat(ActionEvent event) {
@@ -209,15 +209,14 @@ public class Data3DViewerController {
     void apresentaTelaExplorar(ActionEvent event) {
         MainFX.changedScreen("Explorar", usuario);
     }
-    
-    
+
     @FXML
     void apresentarTelaInicial(ActionEvent event) {
         MainFX.changedScreen("Tela Inicial", usuario);
     }
 
     private void configureMenuActions() {
-        menuItemTemperatura.setOnAction(event -> chartManager.setActiveSeries("Temperatura Interna"));        
+        menuItemTemperatura.setOnAction(event -> chartManager.setActiveSeries("Temperatura Interna"));
         menuItemAltitude.setOnAction(event -> chartManager.setActiveSeries("Altitude"));
         menuItemPotenciaBateria.setOnAction(event -> chartManager.setActiveSeries("Potência da Bateria"));
         menuItemPotenciaPainelSolar.setOnAction(event -> chartManager.setActiveSeries("Potência do Painel Solar"));
@@ -226,15 +225,7 @@ public class Data3DViewerController {
         menuItemUmidade.setOnAction(event -> chartManager.setActiveSeries("Umidade"));
     }
 
-    
-    @FXML
-    private void initialize() {
-        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
-           @Override
-           public void onScreenChanged(String newString, Object viewData){
-               usuario = (UsuarioDTO)viewData;
-           }
-       });
+    private void parte3d() {
         int defaultRotateX = 120;
         int defaultRotateY = 0;
         int defaultRotateZ = 35;
@@ -261,8 +252,25 @@ public class Data3DViewerController {
                 labelTensaoPlacaSolar, labelPotenciaPlacaSolar, labelGas1,
                 labelGas2, labelLuz1, labelLuz2, labelPontoOrvalho,
                 labelPressao, labelSensorUV, labelTemperaturaExterna,
-                labelTemperaturaInterna, labelUmidade, model3D,chartManager);
+                labelTemperaturaInterna, labelUmidade, model3D, chartManager);
         updater.startUpdating();
-        
+    }
+
+    @FXML
+    private void initialize() {
+        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen() {
+            @Override
+            public void onScreenChanged(String newString, Object viewData) {
+                if (viewData.getClass().equals(CubeSatDTO.class)) {
+                    cubesat = (CubeSatDTO) viewData;
+                    usuario = cubesat.getUsuario();
+                    if(newString.equals("Gui3d"))
+                        parte3d();
+                } else if (viewData.getClass().equals(UsuarioDTO.class)) {
+                    usuario = (UsuarioDTO) viewData;
+                }
+            }
+        });
+
     }
 }

@@ -41,11 +41,11 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="botaoExplorar" mnemonicParsing="false" onAction="#apresentaTelaExplorar" onMouseEntered="#explorarToPourple" onMouseExited="#explorarToWhite" prefHeight="105.0" style="-fx-background-color: 0;" text="EXPLORAR" textFill="WHITE">
+                  <Button fx:id="botaoExplorar" mnemonicParsing="false" onAction="#apresentaTelaExplorar" onMouseEntered="#explorarToPourple" onMouseExited="#explorarToWhite" prefHeight="105.0" style="-fx-background-color: 0;" text="PERFIL" textFill="WHITE">
                      <graphic>
                         <ImageView fx:id="iconeExplorar" fitHeight="36.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/iconeExplorar.png" />
+                              <Image url="@../images/user.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -65,11 +65,11 @@
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="botaoEquipe" mnemonicParsing="false" onAction="#apresentaTelaEquipe" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: 0;" text="EQUIPES" textFill="#8c52ff">
+                  <Button fx:id="botaoEquipe" mnemonicParsing="false" onAction="#apresentaTelaEquipe" prefHeight="33.0" prefWidth="105.0" style="-fx-background-color: 0;" text="SUPORTE" textFill="#8c52ff">
                      <graphic>
                         <ImageView fitHeight="49.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../images/iconeEquipesLilas.png" />
+                              <Image url="@../images/suporteLilas.png" />
                            </image>
                         </ImageView>
                      </graphic>
