@@ -14,6 +14,8 @@ public class MainFX extends Application {
     private static Scene telaCadastrarFuncionario;
     private static Scene telaCadastrarCliente;
     private static Scene telaCadastrarPedido;
+    private static Scene telaLogin;
+    private static Scene telaInicialAtendente;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -30,8 +32,15 @@ public class MainFX extends Application {
             
             Parent loaderTelaCadastrarPedido = FXMLLoader.load(getClass().getResource("/fxml/CadastrarPedido.fxml"));
             telaCadastrarPedido = new Scene(loaderTelaCadastrarPedido,  523, 396);
+            
+            Parent loaderTelaLogin = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+            telaLogin = new Scene(loaderTelaLogin,  1280, 720);
+            
+            Parent loaderTelaInicialAtendente = FXMLLoader.load(getClass().getResource("/fxml/TelainicialAtendente.fxml"));
+            telaInicialAtendente = new Scene(loaderTelaInicialAtendente,  1280, 720);
 
-            primaryStage.setScene(telaCadastrarFuncionario);
+
+            primaryStage.setScene(telaLogin);
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,6 +55,8 @@ public class MainFX extends Application {
                 stage.setScene(telaCadastrarCliente);
             case "CadastrarPedido":
                 stage.setScene(telaCadastrarPedido);
+            case "TelaInicialAtendente":
+                stage.setScene(telaInicialAtendente);
             case "Sair":
                 stage.close();
                 break;

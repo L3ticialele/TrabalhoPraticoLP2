@@ -1,41 +1,67 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
 package br.cefetmg.gestaoentregasview.controllers;
 
+import br.cefetmg.gestaoentregasentidades.Usuario;
+import br.cefetmg.gestaoentregasdao.dao.UsuarioDAO;
+import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author letic
- */
 public class LoginController implements Initializable {
-    
+
     @FXML
-    private TextField textFieldTelefone;
-    
+    private Button BotaoEntrar;
+
     @FXML
-    private TextField textFieldSenha;
-    
+    private TextField CampoSenha;
+
     @FXML
-    private void entrar(ActionEvent event){
-        
-        String telefone, senha;
-        telefone = textFieldTelefone.getText();
-        senha = textFieldSenha.getText();
-        
+    private TextField CampoTelefone;
+
+    @FXML
+    private Label msg;
+
+    private Usuario user;
+
+    
+
+    public void BotaoEntrar(ActionEvent e) {
+        String senha = CampoSenha.getText();
+        String telefone = CampoTelefone.getText();
+        if (CampoSenha.getText().isBlank() == true || CampoTelefone.getText().isBlank() == true) {
+            msg.setText("Preencha todos os campos!");
+        } else if (validarLogin(telefone, senha)) {
+            UsuarioDAO aux = new UsuarioDAO();
+            String tela = aux.tipo(user);
+            MainFX.changedScreen("TelaIncialAtendente", user);
+        } else {
+            msg.setText("Telefone e/ou senha incorreto!");
+        }
     }
-    
+
+    public boolean validarLogin(String telefone, String senha) {
+        Usuario usuario = new Usuario();
+        usuario.setTelefone(telefone);
+        usuario.setSenha(senha);
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+
+        if (usuarioDAO.validarLogin(usuario)) {
+            user = usuarioDAO.procurarPorTelefone(telefone);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        
+    }
+
 }
