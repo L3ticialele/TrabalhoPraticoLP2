@@ -11,12 +11,16 @@ import javafx.stage.Stage;
 public class MainFX extends Application {
 
     private static Stage stage;
-    private static Scene telaCadastrarFuncionario;
-    private static Scene telaCadastrarCliente;
-    private static Scene telaCadastrarPedido;
     private static Scene telaLogin;
     private static Scene telaInicialAtendente;
-
+    private static Scene telaInicialEntregador;
+    private static Scene telaInicialCliente;
+    private static Scene telaCadastrarPedido;
+    private static Scene telaCadastrarCliente;
+    private static Scene telaCadastrarEntregador;
+    private static Scene telaCadastrarAtendente;
+    private static Scene telaPerfilAtendente;
+    
     @Override
     public void start(Stage primaryStage) throws IOException {
         try {
@@ -24,20 +28,32 @@ public class MainFX extends Application {
 
             primaryStage.setTitle("Gestão de Entregas");
             
-            Parent loaderTelaCadastrarFuncionario = FXMLLoader.load(getClass().getResource("/fxml/CadastrarFuncionario.fxml"));
-            telaCadastrarFuncionario = new Scene(loaderTelaCadastrarFuncionario, 423, 330);
-            
-            Parent loaderTelaCadastrarCliente = FXMLLoader.load(getClass().getResource("/fxml/CadastrarCliente.fxml"));
-            telaCadastrarCliente = new Scene(loaderTelaCadastrarCliente, 423, 330);
-            
-            Parent loaderTelaCadastrarPedido = FXMLLoader.load(getClass().getResource("/fxml/CadastrarPedido.fxml"));
-            telaCadastrarPedido = new Scene(loaderTelaCadastrarPedido,  523, 396);
-            
             Parent loaderTelaLogin = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
             telaLogin = new Scene(loaderTelaLogin,  1280, 720);
             
-            Parent loaderTelaInicialAtendente = FXMLLoader.load(getClass().getResource("/fxml/TelainicialAtendente.fxml"));
+            Parent loaderTelaInicialAtendente = FXMLLoader.load(getClass().getResource("/fxml/TelaInicialAtendente.fxml"));
             telaInicialAtendente = new Scene(loaderTelaInicialAtendente,  1280, 720);
+            
+            Parent loaderTelaInicialEntregador = FXMLLoader.load(getClass().getResource("/fxml/TelaInicialEntregador.fxml"));
+            telaInicialEntregador = new Scene(loaderTelaInicialEntregador,  1280, 720);
+            
+            Parent loaderTelaInicialCliente = FXMLLoader.load(getClass().getResource("/fxml/TelaInicialCliente.fxml"));
+            telaInicialCliente = new Scene(loaderTelaInicialCliente, 1280, 720);
+            
+            Parent loaderTelaCadastrarPedido = FXMLLoader.load(getClass().getResource("/fxml/TelaCadastrarPedido.fxml"));
+            telaCadastrarPedido = new Scene(loaderTelaCadastrarPedido,  1280, 720);
+            
+            Parent loaderTelaCadastrarCliente = FXMLLoader.load(getClass().getResource("/fxml/TelaCadastrarCliente.fxml"));
+            telaCadastrarCliente = new Scene(loaderTelaCadastrarCliente, 1280, 720);
+       
+            Parent loaderTelaCadastrarEntregador = FXMLLoader.load(getClass().getResource("/fxml/TelaCadastrarEntregador.fxml"));
+            telaCadastrarEntregador = new Scene(loaderTelaCadastrarEntregador,  1280, 720);
+            
+            Parent loaderTelaCadastrarAtendente = FXMLLoader.load(getClass().getResource("/fxml/TelaCadastrarAtendente.fxml"));
+            telaCadastrarAtendente = new Scene(loaderTelaCadastrarAtendente,  1280, 720);
+            
+            Parent loaderTelaPerfilAtendente = FXMLLoader.load(getClass().getResource("/fxml/TelaPerfilAtendente.fxml"));
+            telaPerfilAtendente = new Scene(loaderTelaPerfilAtendente,  1280, 720);
 
 
             primaryStage.setScene(telaLogin);
@@ -49,14 +65,24 @@ public class MainFX extends Application {
 
     public static void changedScreen(String tela, Object userData) {
         switch (tela) {
-            case "CadastrarFuncionario":
-                stage.setScene(telaCadastrarFuncionario);
-            case "CadastrarCliente":
-                stage.setScene(telaCadastrarCliente);
-            case "CadastrarPedido":
-                stage.setScene(telaCadastrarPedido);
+            case "TelaLogin":
+                stage.setScene(telaLogin);
             case "TelaInicialAtendente":
                 stage.setScene(telaInicialAtendente);
+            case "TelaInicialEntregador":
+                 stage.setScene(telaInicialEntregador);
+            case "TelaInicialCliente":
+                 stage.setScene(telaInicialCliente);   
+            case "TelaCadastrarPedido":
+                stage.setScene(telaCadastrarPedido);
+            case "TelaCadastrarCliente":
+                stage.setScene(telaCadastrarCliente);
+            case "TelaCadastrarEntregador":
+                stage.setScene(telaCadastrarEntregador);
+            case "TelaCadastrarAtendente":
+                stage.setScene(telaCadastrarAtendente);
+            case "TelaPerfilAtendenete":
+                stage.setScene(telaPerfilAtendente);
             case "Sair":
                 stage.close();
                 break;

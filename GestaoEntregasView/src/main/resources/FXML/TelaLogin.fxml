@@ -39,7 +39,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="CampoTelefone" layoutX="813.0" layoutY="279.0" prefHeight="35.0" prefWidth="387.0" />
+      <TextField fx:id="CampoTelefone" layoutX="813.0" layoutY="279.0" pickOnBounds="false" prefHeight="35.0" prefWidth="387.0" />
       <Label layoutX="700.0" layoutY="383.0" prefHeight="27.0" prefWidth="82.0" text="Senha:">
          <font>
             <Font size="20.0" />

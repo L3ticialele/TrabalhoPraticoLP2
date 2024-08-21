@@ -38,7 +38,7 @@ public class LoginController implements Initializable {
         } else if (validarLogin(telefone, senha)) {
             UsuarioDAO aux = new UsuarioDAO();
             String tela = aux.tipo(user);
-            MainFX.changedScreen("TelaIncialAtendente", user);
+            MainFX.changedScreen(tela, user);
         } else {
             msg.setText("Telefone e/ou senha incorreto!");
         }

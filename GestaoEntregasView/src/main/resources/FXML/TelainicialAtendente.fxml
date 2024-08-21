@@ -7,17 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #1f5eb2;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller=".TelainicialAtendenteController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #1f5eb2;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.cefetmg.gestaoentregasview.controllers.TelainicialAtendenteController">
    <children>
       <AnchorPane layoutX="62.0" layoutY="243.0" prefHeight="137.0" prefWidth="366.0" style="-fx-background-color: #edeef1;">
          <children>
-            <ImageView fitHeight="89.0" fitWidth="116.0" layoutX="139.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="89.0" fitWidth="116.0" layoutX="139.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../java/imagens/iconA.png" />
                </image>
             </ImageView>
-            <Button fx:id="butaoCliente" layoutX="125.0" layoutY="64.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Clientes" textFill="#1f5eb2">
+            <Button fx:id="butaoCliente" layoutX="126.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Clientes" textFill="#1f5eb2">
                <font>
                   <Font size="24.0" />
                </font>
@@ -26,12 +25,12 @@
       </AnchorPane>
       <AnchorPane layoutX="454.0" layoutY="243.0" prefHeight="137.0" prefWidth="373.0" style="-fx-background-color: #edeef1;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="79.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="153.0" layoutX="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../java/imagens/iconeEntregador.png" />
                </image>
             </ImageView>
-            <Button fx:id="ButaoEntregador" layoutX="100.0" layoutY="69.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Entregadores" textFill="#1f5eb2">
+            <Button fx:id="ButaoEntregador" layoutX="114.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Entregadores" textFill="#1f5eb2">
                <font>
                   <Font size="24.0" />
                </font>
@@ -40,8 +39,13 @@
       </AnchorPane>
       <AnchorPane layoutX="454.0" layoutY="444.0" prefHeight="137.0" prefWidth="373.0" style="-fx-background-color: #edeef1;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="93.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="ButaoPerfil" layoutX="144.0" layoutY="69.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Perfil" textFill="#1f5eb2">
+            <ImageView fitHeight="121.0" fitWidth="200.0" layoutX="93.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fitHeight="113.0" fitWidth="73.0" layoutX="146.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../java/imagens/iconeP.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="ButaoPerfil" layoutX="150.0" layoutY="85.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Perfil" textFill="#1f5eb2">
                <font>
                   <Font size="24.0" />
                </font>
@@ -50,12 +54,12 @@
       </AnchorPane>
       <AnchorPane layoutX="55.0" layoutY="444.0" prefHeight="137.0" prefWidth="373.0" style="-fx-background-color: #edeef1;">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="16.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="96.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../java/imagens/iconAtendente.png" />
                </image>
             </ImageView>
-            <Button fx:id="ButaoAtendenete" layoutX="116.0" layoutY="72.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Atendentes" textFill="#1f5eb2">
+            <Button fx:id="ButaoAtendenete" layoutX="110.0" layoutY="80.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Atendentes" textFill="#1f5eb2">
                <font>
                   <Font size="24.0" />
                </font>
@@ -74,30 +78,30 @@
       </Label>
       <AnchorPane layoutX="856.0" layoutY="243.0" prefHeight="137.0" prefWidth="373.0" style="-fx-background-color: #edeef1;">
          <children>
-            <Button fx:id="ButaoPedido" layoutX="128.0" layoutY="69.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Pedidos" textFill="#1f5eb2">
-               <font>
-                  <Font size="24.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="69.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="73.0" layoutX="160.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../java/imagens/iconePedido.png" />
                </image>
             </ImageView>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="856.0" layoutY="444.0" prefHeight="137.0" prefWidth="373.0" style="-fx-background-color: #edeef1;">
-         <children>
-            <Button fx:id="ButaoSobre" layoutX="140.0" layoutY="69.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Sobre" textFill="#1f5eb2">
+            <Button fx:id="ButaoPedido" layoutX="128.0" layoutY="78.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Pedidos" textFill="#1f5eb2">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="87.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="856.0" layoutY="444.0" prefHeight="137.0" prefWidth="373.0" style="-fx-background-color: #edeef1;">
+         <children>
+            <ImageView fitHeight="103.0" fitWidth="131.0" layoutX="141.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../java/imagens/iconeEntregador.png" />
+                  <Image url="@../../java/imagens/icon2.png" />
                </image>
             </ImageView>
+            <Button fx:id="ButaoSobre" layoutX="143.0" layoutY="82.0" mnemonicParsing="false" style="-fx-background-color: #edeef1;" text="Sobre" textFill="#1f5eb2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
