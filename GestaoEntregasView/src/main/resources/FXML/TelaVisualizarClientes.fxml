@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller=".TelaVisualizarClientesController">
    <children>
-      <AnchorPane layoutX="-8.0" layoutY="-3.0" prefHeight="726.0" prefWidth="205.0" style="-fx-background-color: #1f5eb2;">
+      <AnchorPane layoutY="-1.0" prefHeight="722.0" prefWidth="199.0" style="-fx-background-color: #1f5eb2;">
          <children>
             <ImageView fitHeight="87.0" fitWidth="91.0" layoutX="118.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -33,7 +34,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="67.0" layoutY="397.0" text="Produtos" textFill="WHITE">
+            <Label layoutX="67.0" layoutY="397.0" text="Perfil" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -45,30 +46,26 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="246.0" layoutY="79.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Pedidos" textFill="#1f5eb2">
+      <Label alignment="CENTER" layoutX="293.0" layoutY="84.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Clientes" textFill="#1f5eb2">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <Button layoutX="1072.0" layoutY="91.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text=" Novo Pedido" textFill="#f8f4f4">
+      <Button layoutX="891.0" layoutY="107.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text=" Novo Cliente" textFill="#f8f4f4">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <TableView layoutX="209.0" layoutY="175.0" prefHeight="481.0" prefWidth="1039.0">
-         <columns>
-            <TableColumn prefWidth="116.0" text="Nome " />
-            <TableColumn prefWidth="74.0" text="Produto" />
-            <TableColumn prefWidth="110.0" text="Telefone" />
-            <TableColumn prefWidth="123.0" text="Endereço" />
-            <TableColumn prefWidth="96.0" text="Pagamento" />
-            <TableColumn prefWidth="95.0" text="Marca" />
-            <TableColumn minWidth="9.0" prefWidth="77.0" text="Quant." />
-            <TableColumn prefWidth="91.0" text="Valor Unitário" />
-            <TableColumn prefWidth="73.0" text="Valor Total" />
-            <TableColumn prefWidth="127.0" text="Entregador" />
-            <TableColumn prefWidth="56.0" />
-         </columns>
+      <TableView layoutX="293.0" layoutY="172.0" prefHeight="481.0" prefWidth="737.0">
+        <columns>
+          <TableColumn prefWidth="158.0" text="Nome" />
+          <TableColumn prefWidth="115.0" text="Telefone" />
+            <TableColumn prefWidth="105.0" text="Bairro" />
+            <TableColumn prefWidth="129.0" text="Logradouro" />
+            <TableColumn prefWidth="107.0" text="Quant. Pedidos" />
+            <TableColumn prefWidth="60.0" />
+            <TableColumn minWidth="9.0" prefWidth="62.0" />
+        </columns>
       </TableView>
    </children>
 </AnchorPane>

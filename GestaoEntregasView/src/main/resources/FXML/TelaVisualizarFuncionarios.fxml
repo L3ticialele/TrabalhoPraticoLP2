@@ -9,9 +9,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller=".TelaVisualizarFuncionariosController">
    <children>
-      <AnchorPane layoutX="-8.0" layoutY="-3.0" prefHeight="726.0" prefWidth="205.0" style="-fx-background-color: #1f5eb2;">
+      <AnchorPane layoutX="-8.0" prefHeight="726.0" prefWidth="205.0" style="-fx-background-color: #1f5eb2;">
          <children>
             <ImageView fitHeight="87.0" fitWidth="91.0" layoutX="118.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -45,29 +46,22 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label alignment="CENTER" layoutX="246.0" layoutY="79.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Pedidos" textFill="#1f5eb2">
+      <Label alignment="CENTER" layoutX="256.0" layoutY="89.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Funcionários" textFill="#1f5eb2">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <Button layoutX="1072.0" layoutY="91.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text=" Novo Pedido" textFill="#f8f4f4">
+      <Button layoutX="1011.0" layoutY="101.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="50.0" prefWidth="162.0" style="-fx-background-color: #1f5eb2;" text=" Novo Funcionario" textFill="#f8f4f4">
          <font>
             <Font size="17.0" />
          </font>
       </Button>
-      <TableView layoutX="209.0" layoutY="175.0" prefHeight="481.0" prefWidth="1039.0">
+      <TableView layoutX="256.0" layoutY="188.0" prefHeight="481.0" prefWidth="451.0">
          <columns>
-            <TableColumn prefWidth="116.0" text="Nome " />
-            <TableColumn prefWidth="74.0" text="Produto" />
-            <TableColumn prefWidth="110.0" text="Telefone" />
-            <TableColumn prefWidth="123.0" text="Endereço" />
-            <TableColumn prefWidth="96.0" text="Pagamento" />
-            <TableColumn prefWidth="95.0" text="Marca" />
-            <TableColumn minWidth="9.0" prefWidth="77.0" text="Quant." />
-            <TableColumn prefWidth="91.0" text="Valor Unitário" />
-            <TableColumn prefWidth="73.0" text="Valor Total" />
-            <TableColumn prefWidth="127.0" text="Entregador" />
-            <TableColumn prefWidth="56.0" />
+            <TableColumn prefWidth="178.0" text="Nome " />
+            <TableColumn prefWidth="125.0" text="Telefone" />
+            <TableColumn prefWidth="92.0" text="Tipo" />
+            <TableColumn minWidth="4.0" prefWidth="54.0" />
          </columns>
       </TableView>
    </children>

@@ -66,7 +66,7 @@ public class CadastrarClienteController implements Initializable {
             senha = textFieldSenha.getText();
             cliente = new Cliente(nome, logradouro, bairro, cnpj, cpf, null, senha, telefone, null);
             alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Funcionário cadastrado com sucesso! ");
+            alert.setContentText("Cliente cadastrado com sucesso! ");
             onCancelar(event);
         }
         alert.show();

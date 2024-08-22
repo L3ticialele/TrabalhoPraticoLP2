@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #edeef1;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="br.cefetmg.gestaoentregasview.controllers.TelaClienteController">
+   <children>
+      <ImageView fitHeight="117.0" fitWidth="164.0" layoutX="282.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../java/imagens/icon2.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="82.0" layoutY="87.0" prefHeight="117.0" prefWidth="241.0" text="Express" textFill="#1f5eb2">
+         <font>
+            <Font name="Malgun Gothic" size="70.0" />
+         </font>
+      </Label>
+      <TableView layoutX="149.0" layoutY="194.0" prefHeight="481.0" prefWidth="982.0">
+         <columns>
+            <TableColumn prefWidth="116.0" text="Data Limite Entrega" />
+            <TableColumn prefWidth="74.0" text="Produto" />
+            <TableColumn prefWidth="110.0" text="Telefone" />
+            <TableColumn prefWidth="123.0" text="Endereço" />
+            <TableColumn prefWidth="96.0" text="Pagamento" />
+            <TableColumn prefWidth="95.0" text="Marca" />
+            <TableColumn minWidth="9.0" prefWidth="77.0" text="Quant." />
+            <TableColumn prefWidth="91.0" text="Valor Unitário" />
+            <TableColumn prefWidth="73.0" text="Valor Total" />
+            <TableColumn prefWidth="127.0" text="Entregador" />
+         </columns>
+      </TableView>
+   </children>
+</AnchorPane>
