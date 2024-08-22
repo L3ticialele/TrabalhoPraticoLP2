@@ -16,8 +16,8 @@ public class UsuarioDAO {
 
         try {
             entityManager.getTransaction().begin();
-            Query query = entityManager.createQuery("SELECT u.telefone, u.senha FROM UsuarioDTO AS u WHERE u.email = :telefone AND u.senha = :senha");
-            query.setParameter("email", usuario.getTelefone());
+            Query query = entityManager.createQuery("SELECT u.telefone, u.senha FROM Usuario AS u WHERE u.telefone = :telefone AND u.senha = :senha");
+            query.setParameter("telefone", usuario.getTelefone());
             query.setParameter("senha", usuario.getSenha());
             List<Usuario> usuarioPersistido = query.getResultList();
             if (!usuarioPersistido.isEmpty()) {
@@ -40,7 +40,7 @@ public class UsuarioDAO {
 
         try {
             entityManager.getTransaction().begin();
-            Query query = entityManager.createQuery("FROM UsuarioDTO AS u WHERE u.telefone =:telefone ");
+            Query query = entityManager.createQuery("FROM Usuario AS u WHERE u.telefone =:telefone ");
             query.setParameter("telefone", telefone);
             List<Usuario> usuarioPersistido = query.getResultList();
             if (!usuarioPersistido.isEmpty()) {

@@ -26,13 +26,13 @@ public class Empresa implements Serializable {
     private String cnpj;
     @Column(name = "cpf_empresa")
     private String cpf;
-    @Column(name = "porcentagem_comissao_entragador")
+    @Column(name = "porcentagem_comissao_entregador")
     private double porcentagemComissaoEntregador;
     @OneToMany(fetch = FetchType.EAGER, cascade
-            = CascadeType.ALL, mappedBy = "empresas")
+            = CascadeType.ALL, mappedBy = "empresa")
     private ArrayList<Funcionario> funcionarios;
     @OneToMany(fetch = FetchType.EAGER, cascade
-            = CascadeType.ALL, mappedBy = "empresas")
+            = CascadeType.ALL, mappedBy = "empresa")
     private ArrayList<Cliente> clientes;
 
     public Empresa() {

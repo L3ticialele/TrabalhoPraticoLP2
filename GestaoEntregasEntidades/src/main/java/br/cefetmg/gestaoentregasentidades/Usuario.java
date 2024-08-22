@@ -8,15 +8,19 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="usuarios")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class Usuario implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="id_usuario")
     private int id;
     @Column(name="telefone_usuario")
     private String telefone;

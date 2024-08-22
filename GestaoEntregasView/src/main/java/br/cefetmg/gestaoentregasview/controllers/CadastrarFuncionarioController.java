@@ -98,7 +98,11 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
+           @Override
+           public void onScreenChanged(String newString, Object viewData){
+           }
+       });
         choiceBoxTipo.getItems().addAll(tipos);
         listTextFields.add(textFieldNome);
         listTextFields.add(textFieldTelefone);

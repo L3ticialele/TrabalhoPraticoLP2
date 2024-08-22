@@ -9,6 +9,7 @@
     <class>br.cefetmg.gestaoentregasentidades.Produto</class>
     <class>br.cefetmg.gestaoentregasentidades.Empresa</class>
     <class>br.cefetmg.gestaoentregasentidades.Usuario</class>
+    <class>br.cefetmg.gestaoentregasentidades.Item</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/gestaoentregas"/>
       <property name="javax.persistence.jdbc.user" value="postgres"/>

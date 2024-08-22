@@ -64,7 +64,7 @@ public class CadastrarClienteController implements Initializable {
             logradouro = textFieldLogradouro.getText();
             bairro = textFieldBairro.getText();
             senha = textFieldSenha.getText();
-            cliente = new Cliente(nome, logradouro, bairro, cnpj, cpf, null, senha, telefone);
+            cliente = new Cliente(nome, logradouro, bairro, cnpj, cpf, null, senha, telefone, null);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Funcionário cadastrado com sucesso! ");
             onCancelar(event);
@@ -106,6 +106,11 @@ public class CadastrarClienteController implements Initializable {
         listTextFields.add(textFieldLogradouro);
         listTextFields.add(textFieldCnpj);
         listTextFields.add(textFieldCpf);
+        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
+           @Override
+           public void onScreenChanged(String newString, Object viewData){
+           }
+       });
     }
 
 }

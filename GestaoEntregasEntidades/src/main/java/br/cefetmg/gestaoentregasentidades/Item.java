@@ -18,7 +18,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "items")
-public class ItemPedido implements Serializable{
+public class Item implements Serializable{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id_item")
@@ -31,13 +31,13 @@ public class ItemPedido implements Serializable{
     @JoinColumn(name="id_pedido", nullable=false)
     private Pedido pedido;
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL,
-               mappedBy = "items")
+               mappedBy = "item")
     private ArrayList<Produto> produtos;
 
-    public ItemPedido() {
+    public Item() {
     }
 
-    public ItemPedido(double valorUnitario, int quantidade, Pedido pedido) {
+    public Item(double valorUnitario, int quantidade, Pedido pedido) {
         produtos = new ArrayList<>();
         this.valorUnitario = valorUnitario;
         this.quantidade = quantidade;

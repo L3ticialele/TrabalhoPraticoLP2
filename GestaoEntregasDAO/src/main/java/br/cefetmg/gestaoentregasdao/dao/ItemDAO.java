@@ -2,18 +2,18 @@
 package br.cefetmg.gestaoentregasdao.dao;
 
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
-import br.cefetmg.gestaoentregasdao.interfaces.IItemPedidoDAO;
-import br.cefetmg.gestaoentregasentidades.ItemPedido;
+import br.cefetmg.gestaoentregasentidades.Item;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+import br.cefetmg.gestaoentregasdao.interfaces.IItemDAO;
 
-public class ItemPedidoDAO implements IItemPedidoDAO{
+public class ItemDAO implements IItemDAO{
     @Override
-    public boolean inserir(ItemPedido item) throws PersistenciaException {
+    public boolean inserir(Item item) throws PersistenciaException {
         EntityManagerFactory entityManagerFactory
                 = Persistence.createEntityManagerFactory("persistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -33,17 +33,17 @@ public class ItemPedidoDAO implements IItemPedidoDAO{
     }
 
     @Override
-    public List<ItemPedido> listarTodos() throws PersistenciaException {
+    public List<Item> listarTodos() throws PersistenciaException {
         EntityManagerFactory entityManagerFactory
                 = Persistence.createEntityManagerFactory("persistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        CriteriaQuery<ItemPedido> criteria
-                = entityManager.getCriteriaBuilder().createQuery(ItemPedido.class);
-        criteria.select(criteria.from(ItemPedido.class));
-        List<ItemPedido> items = entityManager.createQuery(criteria).getResultList();
+        CriteriaQuery<Item> criteria
+                = entityManager.getCriteriaBuilder().createQuery(Item.class);
+        criteria.select(criteria.from(Item.class));
+        List<Item> items = entityManager.createQuery(criteria).getResultList();
 
         if (!items.isEmpty()) {
-            for (ItemPedido item : items) {
+            for (Item item : items) {
                 System.out.print(
                         "Id: " + item.getId()
                         + " Valor Unitário: " + item.getValorUnitario()
@@ -64,7 +64,7 @@ public class ItemPedidoDAO implements IItemPedidoDAO{
 
         try {
             entityManager.getTransaction().begin();
-            ItemPedido item = entityManager.find(ItemPedido.class, idItem);
+            Item item = entityManager.find(Item.class, idItem);
 
             if (item != null) {
                 entityManager.remove(idItem);
@@ -83,14 +83,14 @@ public class ItemPedidoDAO implements IItemPedidoDAO{
     }
 
     @Override
-    public boolean atualizar(ItemPedido item) throws PersistenciaException {
+    public boolean atualizar(Item item) throws PersistenciaException {
         EntityManagerFactory entityManagerFactory
                 = Persistence.createEntityManagerFactory("persistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         try {
             entityManager.getTransaction().begin();
-            ItemPedido itemPersistido = entityManager.find(ItemPedido.class, item.getId());
+            Item itemPersistido = entityManager.find(Item.class, item.getId());
 
             if (itemPersistido != null) {
                 itemPersistido.setId(item.getId());
@@ -113,7 +113,7 @@ public class ItemPedidoDAO implements IItemPedidoDAO{
     }
 
     @Override
-    public ItemPedido procurarPorId(int idItem) throws PersistenciaException {
+    public Item procurarPorId(int idItem) throws PersistenciaException {
         EntityManagerFactory entityManagerFactory
                 = Persistence.createEntityManagerFactory("persistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -122,7 +122,7 @@ public class ItemPedidoDAO implements IItemPedidoDAO{
             entityManager.getTransaction().begin();
             Query query = entityManager.createQuery("FROM ItemPedido AS i WHERE i.id =:id ");
             query.setParameter("id", idItem);
-            List<ItemPedido> itemPersistido = query.getResultList();
+            List<Item> itemPersistido = query.getResultList();
             if (!itemPersistido.isEmpty()) {
                 return itemPersistido.get(0);
             } else {

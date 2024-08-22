@@ -26,12 +26,12 @@ public class Produto implements Serializable{
     private String localizacao;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_item", nullable = false)
-    private ItemPedido item;
+    private Item item;
 
     public Produto() {
     }
 
-    public Produto(String nome, String localizacao, ItemPedido item) {
+    public Produto(String nome, String localizacao, Item item) {
         this.nome = nome;
         this.localizacao = localizacao;
         this.item = item;
@@ -61,11 +61,11 @@ public class Produto implements Serializable{
         this.localizacao = localizacao;
     }
 
-    public ItemPedido getItem() {
+    public Item getItem() {
         return item;
     }
 
-    public void setItem(ItemPedido item) {
+    public void setItem(Item item) {
         this.item = item;
     }
     

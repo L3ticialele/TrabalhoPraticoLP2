@@ -33,17 +33,6 @@ public class CadastrarPedidoController {
 
     private Alert alert;
 
-    @FXML
-    private void initialize() {
-        comboBoxProduto.setItems(FXCollections.observableArrayList("Produto 1", "Produto 2", "Produto 3"));
-        listTextField.add(textFieldQuantidade);
-        listTextField.add(textFieldValorUnitario);
-        listTextField.add(textFieldValorTotal);
-        listTextField.add(textFieldMarca);
-        listTextField.add(textFieldFormaPagamento);
-        listTextField.add(textFieldEndereco);
-
-    }
 
     @FXML
     public void salvarPedido() {
@@ -97,5 +86,21 @@ public class CadastrarPedidoController {
     private void onCancelar() {
         MainFX.changedScreen("Sair", null);
 
+    }
+    
+    @FXML
+    private void initialize() {
+        comboBoxProduto.setItems(FXCollections.observableArrayList("Produto 1", "Produto 2", "Produto 3"));
+        listTextField.add(textFieldQuantidade);
+        listTextField.add(textFieldValorUnitario);
+        listTextField.add(textFieldValorTotal);
+        listTextField.add(textFieldMarca);
+        listTextField.add(textFieldFormaPagamento);
+        listTextField.add(textFieldEndereco);
+        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
+           @Override
+           public void onScreenChanged(String newString, Object viewData){
+           }
+       });
     }
 }

@@ -1,10 +1,10 @@
 br\cefetmg\gestaoentregasentidades\Funcionario.class
-br\cefetmg\gestaoentregasentidades\ItemPedido.class
+br\cefetmg\gestaoentregasentidades\Item_.class
 br\cefetmg\gestaoentregasentidades\Usuario.class
 br\cefetmg\gestaoentregasentidades\Perfil.class
 br\cefetmg\gestaoentregasentidades\Funcionario_.class
 br\cefetmg\gestaoentregasentidades\Pedido_.class
-br\cefetmg\gestaoentregasentidades\ItemPedido_.class
+br\cefetmg\gestaoentregasentidades\Item.class
 br\cefetmg\gestaoentregasentidades\Status.class
 br\cefetmg\gestaoentregasentidades\Usuario_.class
 br\cefetmg\gestaoentregasentidades\Cliente.class

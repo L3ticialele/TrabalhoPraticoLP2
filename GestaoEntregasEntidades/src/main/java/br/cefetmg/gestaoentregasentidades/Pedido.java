@@ -36,8 +36,8 @@ public class Pedido implements Serializable{
     @JoinColumn(name = "id_cliente", nullable = false)
     private Cliente cliente;
     @OneToMany(fetch = FetchType.EAGER, cascade =
-            CascadeType.ALL, mappedBy = "pedidos")
-    private ArrayList<ItemPedido> items;
+            CascadeType.ALL, mappedBy = "pedido")
+    private ArrayList<Item> items;
 
     public Pedido() {
     }
@@ -61,15 +61,15 @@ public class Pedido implements Serializable{
         this.id = id;
     }
 
-    public ArrayList<ItemPedido> getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 
-    public void setItems(ArrayList<ItemPedido> items) {
+    public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
     
-    public void setItem(ItemPedido item){
+    public void setItem(Item item){
         items.add(item);
     }
 

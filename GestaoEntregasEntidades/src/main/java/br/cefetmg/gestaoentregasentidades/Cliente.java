@@ -7,10 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="clientes")
+@PrimaryKeyJoinColumn(name="id_usuario")
 public class Cliente extends Usuario{
     @Column(name="logradouro")
     private String logradouro;
@@ -21,21 +23,23 @@ public class Cliente extends Usuario{
     @Column(name="cpf_cliente")
     private String cpf; 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL,
-                mappedBy="clientes")
+                mappedBy="cliente")
     private ArrayList<Pedido> pedidos;
 
     public Cliente() {
     }
 
-    public Cliente(String nome, String logradouro, String bairro, String cnpj, String cpf, Empresa empresa, String senha, String telefone) {
+    public Cliente(String nome, String logradouro, String bairro, String cnpj, String cpf, Empresa empresa, String senha, String telefone, Pedido pedido) {
         super(senha, telefone, nome, empresa, "Cliente");
         pedidos = new ArrayList<>();
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cnpj = cnpj;
         this.cpf = cpf;
+        if(pedido != null)
+            pedidos.add(pedido);
     }
-
+    
     public ArrayList<Pedido> getPedidos() {
         return pedidos;
     }

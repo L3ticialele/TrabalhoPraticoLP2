@@ -36,9 +36,9 @@ public class LoginController implements Initializable {
         if (CampoSenha.getText().isBlank() == true || CampoTelefone.getText().isBlank() == true) {
             msg.setText("Preencha todos os campos!");
         } else if (validarLogin(telefone, senha)) {
-            UsuarioDAO aux = new UsuarioDAO();
-            String tela = aux.tipo(user);
-            MainFX.changedScreen(tela, user);
+            //UsuarioDAO aux = new UsuarioDAO();
+            //String tela = aux.tipo(user);
+            MainFX.changedScreen("TelaInicialAtendente", user);
         } else {
             msg.setText("Telefone e/ou senha incorreto!");
         }
@@ -51,7 +51,7 @@ public class LoginController implements Initializable {
 
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
-        if (usuarioDAO.validarLogin(usuario)) {
+        if (usuario!=null && usuarioDAO.validarLogin(usuario)) {
             user = usuarioDAO.procurarPorTelefone(telefone);
             return true;
         } else {
@@ -61,7 +61,11 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
+           @Override
+           public void onScreenChanged(String newString, Object viewData){
+           }
+       });
     }
 
 }
