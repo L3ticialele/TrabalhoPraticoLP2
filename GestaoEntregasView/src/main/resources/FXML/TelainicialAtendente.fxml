@@ -50,7 +50,7 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <Button layoutX="1072.0" layoutY="91.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text=" Novo Pedido" textFill="#f8f4f4">
+      <Button layoutX="1072.0" layoutY="91.0" mnemonicParsing="false"  prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text=" Novo Pedido" textFill="#f8f4f4">
          <font>
             <Font size="17.0" />
          </font>

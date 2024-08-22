@@ -15,7 +15,7 @@
    <children>
       <AnchorPane layoutX="526.0" layoutY="263.0" prefHeight="306.0" prefWidth="728.0" style="-fx-background-color: white;">
          <children>
-            <Button layoutX="519.0" layoutY="208.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text="Cadastrar" textFill="#f8f4f4">
+            <Button layoutX="519.0" layoutY="208.0" mnemonicParsing="false"  prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text="Cadastrar" textFill="#f8f4f4">
                <font>
                   <Font size="17.0" />
                </font>

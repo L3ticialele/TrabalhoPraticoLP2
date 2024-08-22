@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller=".TelaVisualizarClientesController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="br.cefetmg.gestaoentregasview.controllers.TelaVisualizarClientesController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="722.0" prefWidth="199.0" style="-fx-background-color: #1f5eb2;">
          <children>
@@ -51,7 +51,7 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <Button layoutX="891.0" layoutY="107.0" mnemonicParsing="false" onAction="#cadastrarCliente" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text=" Novo Cliente" textFill="#f8f4f4">
+      <Button layoutX="891.0" layoutY="107.0" mnemonicParsing="false"  prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text=" Novo Cliente" textFill="#f8f4f4">
          <font>
             <Font size="17.0" />
          </font>
