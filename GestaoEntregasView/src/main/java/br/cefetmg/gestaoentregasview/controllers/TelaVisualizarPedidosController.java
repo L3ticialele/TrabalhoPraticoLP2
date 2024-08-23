@@ -1,8 +1,9 @@
+package br.cefetmg.gestaoentregasview.controllers;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package br.cefetmg.gestaoentregasview.controllers;
 
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
@@ -16,13 +17,18 @@ import javafx.fxml.Initializable;
  *
  * @author KEHILARY
  */
-public class TelaClienteController implements Initializable {
+public class TelaVisualizarPedidosController implements Initializable {
+
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+    }   
     
     @FXML
     void abrirPaginaClientes(ActionEvent event) {
         MainFX.changedScreen("TelaVisualizarClientes", null);
     }
-
+    
     @FXML
     void abrirPaginaFuncionarios(ActionEvent event) {
         MainFX.changedScreen("TelaVisualizarFuncionarios", null);
@@ -38,9 +44,9 @@ public class TelaClienteController implements Initializable {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
     }
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }  
+    @FXML
+    void cadastrarPedido(){
+        MainFX.changedScreen("TelaCadastrarPedido", null);
+    }
     
 }

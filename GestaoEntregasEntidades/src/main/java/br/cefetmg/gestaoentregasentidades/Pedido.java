@@ -38,20 +38,100 @@ public class Pedido implements Serializable{
     @OneToMany(fetch = FetchType.EAGER, cascade =
             CascadeType.ALL, mappedBy = "pedido")
     private ArrayList<Item> items;
-
+    @Column(name="marca")
+    private String marca;
+    @Column(name="quantidade")
+    private int quantidade;
+    @Column(name="valor_unitario")
+    private double valorUnitario;
+    @Column(name="pagamento")
+    private String pagamento;
+    @Column(name="endereco")
+    private String endereco;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_entregador", nullable = false)
+    private Funcionario entregador;
+    
+    
     public Pedido() {
     }
 
-    public Pedido(Date data, double valorTotal, String status, Cliente cliente) {
+    public Pedido(Date data, double valorTotal, String status, Cliente cliente, String marca, int quantidade, double valorUnitario, String pagamento, String endereco, Funcionario entregador) {
         items = new ArrayList<>();
         for (Status s : Status.values()) {
             if(status.equals(s.toString()))
                 this.status = s;
         }
+        setStatus(status);
         this.data = data;
         this.valorTotal = valorTotal;
         this.cliente = cliente;
+        this.marca = marca;
+        this.quantidade = quantidade;
+        this.valorUnitario = valorUnitario;
+        this.pagamento = pagamento;
+        this.endereco = endereco;
+        this.entregador = entregador;
     }
+    
+    public final void setStatus(String status) {
+        switch(status.toUpperCase()){
+            case "EMPREPARACAO" -> this.status = Status.EMPREPARACAO;
+            case "SAIUPARAENTREGA" -> this.status = Status.SAIUPARAENTREGA;
+            case "ENTREGUE" -> this.status = Status.ENTREGUE;
+        }
+        
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
+    }
+
+    public double getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public String getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(String pagamento) {
+        this.pagamento = pagamento;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public Funcionario getEntregador() {
+        return entregador;
+    }
+
+    public void setEntregador(Funcionario entregador) {
+        this.entregador = entregador;
+    }
+    
+    
 
     public int getId() {
         return id;

@@ -28,8 +28,6 @@ public class LoginController implements Initializable {
 
     private Usuario user;
 
-    
-
     public void BotaoEntrar(ActionEvent e) {
         String senha = CampoSenha.getText();
         String telefone = CampoTelefone.getText();
@@ -38,7 +36,7 @@ public class LoginController implements Initializable {
         } else if (validarLogin(telefone, senha)) {
             //UsuarioDAO aux = new UsuarioDAO();
             //String tela = aux.tipo(user);
-            MainFX.changedScreen("TelaInicialAtendente", user);
+            MainFX.changedScreen("TelaVisualizarPedidos", user);
         } else {
             msg.setText("Telefone e/ou senha incorreto!");
         }

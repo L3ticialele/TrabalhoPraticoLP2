@@ -24,7 +24,7 @@
             </Label>
             <ImageView fitHeight="180.0" fitWidth="221.0" layoutX="401.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../java/imagens/iconeGE_1.png" />
+                  <Image url="@../imagens/iconeGE_1.png" />
                </image>
             </ImageView>
             <Label layoutX="174.0" layoutY="232.0" prefHeight="174.0" prefWidth="350.0" text="Express" textFill="#e8e8eb">

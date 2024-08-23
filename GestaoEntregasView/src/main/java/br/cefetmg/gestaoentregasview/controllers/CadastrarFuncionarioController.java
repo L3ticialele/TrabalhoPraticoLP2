@@ -42,6 +42,27 @@ public class CadastrarFuncionarioController implements Initializable {
     private final ArrayList<TextField> listTextFields = new ArrayList<>();
 
     private Alert alert;
+    
+    @FXML
+    void abrirPaginaClientes(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarClientes", null);
+    }
+
+
+    @FXML
+    void abrirPaginaFuncionarios(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarFuncionarios", null);
+    }
+
+    @FXML
+    void abrirPaginaPedidos(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarPedidos", null);
+    }
+
+    @FXML
+    void abrirPaginaProdutos(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarProdutos", null);
+    }
 
     @FXML
     void cadastrarFuncionario(ActionEvent event) {

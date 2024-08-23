@@ -29,7 +29,7 @@
       </AnchorPane>
       <ImageView fitHeight="117.0" fitWidth="164.0" layoutX="272.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../java/imagens/icon2.png" />
+            <Image url="@../imagens/icon2.png" />
          </image>
       </ImageView>
       <Label layoutX="72.0" layoutY="77.0" prefHeight="117.0" prefWidth="241.0" text="Express" textFill="#1f5eb2">

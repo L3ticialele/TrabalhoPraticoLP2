@@ -1,9 +1,15 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
+import br.cefetmg.gestaoentregasdao.dao.PedidoDAO;
+import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
+import br.cefetmg.gestaoentregasdao.interfaces.IPedidoDAO;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
@@ -33,27 +39,53 @@ public class CadastrarPedidoController {
 
     private Alert alert;
 
+    @FXML
+    void abrirPaginaClientes(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarClientes", null);
+    }
 
     @FXML
-    public void salvarPedido() {
+    void abrirPaginaFuncionarios(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarFuncionarios", null);
+    }
+
+    @FXML
+    void abrirPaginaPedidos(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarPedidos", null);
+    }
+
+    @FXML
+    void abrirPaginaProdutos(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarProdutos", null);
+    }
+
+    @FXML
+    public void salvarPedido() throws PersistenciaException {
         alert = new Alert(AlertType.NONE);
-        String nomeProduto, endereco, quantidade, valorUnitario, valorTotal, marca, formaPagamento, observacoes;
+        String nomeProduto, endereco, marca, formaPagamento, observacoes;
+        int quantidade;
+        double valorUnitario, valorTotal;
+        Date data = new Date();
         verificarCampos();
         if (!alert.getAlertType().equals(AlertType.WARNING)) {
+            IPedidoDAO pedidoDAO = new PedidoDAO();
             nomeProduto = comboBoxProduto.getSelectionModel().getSelectedItem();
             endereco = textFieldEndereco.getText();
-            quantidade = textFieldQuantidade.getText();
-            valorUnitario = textFieldValorUnitario.getText();
-            valorTotal = textFieldValorTotal.getText();
+            quantidade = Integer.parseInt(textFieldQuantidade.getText());
+            valorUnitario = Double.parseDouble(textFieldValorUnitario.getText());
+            valorTotal = Double.parseDouble(textFieldValorTotal.getText());
             marca = textFieldMarca.getText();
             formaPagamento = textFieldFormaPagamento.getText();
             observacoes = textAreaObservacoes.getText();
+            
+            pedido = new Pedido(data, valorTotal, "EMPREPARACAO", null,  marca,  quantidade, valorUnitario, formaPagamento, endereco, null);
+            pedidoDAO.inserir(pedido);
             alert.setAlertType(AlertType.INFORMATION);
             alert.setContentText("Pedido cadastrado com sucesso! ");
+            MainFX.changedScreen("TelaVisualizarPedidos", null);
         }
 
-        alert.show(); //exibe a mensagem
-        limparCampos();
+        alert.show(); 
     }
 
     private void verificarCampos() {

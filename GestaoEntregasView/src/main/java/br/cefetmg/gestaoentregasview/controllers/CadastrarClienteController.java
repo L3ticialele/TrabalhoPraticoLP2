@@ -1,5 +1,8 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
+import br.cefetmg.gestaoentregasdao.dao.ClienteDAO;
+import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
+import br.cefetmg.gestaoentregasdao.interfaces.IClienteDAO;
 import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
@@ -49,7 +52,7 @@ public class CadastrarClienteController implements Initializable {
     private Cliente cliente;
 
     @FXML
-    void cadastrarCliente(ActionEvent event) {
+    void cadastrarCliente(ActionEvent event) throws PersistenciaException {
         alert = new Alert(Alert.AlertType.NONE);
         String nome, telefone, cnpj, cpf, logradouro, bairro, senha;
         verificarCampos();
@@ -57,6 +60,7 @@ public class CadastrarClienteController implements Initializable {
             verificarSenha();
         }
         if (!alert.getAlertType().equals(Alert.AlertType.WARNING)) {
+            IClienteDAO clienteDAO = new ClienteDAO();
             nome = textFieldNome.getText();
             cnpj = textFieldCnpj.getText();
             telefone = textFieldTelefone.getText();
@@ -65,9 +69,10 @@ public class CadastrarClienteController implements Initializable {
             bairro = textFieldBairro.getText();
             senha = textFieldSenha.getText();
             cliente = new Cliente(nome, logradouro, bairro, cnpj, cpf, null, senha, telefone, null);
+            clienteDAO.inserir(cliente);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Cliente cadastrado com sucesso! ");
-            onCancelar(event);
+            abrirPaginaClientes(event);
         }
         alert.show();
     }
@@ -96,6 +101,27 @@ public class CadastrarClienteController implements Initializable {
             textFieldConfirmar.setText(null);
         }
 
+    }
+    
+    @FXML
+    void abrirPaginaClientes(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarClientes", null);
+    }
+
+
+    @FXML
+    void abrirPaginaFuncionarios(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarFuncionarios", null);
+    }
+
+    @FXML
+    void abrirPaginaPedidos(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarPedidos", null);
+    }
+
+    @FXML
+    void abrirPaginaProdutos(ActionEvent event) {
+        MainFX.changedScreen("TelaVisualizarProdutos", null);
     }
 
     @Override
