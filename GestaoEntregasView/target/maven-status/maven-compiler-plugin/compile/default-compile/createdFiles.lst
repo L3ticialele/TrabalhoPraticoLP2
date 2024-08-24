@@ -1,10 +1,9 @@
+br\cefetmg\gestaoentregasview\controllers\TelaVisualizarProdutosController$1.class
 br\cefetmg\gestaoentregasview\controllers\CadastrarPedidoController.class
 br\cefetmg\gestaoentregasview\controllers\CadastrarFuncionarioController.class
-br\cefetmg\gestaoentregasview\controllers\LoginController$1.class
 br\cefetmg\gestaoentregasview\controllers\LoginController.class
 br\cefetmg\gestaoentregasview\controllers\TelaVisualizarFuncionariosController.class
 br\cefetmg\gestaoentregasview\controllers\CadastrarPedidoController$1.class
-br\cefetmg\gestaoentregasview\controllers\CadastrarClienteController$1.class
 br\cefetmg\gestaoentregasview\controllers\CadastrarClienteController.class
 br\cefetmg\gestaoentregasview\controllers\TelaVisualizarClientesController.class
 br\cefetmg\gestaoentregasview\controllers\TelaVisualizarPedidosController.class

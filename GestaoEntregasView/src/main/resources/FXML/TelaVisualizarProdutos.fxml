@@ -14,18 +14,18 @@
    <children>
       <AnchorPane layoutX="538.0" layoutY="263.0" prefHeight="306.0" prefWidth="728.0" style="-fx-background-color: white;">
          <children>
-            <Button layoutX="519.0" layoutY="208.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text="Cadastrar" textFill="#f8f4f4">
+            <Button layoutX="519.0" layoutY="208.0" mnemonicParsing="false" onAction="#cadastrarProduto" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text="Cadastrar" textFill="#f8f4f4">
                <font>
                   <Font size="17.0" />
                </font>
             </Button>
-            <TextField layoutX="71.0" layoutY="45.0" prefHeight="39.0" prefWidth="567.0" />
+            <TextField fx:id="textFieldNome" layoutX="71.0" layoutY="45.0" prefHeight="39.0" prefWidth="567.0" />
             <Label layoutX="72.0" layoutY="105.0" text="Localização:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="71.0" layoutY="139.0" prefHeight="39.0" prefWidth="567.0" />
+            <TextField fx:id="textFieldLocalizacao" layoutX="71.0" layoutY="139.0" prefHeight="39.0" prefWidth="567.0" />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="722.0" prefWidth="199.0" style="-fx-background-color: #1f5eb2;">

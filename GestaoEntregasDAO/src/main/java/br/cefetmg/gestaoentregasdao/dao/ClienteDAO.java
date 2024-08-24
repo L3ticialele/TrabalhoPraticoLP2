@@ -42,16 +42,6 @@ public class ClienteDAO implements IClienteDAO {
         criteria.select(criteria.from(Cliente.class));
         List<Cliente> clientes = entityManager.createQuery(criteria).getResultList();
 
-        if (!clientes.isEmpty()) {
-            for (Cliente cliente : clientes) {
-                System.out.print(
-                        "Id: " + cliente.getId()
-                        + " Nome: " + cliente.getNome()
-                        + " Telefone: " + cliente.getTelefone()
-                );
-            }
-        }
-
         entityManager.close();
         return clientes;
     }
@@ -94,11 +84,11 @@ public class ClienteDAO implements IClienteDAO {
 
             if (clientePersistido != null) {
                 clientePersistido.setId(cliente.getId());
+                clientePersistido.setCpf(cliente.getCpf());
                 clientePersistido.setNome(cliente.getNome());
                 clientePersistido.setLogradouro(cliente.getLogradouro());
                 clientePersistido.setBairro(cliente.getBairro());
                 clientePersistido.setCnpj(cliente.getCnpj());
-                clientePersistido.setCpf(cliente.getCpf());
                 clientePersistido.setEmpresa(cliente.getEmpresa());
                 clientePersistido.setPedidos(cliente.getPedidos());
                 entityManager.getTransaction().commit();
@@ -162,5 +152,4 @@ public class ClienteDAO implements IClienteDAO {
             entityManager.close();
         }
     }
-
 }

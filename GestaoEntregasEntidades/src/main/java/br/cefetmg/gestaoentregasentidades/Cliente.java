@@ -20,8 +20,6 @@ public class Cliente extends Usuario{
     private String bairro;
     @Column(name="cnpj_cliente")
     private String cnpj;
-    @Column(name="cpf_cliente")
-    private String cpf; 
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL,
                 mappedBy="cliente")
     private ArrayList<Pedido> pedidos;
@@ -30,12 +28,11 @@ public class Cliente extends Usuario{
     }
 
     public Cliente(String nome, String logradouro, String bairro, String cnpj, String cpf, Empresa empresa, String senha, String telefone) {
-        super(senha, telefone, nome, empresa, "Cliente");
+        super(senha, telefone, nome, empresa, "Cliente", cpf);
         pedidos = new ArrayList<>();
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cnpj = cnpj;
-        this.cpf = cpf;
     }
     
     public ArrayList<Pedido> getPedidos() {
@@ -73,14 +70,5 @@ public class Cliente extends Usuario{
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-    
     
 }

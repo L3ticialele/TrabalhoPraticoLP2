@@ -34,18 +34,18 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="700.0" layoutY="281.0" prefHeight="27.0" prefWidth="82.0" text="Telefone:">
+      <Label layoutX="700.0" layoutY="281.0" prefHeight="27.0" prefWidth="82.0" text="CPF:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="CampoTelefone" layoutX="813.0" layoutY="279.0" pickOnBounds="false" prefHeight="35.0" prefWidth="387.0" />
+      <TextField fx:id="campoCpf" layoutX="813.0" layoutY="279.0" pickOnBounds="false" prefHeight="35.0" prefWidth="387.0" />
       <Label layoutX="700.0" layoutY="383.0" prefHeight="27.0" prefWidth="82.0" text="Senha:">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="CampoSenha" layoutX="813.0" layoutY="380.0" prefHeight="35.0" prefWidth="387.0" />
+      <TextField fx:id="campoSenha" layoutX="813.0" layoutY="380.0" prefHeight="35.0" prefWidth="387.0" />
       <Button fx:id="BotaoEntrar" layoutX="863.0" layoutY="467.0" mnemonicParsing="false" onAction="#BotaoEntrar" prefHeight="50.0" prefWidth="240.0" style="-fx-background-color: #1f5eb2;" text="ENTRAR" textFill="WHITE">
          <font>
             <Font name="Malgun Gothic Semilight" size="18.0" />

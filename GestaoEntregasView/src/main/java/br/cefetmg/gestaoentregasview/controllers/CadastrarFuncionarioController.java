@@ -1,9 +1,8 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
 import br.cefetmg.gestaoentregascontroller.FuncionarioController;
-import br.cefetmg.gestaoentregasdao.dao.FuncionarioDAO;
+import br.cefetmg.gestaoentregascontroller.ValidaCampos;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
-import br.cefetmg.gestaoentregasdao.interfaces.IFuncionarioDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -33,6 +32,9 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     private TextField textFieldTelefone;
+    
+    @FXML
+    private TextField textFieldCpf;
 
     private final String[] tipos = {"Administrador", "Atendente", "Entregador"};
 
@@ -40,7 +42,11 @@ public class CadastrarFuncionarioController implements Initializable {
 
     private final ArrayList<TextField> listTextFields = new ArrayList<>();
 
-    private Alert alert;
+    private final Alert alert = new Alert(AlertType.NONE);
+    
+    private final ValidaCampos validador = new ValidaCampos();
+    
+    private 
     
     @FXML
     void abrirPaginaClientes(ActionEvent event) {
@@ -65,11 +71,11 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     void cadastrarFuncionario(ActionEvent event) throws PersistenciaException {
-        alert = new Alert(AlertType.NONE);
-        String nome, senha, telefone, tipo, confirmarSenha;
+        alert.setAlertType(AlertType.NONE);
+        String nome, senha, telefone, tipo, confirmarSenha, cpf;
         verificarCampos();
         if (!alert.getContentText().equals("Preencha todo os campos.")) {
-            verificarSenha();
+            validarCampos();
         }
         if (!alert.getAlertType().equals(AlertType.WARNING)) {
             FuncionarioController funcionarioController = new FuncionarioController();
@@ -78,7 +84,8 @@ public class CadastrarFuncionarioController implements Initializable {
             telefone = textFieldTelefone.getText();
             tipo = choiceBoxTipo.getValue();
             confirmarSenha = textFieldConfirmar.getText();
-            if(funcionarioController.cadastrarFuncionario(nome, senha, telefone, null, senha)){
+            cpf = textFieldCpf.getText();
+            if(funcionarioController.cadastrarFuncionario( nome,  senha, telefone,  null, tipo,  cpf)){
             alert.setAlertType(AlertType.INFORMATION);
             alert.setContentText("Funcionário cadastrado com sucesso!");
             abrirPaginaFuncionarios(event);
@@ -89,16 +96,30 @@ public class CadastrarFuncionarioController implements Initializable {
         }
         alert.show();
     }
-
-    private void verificarSenha() {
+    
+    private void validarCampos() throws PersistenciaException{
+        alert.setAlertType(Alert.AlertType.WARNING);
         if (!textFieldSenha.getText().equals(textFieldConfirmar.getText())) {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setTitle("Atenção!");
             alert.setContentText("Confirme sua senha.");
-            textFieldSenha.setText(null);
-            textFieldConfirmar.setText(null);
         }
-
+        else if (!validador.senhaForte(textFieldSenha.getText())) {
+            alert.setContentText("Senha fraca.");
+        }
+        else if (!validador.validarTelefone(textFieldTelefone.getText())) {
+                alert.setContentText("Número de telefone inválido.");
+            }
+        else if(!validador.isCPF(textFieldCpf.getText())){
+                alert.setContentText("CPF inválido.");
+        }
+        else if(!validador.verificaExistenciaCPF(textFieldCpf.getText())){
+            alert.setContentText("Já existe um usuário cadastrado com esse CPF.");
+        }
+        else if(!validador.validaNome(textFieldNome.getText())){
+            alert.setContentText("Nome inválido.");
+        }
+        else{
+            alert.setAlertType(Alert.AlertType.NONE);
+        }
     }
 
     private void verificarCampos() {

@@ -1,8 +1,8 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
 import br.cefetmg.gestaoentregascontroller.ClienteController;
+import br.cefetmg.gestaoentregascontroller.ValidaCampos;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
-import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,11 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
-/**
- * FXML Controller class
- *
- * @author letic
- */
 public class CadastrarClienteController implements Initializable {
 
     @FXML
@@ -46,18 +41,19 @@ public class CadastrarClienteController implements Initializable {
 
     private final ArrayList<TextField> listTextFields = new ArrayList<>();
 
-    private Alert alert;
+    private final Alert alert = new Alert(Alert.AlertType.NONE);
 
-    private Cliente cliente;
+    private final ClienteController clienteController = new ClienteController();
+    
+    private final ValidaCampos validador = new ValidaCampos();
 
     @FXML
-    void cadastrarCliente(ActionEvent event) throws PersistenciaException {
-        alert = new Alert(Alert.AlertType.NONE);
+    private void cadastrarCliente(ActionEvent event) throws PersistenciaException {
+        alert.setAlertType(Alert.AlertType.NONE);
         String nome, telefone, cnpj, cpf, logradouro, bairro, senha;
-        ClienteController clienteController = new ClienteController();
         verificarCampos();
-        if (!alert.getContentText().equals("Preencha todo os campos.")) {
-            verificarSenha();
+        if (!alert.getContentText().equals("Preencha todo os campos.")){
+            validarCampos();
         }
         if (!alert.getAlertType().equals(Alert.AlertType.WARNING)) {
             nome = textFieldNome.getText();
@@ -93,16 +89,34 @@ public class CadastrarClienteController implements Initializable {
             }
         }
     }
-
-    private void verificarSenha() {
+    
+    private void validarCampos() throws PersistenciaException{
+        alert.setAlertType(Alert.AlertType.WARNING);
         if (!textFieldSenha.getText().equals(textFieldConfirmar.getText())) {
-            alert.setAlertType(Alert.AlertType.WARNING);
-            alert.setTitle("Atenção!");
             alert.setContentText("Confirme sua senha.");
-            textFieldSenha.setText(null);
-            textFieldConfirmar.setText(null);
         }
-
+        else if (!validador.senhaForte(textFieldSenha.getText())) {
+            alert.setContentText("Senha fraca.");
+        }
+        else if (!validador.validarTelefone(textFieldTelefone.getText())) {
+                alert.setContentText("Número de telefone inválido.");
+            }
+        else if(!validador.isCPF(textFieldCpf.getText())){
+                alert.setContentText("CPF inválido.");
+        }
+        else if(!validador.verificaExistenciaCPF(textFieldCpf.getText())){
+            alert.setContentText("Já existe um usuário cadastrado com esse CPF.");
+        }
+        else if(!validador.isCNPJ(textFieldCnpj.getText())){
+            alert.setContentText("CNPJ inválido.");
+        }
+        else if(!validador.validaNome(textFieldNome.getText())){
+            alert.setContentText("Nome inválido.");
+        }
+        else{
+            alert.setAlertType(Alert.AlertType.NONE);
+        }
+        
     }
 
     @FXML
@@ -133,10 +147,7 @@ public class CadastrarClienteController implements Initializable {
         listTextFields.add(textFieldLogradouro);
         listTextFields.add(textFieldCnpj);
         listTextFields.add(textFieldCpf);
-        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen() {
-            @Override
-            public void onScreenChanged(String newString, Object viewData) {
-            }
+        MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
         });
     }
 

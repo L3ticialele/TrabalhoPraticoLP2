@@ -17,4 +17,5 @@ public interface IClienteDAO {
     Cliente procurarPorId(int idCliente) throws PersistenciaException;
     
     Cliente procurarPorNome(String nomeCliente) throws PersistenciaException;
+    
 }

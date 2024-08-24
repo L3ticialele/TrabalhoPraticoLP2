@@ -2,7 +2,6 @@ package br.cefetmg.gestaoentregasview.controllers;
 
 import br.cefetmg.gestaoentregascontroller.UsuarioController;
 import br.cefetmg.gestaoentregasentidades.Usuario;
-import br.cefetmg.gestaoentregasdao.dao.UsuarioDAO;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
@@ -10,20 +9,16 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class LoginController implements Initializable {
 
     @FXML
-    private Button BotaoEntrar;
+    private TextField campoSenha;
 
     @FXML
-    private TextField CampoSenha;
-
-    @FXML
-    private TextField CampoTelefone;
+    private TextField campoCpf;
 
     @FXML
     private Label msg;
@@ -33,10 +28,10 @@ public class LoginController implements Initializable {
     private Usuario user;
 
     public void BotaoEntrar(ActionEvent e) throws PersistenciaException {
-        String senha = CampoSenha.getText();
-        String telefone = CampoTelefone.getText();
-        user = usuarioController.login(telefone, senha);
-        if (CampoSenha.getText().isBlank() == true || CampoTelefone.getText().isBlank() == true) {
+        String senha = campoSenha.getText();
+        String cpf = campoCpf.getText();
+        user = usuarioController.login(cpf, senha);
+        if (campoSenha.getText().isBlank() == true || campoCpf.getText().isBlank() == true) {
             msg.setText("Preencha todos os campos!");
         } else if (user!=null) {
             MainFX.changedScreen(usuarioController.direcionarTela(user), user);
@@ -47,11 +42,8 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
-           @Override
-           public void onScreenChanged(String newString, Object viewData){
-           }
-       });
+        MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
+        });
     }
 
 }

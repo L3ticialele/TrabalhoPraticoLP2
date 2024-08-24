@@ -99,6 +99,7 @@ public class FuncionarioDAO implements IFuncionarioDAO{
                 funcionarioPersistido.setSenha(funcionario.getSenha());
                 funcionarioPersistido.setTelefone(funcionario.getTelefone());
                 funcionarioPersistido.setTipoPerfil(funcionario.getTipoPerfil());
+                funcionarioPersistido.setCpf(funcionario.getCpf());
                 entityManager.getTransaction().commit();
                 return true;
             } else {
