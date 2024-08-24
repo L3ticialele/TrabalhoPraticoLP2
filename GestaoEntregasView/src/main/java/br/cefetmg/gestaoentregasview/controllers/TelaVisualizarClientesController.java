@@ -1,24 +1,48 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-
+import br.cefetmg.gestaoentregascontroller.ClienteController;
+import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
+import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- * FXML Controller class
- *
- * @author KEHILARY
- */
 public class TelaVisualizarClientesController implements Initializable {
+    
+    @FXML
+    private TableColumn<Cliente, String> colunaBairro;
 
+    @FXML
+    private TableColumn<Cliente, String> colunaLogradouro;
+
+    @FXML
+    private TableColumn<Cliente, String> colunaNome;
+
+    @FXML
+    private TableColumn<Cliente, String> colunaQuantPedidos;
+
+    @FXML
+    private TableColumn<Cliente, String> colunaTelefone;
+    
+    @FXML
+    private TableView<Cliente> tabelaClientes;
+
+    private int ultimoCliente;
+    
+    private ArrayList<Cliente> listaClientes;
+    
+    private final ClienteController clienteController = new ClienteController();
+    
     @FXML
     void abrirPaginaClientes(ActionEvent event) {
         MainFX.changedScreen("TelaVisualizarClientes", null);
@@ -44,9 +68,32 @@ public class TelaVisualizarClientesController implements Initializable {
         MainFX.changedScreen("TelaCadastrarCliente", null);
     }
     
+    @FXML
+    private void atualizarDados() throws PersistenciaException{
+        listaClientes = clienteController.atualizaDadosCliente(ultimoCliente);
+        tabelaClientes.setItems(FXCollections.observableArrayList(listaClientes));
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ultimoCliente = 0;
+        
+        colunaNome.setCellValueFactory(
+                new PropertyValueFactory<>("nome"));
+        colunaTelefone.setCellValueFactory(
+                new PropertyValueFactory<>("telefone"));
+        colunaBairro.setCellValueFactory(
+                new PropertyValueFactory<>("bairro"));
+        colunaLogradouro.setCellValueFactory(
+                new PropertyValueFactory<>("logradouro"));
+        colunaQuantPedidos.setCellValueFactory(
+                new PropertyValueFactory<>("quantPedidos"));
+        
+        try {
+            atualizarDados();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(TelaVisualizarClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
     
 }

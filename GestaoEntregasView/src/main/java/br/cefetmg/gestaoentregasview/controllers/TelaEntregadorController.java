@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package br.cefetmg.gestaoentregasview.controllers;
 
 import br.cefetmg.gestaoentregasview.MainFX;
@@ -11,11 +8,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-/**
- * FXML Controller class
- *
- * @author KEHILARY
- */
 public class TelaEntregadorController implements Initializable {
 
     @FXML

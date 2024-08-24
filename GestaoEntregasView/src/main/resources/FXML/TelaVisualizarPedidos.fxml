@@ -55,20 +55,28 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <TableView layoutX="226.0" layoutY="176.0" prefHeight="481.0" prefWidth="1039.0">
+      <TableView fx:id="tabelaPedidos" layoutX="226.0" layoutY="176.0" prefHeight="481.0" prefWidth="1039.0">
          <columns>
-            <TableColumn prefWidth="116.0" text="Nome " />
-            <TableColumn prefWidth="74.0" text="Produto" />
-            <TableColumn prefWidth="110.0" text="Telefone" />
-            <TableColumn prefWidth="123.0" text="Endereço" />
-            <TableColumn prefWidth="96.0" text="Pagamento" />
-            <TableColumn prefWidth="95.0" text="Marca" />
-            <TableColumn minWidth="9.0" prefWidth="77.0" text="Quant." />
-            <TableColumn prefWidth="91.0" text="Valor Unitário" />
-            <TableColumn prefWidth="73.0" text="Valor Total" />
-            <TableColumn prefWidth="127.0" text="Entregador" />
-            <TableColumn prefWidth="56.0" />
+            <TableColumn fx:id="colunaNome" prefWidth="116.0" text="Nome " />
+            <TableColumn fx:id="colunaEndereco" prefWidth="123.0" text="Endereço" />
+            <TableColumn fx:id="colunaPagamento" prefWidth="96.0" text="Pagamento" />
+            <TableColumn fx:id="colunaMarca" prefWidth="88.6666259765625" text="Marca" />
+            <TableColumn fx:id="colunaQuantidade" minWidth="9.0" prefWidth="92.66668701171875" text="Quantidade" />
+            <TableColumn fx:id="colunaValorUnitario" prefWidth="91.0" text="Valor Unitário" />
+            <TableColumn fx:id="colunaValorTotal" prefWidth="73.0" text="Valor Total" />
+            <TableColumn fx:id="colunaEntregador" prefWidth="90.66668701171875" text="Entregador" />
+            <TableColumn prefWidth="77.3333740234375" text="CPF Cliente" />
+            <TableColumn prefWidth="129.3333740234375" text="Observações" />
+            <TableColumn fx:id="colunaStatus" prefWidth="84.6666259765625" text="Status" />
          </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
+      <Button layoutX="910.0" layoutY="91.0" mnemonicParsing="false" onAction="#atualizarDados" prefHeight="50.0" prefWidth="147.0" style="-fx-background-color: #1f5eb2;" text="Atualizar Tabela" textFill="#f8f4f4">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

@@ -37,11 +37,6 @@
             <Font name="Malgun Gothic" size="70.0" />
          </font>
       </Label>
-      <Label layoutX="655.0" layoutY="200.0" text="Emitir relatório:" textFill="#f5f2f2">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <TableView layoutX="72.0" layoutY="237.0" prefHeight="442.0" prefWidth="446.0">
         <columns>
           <TableColumn prefWidth="75.0" text="Situação" />

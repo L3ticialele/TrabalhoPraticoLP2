@@ -32,7 +32,7 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
     private TextField textFieldTelefone;
-    
+
     @FXML
     private TextField textFieldCpf;
 
@@ -43,16 +43,13 @@ public class CadastrarFuncionarioController implements Initializable {
     private final ArrayList<TextField> listTextFields = new ArrayList<>();
 
     private final Alert alert = new Alert(AlertType.NONE);
-    
+
     private final ValidaCampos validador = new ValidaCampos();
-    
-    private 
-    
-    @FXML
+
+    private @FXML
     void abrirPaginaClientes(ActionEvent event) {
         MainFX.changedScreen("TelaVisualizarClientes", null);
     }
-
 
     @FXML
     void abrirPaginaFuncionarios(ActionEvent event) {
@@ -85,39 +82,43 @@ public class CadastrarFuncionarioController implements Initializable {
             tipo = choiceBoxTipo.getValue();
             confirmarSenha = textFieldConfirmar.getText();
             cpf = textFieldCpf.getText();
-            if(funcionarioController.cadastrarFuncionario( nome,  senha, telefone,  null, tipo,  cpf)){
-            alert.setAlertType(AlertType.INFORMATION);
-            alert.setContentText("Funcionário cadastrado com sucesso!");
-            abrirPaginaFuncionarios(event);
-            }else{
+            if (funcionarioController.cadastrarFuncionario(nome, senha, telefone, null, tipo, cpf)) {
+                alert.setAlertType(AlertType.INFORMATION);
+                alert.setContentText("Funcionário cadastrado com sucesso!");
+                abrirPaginaFuncionarios(event);
+                setToNull();
+            } else {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setContentText("Ocorreu um erro ao cadastrar o funcionário.");
             }
         }
         alert.show();
     }
-    
-    private void validarCampos() throws PersistenciaException{
+
+    private void setToNull() {
+        choiceBoxTipo.setValue(null);
+        textFieldNome.setText(null);
+        textFieldCpf.setText(null);
+        textFieldSenha.setText(null);
+        textFieldConfirmar.setText(null);
+        textFieldTelefone.setText(null);
+    }
+
+    private void validarCampos() throws PersistenciaException {
         alert.setAlertType(Alert.AlertType.WARNING);
         if (!textFieldSenha.getText().equals(textFieldConfirmar.getText())) {
             alert.setContentText("Confirme sua senha.");
-        }
-        else if (!validador.senhaForte(textFieldSenha.getText())) {
+        } else if (!validador.senhaForte(textFieldSenha.getText())) {
             alert.setContentText("Senha fraca.");
-        }
-        else if (!validador.validarTelefone(textFieldTelefone.getText())) {
-                alert.setContentText("Número de telefone inválido.");
-            }
-        else if(!validador.isCPF(textFieldCpf.getText())){
-                alert.setContentText("CPF inválido.");
-        }
-        else if(!validador.verificaExistenciaCPF(textFieldCpf.getText())){
+        } else if (!validador.validarTelefone(textFieldTelefone.getText())) {
+            alert.setContentText("Número de telefone inválido.");
+        } else if (!validador.isCPF(textFieldCpf.getText())) {
+            alert.setContentText("CPF inválido.");
+        } else if (!validador.verificaExistenciaCPF(textFieldCpf.getText())) {
             alert.setContentText("Já existe um usuário cadastrado com esse CPF.");
-        }
-        else if(!validador.validaNome(textFieldNome.getText())){
+        } else if (!validador.validaNome(textFieldNome.getText())) {
             alert.setContentText("Nome inválido.");
-        }
-        else{
+        } else {
             alert.setAlertType(Alert.AlertType.NONE);
         }
     }
@@ -144,11 +145,11 @@ public class CadastrarFuncionarioController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
-           @Override
-           public void onScreenChanged(String newString, Object viewData){
-           }
-       });
+        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen() {
+            @Override
+            public void onScreenChanged(String newString, Object viewData) {
+            }
+        });
         choiceBoxTipo.getItems().addAll(tipos);
         listTextFields.add(textFieldNome);
         listTextFields.add(textFieldTelefone);

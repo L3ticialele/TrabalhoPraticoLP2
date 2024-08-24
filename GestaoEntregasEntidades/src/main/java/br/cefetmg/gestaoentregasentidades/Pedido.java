@@ -51,12 +51,14 @@ public class Pedido implements Serializable{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_entregador", nullable = false)
     private Funcionario entregador;
+    @Column(name="observacoes")
+    private String observacoes;
     
     
     public Pedido() {
     }
 
-    public Pedido(Date data, double valorTotal, String status, Cliente cliente, String marca, int quantidade, double valorUnitario, String pagamento, String endereco, Funcionario entregador) {
+    public Pedido(Date data, double valorTotal, String status, Cliente cliente, String marca, int quantidade, double valorUnitario, String pagamento, String endereco, Funcionario entregador, String observacoes) {
         items = new ArrayList<>();
         for (Status s : Status.values()) {
             if(status.equals(s.toString()))
@@ -72,6 +74,7 @@ public class Pedido implements Serializable{
         this.pagamento = pagamento;
         this.endereco = endereco;
         this.entregador = entregador;
+        this.observacoes = observacoes;
     }
     
     public final void setStatus(String status) {
@@ -81,6 +84,14 @@ public class Pedido implements Serializable{
             case "ENTREGUE" -> this.status = Status.ENTREGUE;
         }
         
+    }
+
+    public String getObservacoes() {
+        return observacoes;
+    }
+
+    public void setObservacoes(String observacoes) {
+        this.observacoes = observacoes;
     }
 
     public String getMarca() {
