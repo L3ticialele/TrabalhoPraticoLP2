@@ -3,7 +3,10 @@ package br.cefetmg.gestaoentregasdao.dao;
 
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasdao.interfaces.IPedidoDAO;
+import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasentidades.Pedido;
+import br.cefetmg.gestaoentregasentidades.Usuario;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -104,6 +107,30 @@ public class PedidoDAO implements IPedidoDAO{
             } else {
                 System.out.println("Não foi possível encontrar o pedido com o id: " + pedido.getId());
                 return false;
+            }
+        } catch (Exception ex) {
+            entityManager.getTransaction().rollback();
+            throw ex;
+        } finally {
+            entityManager.close();
+        }
+    }
+    
+    @Override
+    public List<Pedido> listarPorCliente(Cliente cliente){
+        EntityManagerFactory entityManagerFactory
+                = Persistence.createEntityManagerFactory("persistence");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("FROM Pedido AS p WHERE p. =:id ");
+            query.setParameter("id", cliente.getId());
+            List<Pedido> pedidos = query.getResultList();
+            if (!pedidos.isEmpty()) {
+                return pedidos;
+            } else {
+                return null;
             }
         } catch (Exception ex) {
             entityManager.getTransaction().rollback();

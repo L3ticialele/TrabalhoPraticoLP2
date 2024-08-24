@@ -1,7 +1,9 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
+import br.cefetmg.gestaoentregascontroller.UsuarioController;
 import br.cefetmg.gestaoentregasentidades.Usuario;
 import br.cefetmg.gestaoentregasdao.dao.UsuarioDAO;
+import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,34 +28,20 @@ public class LoginController implements Initializable {
     @FXML
     private Label msg;
 
+    UsuarioController usuarioController = new UsuarioController();
+    
     private Usuario user;
 
-    public void BotaoEntrar(ActionEvent e) {
+    public void BotaoEntrar(ActionEvent e) throws PersistenciaException {
         String senha = CampoSenha.getText();
         String telefone = CampoTelefone.getText();
+        user = usuarioController.login(telefone, senha);
         if (CampoSenha.getText().isBlank() == true || CampoTelefone.getText().isBlank() == true) {
             msg.setText("Preencha todos os campos!");
-        } else if (validarLogin(telefone, senha)) {
-            //UsuarioDAO aux = new UsuarioDAO();
-            //String tela = aux.tipo(user);
-            MainFX.changedScreen("TelaVisualizarPedidos", user);
+        } else if (user!=null) {
+            MainFX.changedScreen(usuarioController.direcionarTela(user), user);
         } else {
             msg.setText("Telefone e/ou senha incorreto!");
-        }
-    }
-
-    public boolean validarLogin(String telefone, String senha) {
-        Usuario usuario = new Usuario();
-        usuario.setTelefone(telefone);
-        usuario.setSenha(senha);
-
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-
-        if (usuario!=null && usuarioDAO.validarLogin(usuario)) {
-            user = usuarioDAO.procurarPorTelefone(telefone);
-            return true;
-        } else {
-            return false;
         }
     }
 

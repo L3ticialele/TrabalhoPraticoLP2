@@ -1,5 +1,9 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
+import br.cefetmg.gestaoentregascontroller.FuncionarioController;
+import br.cefetmg.gestaoentregasdao.dao.FuncionarioDAO;
+import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
+import br.cefetmg.gestaoentregasdao.interfaces.IFuncionarioDAO;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -13,11 +17,6 @@ import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-/**
- * FXML Controller class
- *
- * @author letic
- */
 public class CadastrarFuncionarioController implements Initializable {
 
     @FXML
@@ -65,7 +64,7 @@ public class CadastrarFuncionarioController implements Initializable {
     }
 
     @FXML
-    void cadastrarFuncionario(ActionEvent event) {
+    void cadastrarFuncionario(ActionEvent event) throws PersistenciaException {
         alert = new Alert(AlertType.NONE);
         String nome, senha, telefone, tipo, confirmarSenha;
         verificarCampos();
@@ -73,15 +72,20 @@ public class CadastrarFuncionarioController implements Initializable {
             verificarSenha();
         }
         if (!alert.getAlertType().equals(AlertType.WARNING)) {
+            FuncionarioController funcionarioController = new FuncionarioController();
             nome = textFieldNome.getText();
             senha = textFieldSenha.getText();
             telefone = textFieldTelefone.getText();
             tipo = choiceBoxTipo.getValue();
             confirmarSenha = textFieldConfirmar.getText();
-            funcionario = new Funcionario(nome, senha, telefone, null, tipo);
+            if(funcionarioController.cadastrarFuncionario(nome, senha, telefone, null, senha)){
             alert.setAlertType(AlertType.INFORMATION);
-            alert.setContentText("Funcionário cadastrado com sucesso! ");
-            MainFX.changedScreen("Sair", null);
+            alert.setContentText("Funcionário cadastrado com sucesso!");
+            abrirPaginaFuncionarios(event);
+            }else{
+                alert.setAlertType(AlertType.ERROR);
+                alert.setContentText("Ocorreu um erro ao cadastrar o funcionário.");
+            }
         }
         alert.show();
     }

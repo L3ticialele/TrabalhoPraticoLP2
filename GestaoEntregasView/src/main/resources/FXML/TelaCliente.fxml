@@ -20,19 +20,23 @@
             <Font name="Malgun Gothic" size="70.0" />
          </font>
       </Label>
-      <TableView layoutX="149.0" layoutY="194.0" prefHeight="481.0" prefWidth="982.0">
+      <TableView fx:id="tabelaPedidos" layoutX="82.0" layoutY="200.0" prefHeight="506.0" prefWidth="1153.0">
          <columns>
-            <TableColumn prefWidth="116.0" text="Data Limite Entrega" />
-            <TableColumn prefWidth="74.0" text="Produto" />
-            <TableColumn prefWidth="110.0" text="Telefone" />
-            <TableColumn prefWidth="123.0" text="Endereço" />
-            <TableColumn prefWidth="96.0" text="Pagamento" />
-            <TableColumn prefWidth="95.0" text="Marca" />
-            <TableColumn minWidth="9.0" prefWidth="77.0" text="Quant." />
-            <TableColumn prefWidth="91.0" text="Valor Unitário" />
-            <TableColumn prefWidth="73.0" text="Valor Total" />
-            <TableColumn prefWidth="127.0" text="Entregador" />
+            <TableColumn fx:id="colunaData" prefWidth="116.0" text="Data Limite Entrega" />
+            <TableColumn fx:id="colunaProduto" prefWidth="74.0" text="Produto" />
+            <TableColumn fx:id="colunaTelefone" prefWidth="110.0" text="Telefone" />
+            <TableColumn fx:id="colunaEndereco" prefWidth="123.0" text="Endereço" />
+            <TableColumn fx:id="colunaPagamento" prefWidth="96.0" text="Pagamento" />
+            <TableColumn fx:id="colunaMarca" prefWidth="95.0" text="Marca" />
+            <TableColumn fx:id="colunaQuantidade" minWidth="9.0" prefWidth="77.0" text="Quant." />
+            <TableColumn fx:id="colunaValorUnitario" prefWidth="91.0" text="Valor Unitário" />
+            <TableColumn fx:id="colunaValorTotal" prefWidth="73.0" text="Valor Total" />
+            <TableColumn fx:id="colunaEntregador" prefWidth="94.0" text="Entregador" />
+            <TableColumn fx:id="colunaObservacoes" prefWidth="126.0" text="Observações" />
          </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </children>
 </AnchorPane>

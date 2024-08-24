@@ -1,8 +1,7 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
-import br.cefetmg.gestaoentregasdao.dao.ClienteDAO;
+import br.cefetmg.gestaoentregascontroller.ClienteController;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
-import br.cefetmg.gestaoentregasdao.interfaces.IClienteDAO;
 import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
@@ -55,12 +54,12 @@ public class CadastrarClienteController implements Initializable {
     void cadastrarCliente(ActionEvent event) throws PersistenciaException {
         alert = new Alert(Alert.AlertType.NONE);
         String nome, telefone, cnpj, cpf, logradouro, bairro, senha;
+        ClienteController clienteController = new ClienteController();
         verificarCampos();
         if (!alert.getContentText().equals("Preencha todo os campos.")) {
             verificarSenha();
         }
         if (!alert.getAlertType().equals(Alert.AlertType.WARNING)) {
-            IClienteDAO clienteDAO = new ClienteDAO();
             nome = textFieldNome.getText();
             cnpj = textFieldCnpj.getText();
             telefone = textFieldTelefone.getText();
@@ -68,11 +67,14 @@ public class CadastrarClienteController implements Initializable {
             logradouro = textFieldLogradouro.getText();
             bairro = textFieldBairro.getText();
             senha = textFieldSenha.getText();
-            cliente = new Cliente(nome, logradouro, bairro, cnpj, cpf, null, senha, telefone, null);
-            clienteDAO.inserir(cliente);
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.setContentText("Cliente cadastrado com sucesso! ");
-            abrirPaginaClientes(event);
+            if (clienteController.cadastrarCliente(nome, logradouro, bairro, cnpj, cpf, null, senha, telefone)) {
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setContentText("Cliente cadastrado com sucesso! ");
+                abrirPaginaClientes(event);
+            } else {
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setContentText("Ocorreu um erro ao cadastrar o cliente.");
+            }
         }
         alert.show();
     }
@@ -102,12 +104,11 @@ public class CadastrarClienteController implements Initializable {
         }
 
     }
-    
+
     @FXML
     void abrirPaginaClientes(ActionEvent event) {
         MainFX.changedScreen("TelaVisualizarClientes", null);
     }
-
 
     @FXML
     void abrirPaginaFuncionarios(ActionEvent event) {
@@ -132,11 +133,11 @@ public class CadastrarClienteController implements Initializable {
         listTextFields.add(textFieldLogradouro);
         listTextFields.add(textFieldCnpj);
         listTextFields.add(textFieldCpf);
-        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
-           @Override
-           public void onScreenChanged(String newString, Object viewData){
-           }
-       });
+        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen() {
+            @Override
+            public void onScreenChanged(String newString, Object viewData) {
+            }
+        });
     }
 
 }

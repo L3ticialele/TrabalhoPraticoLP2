@@ -2,6 +2,7 @@
 package br.cefetmg.gestaoentregasdao.interfaces;
 
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
+import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface IPedidoDAO {
     List<Pedido> listarTodos() throws PersistenciaException;
     
     Pedido procurarPorId(int idPedido) throws PersistenciaException;
+    
+    public List<Pedido> listarPorCliente(Cliente cliente);
 }

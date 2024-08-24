@@ -39,6 +39,11 @@ public class TelaVisualizarFuncionariosController implements Initializable {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
     }
     
+    @FXML
+    void cadastrarFuncionario(){
+        MainFX.changedScreen("TelaCadastrarFuncionario", null);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

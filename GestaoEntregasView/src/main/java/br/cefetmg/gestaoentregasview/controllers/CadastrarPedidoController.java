@@ -1,11 +1,13 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
+import br.cefetmg.gestaoentregascontroller.PedidoController;
 import br.cefetmg.gestaoentregasdao.dao.PedidoDAO;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasdao.interfaces.IPedidoDAO;
+import br.cefetmg.gestaoentregasentidades.Cliente;
+import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.FXCollections;
@@ -38,6 +40,10 @@ public class CadastrarPedidoController {
     private Pedido pedido;
 
     private Alert alert;
+    
+    private Cliente cliente;
+    
+    private Funcionario entregador;
 
     @FXML
     void abrirPaginaClientes(ActionEvent event) {
@@ -77,12 +83,15 @@ public class CadastrarPedidoController {
             marca = textFieldMarca.getText();
             formaPagamento = textFieldFormaPagamento.getText();
             observacoes = textAreaObservacoes.getText();
-            
-            pedido = new Pedido(data, valorTotal, "EMPREPARACAO", null,  marca,  quantidade, valorUnitario, formaPagamento, endereco, null);
-            pedidoDAO.inserir(pedido);
-            alert.setAlertType(AlertType.INFORMATION);
+            PedidoController pedidoController = new PedidoController();
+            if(pedidoController.cadastrarPedido(data, valorTotal, marca, cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador)){
+                alert.setAlertType(AlertType.INFORMATION);
             alert.setContentText("Pedido cadastrado com sucesso! ");
             MainFX.changedScreen("TelaVisualizarPedidos", null);
+            }else{
+                alert.setAlertType(AlertType.ERROR);
+                alert.setContentText("Ocorreu um erro ao cadastrar o pedido.");
+            }
         }
 
         alert.show(); 

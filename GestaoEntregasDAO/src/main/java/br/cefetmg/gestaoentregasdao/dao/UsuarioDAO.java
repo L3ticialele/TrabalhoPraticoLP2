@@ -1,5 +1,6 @@
 package br.cefetmg.gestaoentregasdao.dao;
 
+import br.cefetmg.gestaoentregasdao.interfaces.IUsuarioDAO;
 import br.cefetmg.gestaoentregasentidades.Usuario;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -7,8 +8,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-public class UsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO {
 
+    @Override
     public boolean validarLogin(Usuario usuario) {
         EntityManagerFactory entityManagerFactory
                 = Persistence.createEntityManagerFactory("persistence");
@@ -20,11 +22,7 @@ public class UsuarioDAO {
             query.setParameter("telefone", usuario.getTelefone());
             query.setParameter("senha", usuario.getSenha());
             List<Usuario> usuarioPersistido = query.getResultList();
-            if (!usuarioPersistido.isEmpty()) {
-                return true;
-            } else {
-                return false;
-            }
+            return !usuarioPersistido.isEmpty();
         } catch (Exception ex) {
             entityManager.getTransaction().rollback();
             throw ex;
@@ -33,6 +31,7 @@ public class UsuarioDAO {
         }
     }
 
+    @Override
     public Usuario procurarPorTelefone(String telefone) {
         EntityManagerFactory entityManagerFactory
                 = Persistence.createEntityManagerFactory("persistence");
@@ -54,9 +53,5 @@ public class UsuarioDAO {
         } finally {
             entityManager.close();
         }
-    }
-
-    public String tipo(Usuario usuario) {
-        return "tipo";
     }
 }

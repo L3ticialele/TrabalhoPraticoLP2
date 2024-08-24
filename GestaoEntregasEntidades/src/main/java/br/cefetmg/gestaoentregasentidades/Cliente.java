@@ -29,15 +29,13 @@ public class Cliente extends Usuario{
     public Cliente() {
     }
 
-    public Cliente(String nome, String logradouro, String bairro, String cnpj, String cpf, Empresa empresa, String senha, String telefone, Pedido pedido) {
+    public Cliente(String nome, String logradouro, String bairro, String cnpj, String cpf, Empresa empresa, String senha, String telefone) {
         super(senha, telefone, nome, empresa, "Cliente");
         pedidos = new ArrayList<>();
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cnpj = cnpj;
         this.cpf = cpf;
-        if(pedido != null)
-            pedidos.add(pedido);
     }
     
     public ArrayList<Pedido> getPedidos() {
