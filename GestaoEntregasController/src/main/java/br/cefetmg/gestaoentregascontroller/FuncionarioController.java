@@ -35,5 +35,17 @@ public class FuncionarioController {
         }
         return listaFuncionarios;
     }
+    
+    public Funcionario buscarFuncionarioPorNome(String nome) throws PersistenciaException{
+        return funcionarioDAO.procurarPorNome(nome);
+    }
+    
+    public ArrayList<String> nomeFuncionarios(List<Funcionario> funcionarios){
+        ArrayList<String> nomeFuncionarios = new ArrayList<>();
+        for(int i=0; i<funcionarios.size(); i++){
+            nomeFuncionarios.add(funcionarios.get(i).getNome());
+        }
+        return nomeFuncionarios;
+    }
 }
 

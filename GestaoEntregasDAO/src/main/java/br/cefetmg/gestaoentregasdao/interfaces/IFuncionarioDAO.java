@@ -17,4 +17,6 @@ public interface IFuncionarioDAO {
     Funcionario procurarPorId(int idFuncionario) throws PersistenciaException;
     
     Funcionario procurarPorNome(String nomeFuncionario) throws PersistenciaException;
+    
+    Funcionario procurarPorCpf(String cpf) throws PersistenciaException;
 }

@@ -49,7 +49,7 @@ public class MainFX extends Application {
 
             telaVisualizarProdutos = new Scene(loaderFXML("/fxml/TelaVisualizarProdutos"), 1280, 720);
 
-            primaryStage.setScene(telaCadastrarPedido);
+            primaryStage.setScene(telaLogin);
             primaryStage.show();
         } catch (IOException e) {
         }

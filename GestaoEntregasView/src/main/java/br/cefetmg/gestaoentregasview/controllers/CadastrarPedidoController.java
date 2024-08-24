@@ -1,6 +1,7 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
 import br.cefetmg.gestaoentregascontroller.ClienteController;
+import br.cefetmg.gestaoentregascontroller.FuncionarioController;
 import br.cefetmg.gestaoentregascontroller.PedidoController;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasentidades.Cliente;
@@ -9,6 +10,9 @@ import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +23,8 @@ public class CadastrarPedidoController {
 
     @FXML
     private ComboBox<String> comboBoxProduto;
+    @FXML
+    private ComboBox<String> comboBoxEntregadores;
     @FXML
     private TextField textFieldQuantidade;
     @FXML
@@ -36,11 +42,15 @@ public class CadastrarPedidoController {
     @FXML
     private TextField textFieldCpfCliente;
 
+    private List<String> listaFuncionarios;
+
     private final ArrayList<TextField> listTextField = new ArrayList<>();
 
     private final PedidoController pedidoController = new PedidoController();
 
     private final ClienteController clienteController = new ClienteController();
+
+    private final FuncionarioController funcionarioController = new FuncionarioController();
 
     private Pedido pedido;
 
@@ -77,6 +87,7 @@ public class CadastrarPedidoController {
         int quantidade;
         double valorUnitario, valorTotal;
         Date data = new Date();
+        cliente = clienteController.buscarClientePorCpf(textFieldCpfCliente.getText());
         verificarCampos();
         if (!alert.getAlertType().equals(AlertType.WARNING)) {
             nomeProduto = comboBoxProduto.getSelectionModel().getSelectedItem();
@@ -88,8 +99,8 @@ public class CadastrarPedidoController {
             formaPagamento = textFieldFormaPagamento.getText();
             observacoes = textAreaObservacoes.getText();
             cpf = textFieldCpfCliente.getText();
-            cliente = clienteController.buscarClientePorCpf(cpf);
-            if (pedidoController.cadastrarPedido(data, valorTotal, marca, cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
+            entregador = funcionarioController.buscarFuncionarioPorNome(comboBoxEntregadores.getValue());
+            if (pedidoController.cadastrarPedido(data, valorTotal, "", cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
                 alert.setAlertType(AlertType.INFORMATION);
                 alert.setContentText("Pedido cadastrado com sucesso! ");
                 MainFX.changedScreen("TelaVisualizarPedidos", null);
@@ -115,6 +126,12 @@ public class CadastrarPedidoController {
             alert.setContentText("Preencha todos os campos.");
             alert.setTitle("Atenção!");
         }
+        if (cliente == null) {
+            alert.setAlertType(AlertType.WARNING);
+            alert.setContentText("Cliente não encontrado.");
+            alert.setTitle("Atenção!");
+        }
+
     }
 
     private void limparCampos() {
@@ -136,14 +153,38 @@ public class CadastrarPedidoController {
 
     @FXML
     private void initialize() {
+        try {
+            listaFuncionarios = funcionarioController.nomeFuncionarios(funcionarioController.listarFuncionarios());
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(CadastrarPedidoController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         comboBoxProduto.setItems(FXCollections.observableArrayList("Produto 1", "Produto 2", "Produto 3"));
+        comboBoxEntregadores.setItems(FXCollections.observableArrayList(listaFuncionarios));
         listTextField.add(textFieldQuantidade);
         listTextField.add(textFieldValorUnitario);
         listTextField.add(textFieldValorTotal);
         listTextField.add(textFieldMarca);
         listTextField.add(textFieldFormaPagamento);
         listTextField.add(textFieldEndereco);
+
+        // Adiciona ChangeListeners para atualizar o valor total
+        textFieldQuantidade.textProperty().addListener((observable, oldValue, newValue) -> atualizarValorTotal());
+        textFieldValorUnitario.textProperty().addListener((observable, oldValue, newValue) -> atualizarValorTotal());
+
         MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
         });
+    }
+
+// Método para atualizar o valor total com base na quantidade e valor unitário
+    private void atualizarValorTotal() {
+        try {
+            int quantidade = Integer.parseInt(textFieldQuantidade.getText());
+            double valorUnitario = Double.parseDouble(textFieldValorUnitario.getText());
+            double valorTotal = quantidade * valorUnitario;
+            textFieldValorTotal.setText(String.valueOf(valorTotal));
+        } catch (NumberFormatException e) {
+            textFieldValorTotal.setText(""); // Limpa o campo se houver erro na conversão
+        }
     }
 }
