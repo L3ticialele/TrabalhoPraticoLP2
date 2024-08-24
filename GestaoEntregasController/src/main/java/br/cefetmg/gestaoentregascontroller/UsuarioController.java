@@ -25,19 +25,22 @@ public class UsuarioController {
     public String direcionarTela(Usuario usuario) {
         String tela = null;
         switch (usuario.getTipo()) {
-            case "Cliente" ->
+            case "Cliente":
                 tela = "TelaCliente";
-            case "Funcionario" -> {
+                break;
+            case "Funcionario":
                 Funcionario funcionario = (Funcionario) usuario;
-                switch (funcionario.getTipoPerfil().toString()) {
-                    case "ADMINISTRADOR" ->
+                switch (funcionario.getTipoPerfil().toString()){
+                    case "ADMINISTRADOR":
                         tela = "TelaVisualizarPedidos";
-                    case "ATENDENTE" ->
+                        break;
+                    case "ATENDENTE":
                         tela = "TelaVisualizarPedidos";
-                    case "ENTREGADOR" ->
-                        tela = "TelaVisualizarPedidos";
+                        break;
+                    case "ENTREGADOR":
+                        tela = "TelaEntregador";
+                        break;
                 }
-            }
         }
         return tela;
     }

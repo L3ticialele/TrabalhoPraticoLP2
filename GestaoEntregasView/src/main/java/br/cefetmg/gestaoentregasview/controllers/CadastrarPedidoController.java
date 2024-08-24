@@ -1,9 +1,8 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
+import br.cefetmg.gestaoentregascontroller.ClienteController;
 import br.cefetmg.gestaoentregascontroller.PedidoController;
-import br.cefetmg.gestaoentregasdao.dao.PedidoDAO;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
-import br.cefetmg.gestaoentregasdao.interfaces.IPedidoDAO;
 import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
@@ -34,15 +33,21 @@ public class CadastrarPedidoController {
     private TextField textFieldEndereco;
     @FXML
     private TextArea textAreaObservacoes;
+    @FXML
+    private TextField textFieldCpfCliente;
 
     private final ArrayList<TextField> listTextField = new ArrayList<>();
+
+    private final PedidoController pedidoController = new PedidoController();
+
+    private final ClienteController clienteController = new ClienteController();
 
     private Pedido pedido;
 
     private Alert alert;
-    
+
     private Cliente cliente;
-    
+
     private Funcionario entregador;
 
     @FXML
@@ -68,13 +73,12 @@ public class CadastrarPedidoController {
     @FXML
     public void salvarPedido() throws PersistenciaException {
         alert = new Alert(AlertType.NONE);
-        String nomeProduto, endereco, marca, formaPagamento, observacoes;
+        String nomeProduto, endereco, marca, formaPagamento, observacoes, cpf;
         int quantidade;
         double valorUnitario, valorTotal;
         Date data = new Date();
         verificarCampos();
         if (!alert.getAlertType().equals(AlertType.WARNING)) {
-            IPedidoDAO pedidoDAO = new PedidoDAO();
             nomeProduto = comboBoxProduto.getSelectionModel().getSelectedItem();
             endereco = textFieldEndereco.getText();
             quantidade = Integer.parseInt(textFieldQuantidade.getText());
@@ -83,18 +87,19 @@ public class CadastrarPedidoController {
             marca = textFieldMarca.getText();
             formaPagamento = textFieldFormaPagamento.getText();
             observacoes = textAreaObservacoes.getText();
-            PedidoController pedidoController = new PedidoController();
-            if(pedidoController.cadastrarPedido(data, valorTotal, marca, cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador)){
+            cpf = textFieldCpfCliente.getText();
+            cliente = clienteController.buscarClientePorCpf(cpf);
+            if (pedidoController.cadastrarPedido(data, valorTotal, marca, cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
                 alert.setAlertType(AlertType.INFORMATION);
-            alert.setContentText("Pedido cadastrado com sucesso! ");
-            MainFX.changedScreen("TelaVisualizarPedidos", null);
-            }else{
+                alert.setContentText("Pedido cadastrado com sucesso! ");
+                MainFX.changedScreen("TelaVisualizarPedidos", null);
+            } else {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setContentText("Ocorreu um erro ao cadastrar o pedido.");
             }
         }
 
-        alert.show(); 
+        alert.show();
     }
 
     private void verificarCampos() {
@@ -128,7 +133,7 @@ public class CadastrarPedidoController {
         MainFX.changedScreen("Sair", null);
 
     }
-    
+
     @FXML
     private void initialize() {
         comboBoxProduto.setItems(FXCollections.observableArrayList("Produto 1", "Produto 2", "Produto 3"));
@@ -138,10 +143,7 @@ public class CadastrarPedidoController {
         listTextField.add(textFieldMarca);
         listTextField.add(textFieldFormaPagamento);
         listTextField.add(textFieldEndereco);
-        MainFX.addOnChangeScreenListener(new MainFX.OnChangeScreen(){
-           @Override
-           public void onScreenChanged(String newString, Object viewData){
-           }
-       });
+        MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
+        });
     }
 }

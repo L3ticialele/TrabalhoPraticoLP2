@@ -1,23 +1,47 @@
 package br.cefetmg.gestaoentregasview.controllers;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
-
+import br.cefetmg.gestaoentregascontroller.FuncionarioController;
+import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
+import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-/**
- * FXML Controller class
- *
- * @author KEHILARY
- */
 public class TelaVisualizarFuncionariosController implements Initializable {
+    
+    @FXML
+    private TableColumn<Funcionario, String> colunaTelefone;
+
+    @FXML
+    private TableColumn<Funcionario, String> colunaTipo;
+
+    @FXML
+    private TableColumn<Funcionario, String> colunaNome;
+    
+    @FXML
+    private TableView<Funcionario> tabelaFuncionarios;
+    
+    private int ultimoFuncionario;
+    
+    private ArrayList<Funcionario> listaFuncionarios;
+    
+    private final FuncionarioController funcionarioController = new FuncionarioController();
+    
+    @FXML
+    private void atualizarDados() throws PersistenciaException{
+        listaFuncionarios = funcionarioController.atualizaDadosCliente(ultimoFuncionario);
+        tabelaFuncionarios.setItems(FXCollections.observableArrayList(listaFuncionarios));
+    }
 
     @FXML
     void abrirPaginaClientes(ActionEvent event) {
@@ -46,7 +70,20 @@ public class TelaVisualizarFuncionariosController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        ultimoFuncionario = 0;
+        
+        colunaNome.setCellValueFactory(
+                new PropertyValueFactory<>("nome"));
+        colunaTelefone.setCellValueFactory(
+                new PropertyValueFactory<>("telefone"));
+        colunaTipo.setCellValueFactory(
+                new PropertyValueFactory<>("tipoPerfil"));
+        
+        try {
+            atualizarDados();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(TelaVisualizarClientesController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
     
 }

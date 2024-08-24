@@ -67,6 +67,7 @@ public class CadastrarClienteController implements Initializable {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setContentText("Cliente cadastrado com sucesso! ");
                 abrirPaginaClientes(event);
+                setToNull();
             } else {
                 alert.setAlertType(Alert.AlertType.ERROR);
                 alert.setContentText("Ocorreu um erro ao cadastrar o cliente.");
@@ -117,6 +118,17 @@ public class CadastrarClienteController implements Initializable {
             alert.setAlertType(Alert.AlertType.NONE);
         }
         
+    }
+    
+    private void setToNull(){
+        textFieldNome.setText(null);
+        textFieldBairro.setText(null);
+        textFieldLogradouro.setText(null);
+        textFieldCpf.setText(null);
+        textFieldSenha.setText(null);
+        textFieldConfirmar.setText(null);
+        textFieldTelefone.setText(null);
+        textFieldCnpj.setText(null);
     }
 
     @FXML

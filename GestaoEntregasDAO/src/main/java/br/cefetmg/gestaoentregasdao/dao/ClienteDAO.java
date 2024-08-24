@@ -128,6 +128,30 @@ public class ClienteDAO implements IClienteDAO {
             entityManager.close();
         }
     }
+    
+    @Override
+    public Cliente procurarPorCpf(String cpf) throws PersistenciaException {
+        EntityManagerFactory entityManagerFactory
+                = Persistence.createEntityManagerFactory("persistence");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("FROM Cliente AS c WHERE c.cpf =:cpf ");
+            query.setParameter("cpf", cpf);
+            List<Cliente> clientePersistido = query.getResultList();
+            if (!clientePersistido.isEmpty()) {
+                return clientePersistido.get(0);
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            entityManager.getTransaction().rollback();
+            throw ex;
+        } finally {
+            entityManager.close();
+        }
+    }
 
     @Override
     public Cliente procurarPorNome(String nomeCliente) throws PersistenciaException {

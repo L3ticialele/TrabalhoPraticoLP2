@@ -23,6 +23,8 @@ public class Cliente extends Usuario{
     @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL,
                 mappedBy="cliente")
     private ArrayList<Pedido> pedidos;
+    
+    private int quantPedidos;
 
     public Cliente() {
     }
@@ -33,6 +35,11 @@ public class Cliente extends Usuario{
         this.logradouro = logradouro;
         this.bairro = bairro;
         this.cnpj = cnpj;
+        quantPedidos = pedidos.size();
+    }
+    
+    public int getQuantPedidos(){
+        return quantPedidos;
     }
     
     public ArrayList<Pedido> getPedidos() {
@@ -41,10 +48,12 @@ public class Cliente extends Usuario{
 
     public void setPedidos(ArrayList<Pedido> pedidos) {
         this.pedidos = pedidos;
+        quantPedidos = pedidos.size();
     }
     
     public void setPedido(Pedido pedido){
         pedidos.add(pedido);
+        quantPedidos = pedidos.size();
     }
 
     public String getLogradouro() {

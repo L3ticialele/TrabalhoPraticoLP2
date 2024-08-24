@@ -18,4 +18,6 @@ public interface IClienteDAO {
     
     Cliente procurarPorNome(String nomeCliente) throws PersistenciaException;
     
+    Cliente procurarPorCpf(String cpf) throws PersistenciaException;
+    
 }

@@ -19,6 +19,12 @@
                   <Font size="17.0" />
                </font>
             </Button>
+            <Label layoutX="399.0" layoutY="285.0" prefHeight="27.0" prefWidth="147.0" text="Entregador:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="choiceBoxEntregador" layoutX="399.0" layoutY="312.0" prefHeight="36.0" prefWidth="192.0" />
          </children>
       </AnchorPane>
       <ComboBox fx:id="comboBoxProduto" layoutX="326.0" layoutY="176.0" />
@@ -27,9 +33,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldQuantidade" layoutX="598.0" layoutY="242.0" prefHeight="36.0" prefWidth="372.0" />
+      <TextField fx:id="textFieldQuantidade" layoutX="607.0" layoutY="242.0" prefHeight="36.0" prefWidth="372.0" />
       <TextField fx:id="textFieldValorUnitario" layoutX="231.0" layoutY="323.0" prefHeight="36.0" prefWidth="359.0" />
-      <Label layoutX="598.0" layoutY="210.0" text="Quantidade:">
+      <Label layoutX="606.0" layoutY="210.0" text="Quantidade:">
          <font>
             <Font size="18.0" />
          </font>
@@ -39,17 +45,17 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldEndereco" layoutX="598.0" layoutY="400.0" prefHeight="36.0" prefWidth="372.0" />
+      <TextField fx:id="textFieldEndereco" layoutX="604.0" layoutY="400.0" prefHeight="36.0" prefWidth="372.0" />
       <TextField fx:id="textFieldMarca" layoutX="231.0" layoutY="242.0" prefHeight="36.0" prefWidth="359.0" />
       <TextArea fx:id="textAreaObservacoes" layoutX="234.0" layoutY="550.0" prefHeight="81.0" prefWidth="748.0" />
       <TextField fx:id="textFieldFormaPagamento" layoutX="231.0" layoutY="400.0" prefHeight="36.0" prefWidth="359.0" />
-      <TextField fx:id="textFieldValorTotal" layoutX="598.0" layoutY="323.0" prefHeight="36.0" prefWidth="372.0" />
+      <TextField fx:id="textFieldValorTotal" layoutX="606.0" layoutY="323.0" prefHeight="36.0" prefWidth="372.0" />
       <Label layoutX="234.0" layoutY="517.0" text="Observações:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="601.0" layoutY="373.0" text="Endereço:">
+      <Label layoutX="606.0" layoutY="373.0" text="Endereço:">
          <font>
             <Font size="18.0" />
          </font>
@@ -64,7 +70,7 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="598.0" layoutY="296.0" text="Valor Total (R$):">
+      <Label layoutX="607.0" layoutY="296.0" text="Valor Total (R$):">
          <font>
             <Font size="18.0" />
          </font>
@@ -80,12 +86,6 @@
          </font>
       </Label>
       <TextField fx:id="textFieldCpfCliente" layoutX="231.0" layoutY="474.0" prefHeight="36.0" prefWidth="359.0" />
-      <Label layoutX="601.0" layoutY="447.0" prefHeight="27.0" prefWidth="98.0" text=" Entregador:">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <TextField fx:id="textFieldEntregador" layoutX="605.0" layoutY="474.0" prefHeight="36.0" prefWidth="372.0" />
       <AnchorPane layoutY="-1.0" prefHeight="722.0" prefWidth="199.0" style="-fx-background-color: #1f5eb2;">
          <children>
             <ImageView fitHeight="87.0" fitWidth="91.0" layoutX="118.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">

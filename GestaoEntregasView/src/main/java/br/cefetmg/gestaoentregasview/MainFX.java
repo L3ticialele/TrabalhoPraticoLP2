@@ -49,10 +49,9 @@ public class MainFX extends Application {
 
             telaVisualizarProdutos = new Scene(loaderFXML("/fxml/TelaVisualizarProdutos"), 1280, 720);
 
-            primaryStage.setScene(telaLogin);
+            primaryStage.setScene(telaCadastrarPedido);
             primaryStage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
         }
     }
     
@@ -98,7 +97,7 @@ public class MainFX extends Application {
         }
     }
 
-    private static ArrayList<OnChangeScreen> listeners = new ArrayList<>();
+    private static final ArrayList<OnChangeScreen> listeners = new ArrayList<>();
 
     public static interface OnChangeScreen {
 
