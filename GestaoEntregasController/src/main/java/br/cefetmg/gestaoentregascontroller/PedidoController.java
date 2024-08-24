@@ -20,8 +20,6 @@ public class PedidoController {
     }
 
     public ArrayList<Pedido> listarPedidos(Cliente cliente) throws PersistenciaException {
-        IPedidoDAO pedidoDAO = new PedidoDAO();
-        
         return (ArrayList<Pedido>)pedidoDAO.listarPorCliente(cliente);
     }
     
@@ -33,6 +31,8 @@ public class PedidoController {
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
         String status, marca, pagamento, endereco, observacoes;
         double valorTotal, valorUnitario;
+        Cliente cliente; 
+        Funcionario entregador;
         int quantidade;
         List<Pedido> pedidos = listarPedidos();
         for (int i=ultimoPedido; i<pedidos.size(); i++){
@@ -44,7 +44,9 @@ public class PedidoController {
             pagamento = pedidos.get(i).getPagamento();
             endereco = pedidos.get(i).getEndereco();
             observacoes = pedidos.get(i).getObservacoes();
-            pedido = new Pedido(null, valorTotal, status, null,  marca,  quantidade,  valorUnitario,  pagamento,  endereco,  null, observacoes);
+            cliente = pedidos.get(i).getCliente();
+            entregador = pedidos.get(i).getEntregador();
+            pedido = new Pedido(null, valorTotal, status, cliente,  marca,  quantidade,  valorUnitario,  pagamento,  endereco,  entregador, observacoes);
             listaPedidos.add(pedido);
         }
         return listaPedidos;

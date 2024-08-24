@@ -15,8 +15,12 @@ import br.cefetmg.gestaoentregasview.MainFX;
 import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Label;
 
 public class CadastrarFuncionarioController implements Initializable {
+    
+    @FXML
+    private Label labelSenhaForte;
 
     @FXML
     private ChoiceBox<String> choiceBoxTipo;
@@ -106,10 +110,12 @@ public class CadastrarFuncionarioController implements Initializable {
 
     private void validarCampos() throws PersistenciaException {
         alert.setAlertType(Alert.AlertType.WARNING);
+        labelSenhaForte.setText(null);
         if (!textFieldSenha.getText().equals(textFieldConfirmar.getText())) {
             alert.setContentText("Confirme sua senha.");
         } else if (!validador.senhaForte(textFieldSenha.getText())) {
             alert.setContentText("Senha fraca.");
+            labelSenhaForte.setText("*Senha forte:  deve conter pelo menos 1 caractere, 1 letra maiúscula, 1 número e 6 digitos.");
         } else if (!validador.validarTelefone(textFieldTelefone.getText())) {
             alert.setContentText("Número de telefone inválido.");
         } else if (!validador.isCPF(textFieldCpf.getText())) {

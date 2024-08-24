@@ -2,6 +2,7 @@ package br.cefetmg.gestaoentregasview.controllers;
 
 import br.cefetmg.gestaoentregascontroller.PedidoController;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
+import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.net.URL;
@@ -23,7 +24,7 @@ public class TelaVisualizarPedidosController implements Initializable {
     private TableColumn<Pedido, String> colunaEndereco;
     
     @FXML
-    private TableColumn<Pedido, String> colunaEntregador;
+    private TableColumn<Funcionario, String> colunaEntregador;
     
     @FXML
     private TableColumn<Pedido, String> colunaMarca;

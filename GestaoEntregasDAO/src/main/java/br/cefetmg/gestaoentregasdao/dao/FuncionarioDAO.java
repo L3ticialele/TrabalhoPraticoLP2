@@ -161,4 +161,28 @@ public class FuncionarioDAO implements IFuncionarioDAO{
             entityManager.close();
         }
     }
+    
+    @Override
+    public Funcionario procurarPorCpf(String cpf) throws PersistenciaException {
+        EntityManagerFactory entityManagerFactory
+                = Persistence.createEntityManagerFactory("persistence");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("FROM Funcionario AS f WHERE f.cpf =:cpf ");
+            query.setParameter("cpf", cpf);
+            List<Funcionario> funcionarioPersistido = query.getResultList();
+            if (!funcionarioPersistido.isEmpty()) {
+                return funcionarioPersistido.get(0);
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            entityManager.getTransaction().rollback();
+            throw ex;
+        } finally {
+            entityManager.close();
+        }
+    }
 }

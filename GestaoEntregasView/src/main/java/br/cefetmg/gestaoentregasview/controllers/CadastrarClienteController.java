@@ -11,9 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class CadastrarClienteController implements Initializable {
+    
+    @FXML
+    private Label labelSenhaForte;
 
     @FXML
     private TextField textFieldBairro;
@@ -93,11 +97,13 @@ public class CadastrarClienteController implements Initializable {
     
     private void validarCampos() throws PersistenciaException{
         alert.setAlertType(Alert.AlertType.WARNING);
+        labelSenhaForte.setText(null);
         if (!textFieldSenha.getText().equals(textFieldConfirmar.getText())) {
             alert.setContentText("Confirme sua senha.");
         }
         else if (!validador.senhaForte(textFieldSenha.getText())) {
             alert.setContentText("Senha fraca.");
+            labelSenhaForte.setText("*Senha forte:  deve conter pelo menos 1 caractere, 1 letra maiúscula, 1 número e 6 digitos.");
         }
         else if (!validador.validarTelefone(textFieldTelefone.getText())) {
                 alert.setContentText("Número de telefone inválido.");

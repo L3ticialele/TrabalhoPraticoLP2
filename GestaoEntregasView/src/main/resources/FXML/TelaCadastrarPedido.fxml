@@ -24,10 +24,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="choiceBoxEntregador" layoutX="399.0" layoutY="312.0" prefHeight="36.0" prefWidth="192.0" />
+            <ComboBox fx:id="comboBoxEntregadores" layoutX="400.0" layoutY="317.0" prefHeight="36.0" prefWidth="372.0" />
          </children>
       </AnchorPane>
-      <ComboBox fx:id="comboBoxProduto" layoutX="326.0" layoutY="176.0" />
+      <ComboBox fx:id="comboBoxProduto" layoutX="326.0" layoutY="176.0" prefHeight="25.0" prefWidth="116.0" />
       <Label layoutX="239.0" layoutY="175.0" text="Produto:">
          <font>
             <Font size="18.0" />
@@ -49,7 +49,7 @@
       <TextField fx:id="textFieldMarca" layoutX="231.0" layoutY="242.0" prefHeight="36.0" prefWidth="359.0" />
       <TextArea fx:id="textAreaObservacoes" layoutX="234.0" layoutY="550.0" prefHeight="81.0" prefWidth="748.0" />
       <TextField fx:id="textFieldFormaPagamento" layoutX="231.0" layoutY="400.0" prefHeight="36.0" prefWidth="359.0" />
-      <TextField fx:id="textFieldValorTotal" layoutX="606.0" layoutY="323.0" prefHeight="36.0" prefWidth="372.0" />
+      <TextField fx:id="textFieldValorTotal" editable="false" layoutX="606.0" layoutY="323.0" prefHeight="36.0" prefWidth="372.0" />
       <Label layoutX="234.0" layoutY="517.0" text="Observações:">
          <font>
             <Font size="18.0" />
