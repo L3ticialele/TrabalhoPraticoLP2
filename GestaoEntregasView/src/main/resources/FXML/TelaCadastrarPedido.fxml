@@ -33,8 +33,14 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldQuantidade" layoutX="607.0" layoutY="242.0" prefHeight="36.0" prefWidth="372.0" />
-      <TextField fx:id="textFieldValorUnitario" layoutX="231.0" layoutY="323.0" prefHeight="36.0" prefWidth="359.0" />
+      <TextField fx:id="textFieldQuantidade" layoutX="607.0" layoutY="242.0" prefHeight="36.0" prefWidth="372.0" promptText="00">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
+      <TextField fx:id="textFieldValorUnitario" layoutX="231.0" layoutY="323.0" prefHeight="36.0" prefWidth="359.0" promptText="00">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
       <Label layoutX="606.0" layoutY="210.0" text="Quantidade:">
          <font>
             <Font size="18.0" />
@@ -45,11 +51,26 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldEndereco" layoutX="604.0" layoutY="400.0" prefHeight="36.0" prefWidth="372.0" />
-      <TextField fx:id="textFieldMarca" layoutX="231.0" layoutY="242.0" prefHeight="36.0" prefWidth="359.0" />
-      <TextArea fx:id="textAreaObservacoes" layoutX="234.0" layoutY="550.0" prefHeight="81.0" prefWidth="748.0" />
-      <TextField fx:id="textFieldFormaPagamento" layoutX="231.0" layoutY="400.0" prefHeight="36.0" prefWidth="359.0" />
-      <TextField fx:id="textFieldValorTotal" editable="false" layoutX="606.0" layoutY="323.0" prefHeight="36.0" prefWidth="372.0" />
+      <TextField fx:id="textFieldEndereco" layoutX="604.0" layoutY="400.0" prefHeight="36.0" prefWidth="372.0" promptText="Rua da Cachoeira, 122, Saunas">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
+      <TextField fx:id="textFieldMarca" layoutX="231.0" layoutY="242.0" prefHeight="36.0" prefWidth="359.0" promptText="Eudorian">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
+      <TextArea fx:id="textAreaObservacoes" layoutX="234.0" layoutY="550.0" prefHeight="81.0" prefWidth="748.0" promptText="Observações">
+         <font>
+            <Font size="17.0" />
+         </font></TextArea>
+      <TextField fx:id="textFieldFormaPagamento" layoutX="231.0" layoutY="400.0" prefHeight="36.0" prefWidth="359.0" promptText="Dinheiro">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
+      <TextField fx:id="textFieldValorTotal" editable="false" layoutX="606.0" layoutY="323.0" prefHeight="36.0" prefWidth="372.0" promptText="00">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
       <Label layoutX="234.0" layoutY="517.0" text="Observações:">
          <font>
             <Font size="18.0" />
@@ -85,8 +106,11 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="textFieldCpfCliente" layoutX="231.0" layoutY="474.0" prefHeight="36.0" prefWidth="359.0" />
-      <AnchorPane layoutY="-1.0" prefHeight="722.0" prefWidth="199.0" style="-fx-background-color: #1f5eb2;">
+      <TextField fx:id="textFieldCpfCliente" layoutX="231.0" layoutY="474.0" prefHeight="36.0" prefWidth="359.0" promptText="999.999.999-99">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
+      <AnchorPane layoutX="-7.0" layoutY="-2.0" prefHeight="722.0" prefWidth="200.0" style="-fx-background-color: #1f5eb2;">
          <children>
             <ImageView fitHeight="87.0" fitWidth="91.0" layoutX="118.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -98,22 +122,62 @@
                   <Font name="Malgun Gothic" size="40.0" />
                </font>
             </Label>
-            <Button layoutY="215.0" mnemonicParsing="false" onAction="#abrirPaginaPedidos" prefHeight="32.0" prefWidth="205.0" style="-fx-background-color: #1f5eb2;" text="Pedidos" textFill="WHITE">
+            <Button layoutX="5.0" layoutY="184.0" mnemonicParsing="false" onAction="#abrirPaginaPedidos" prefHeight="56.0" prefWidth="189.0" style="-fx-background-color: #1f5eb2;" text="Pedidos" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="17.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/iconPe.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button layoutX="-1.0" layoutY="271.0" mnemonicParsing="false" onAction="#abrirPaginaClientes" prefHeight="32.0" prefWidth="207.0" style="-fx-background-color: #1f5eb2;" text="Clientes" textFill="WHITE">
+            <Button layoutX="18.0" layoutY="468.0" mnemonicParsing="false" onAction="#abrirPaginaFuncionarios" prefHeight="51.0" prefWidth="173.0" style="-fx-background-color: #1f5eb2;" text="Funcionários" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="17.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/iconFuncionario.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button layoutX="-7.0" layoutY="388.0" mnemonicParsing="false" onAction="#abrirPaginaFuncionarios" prefHeight="32.0" prefWidth="217.0" style="-fx-background-color: #1f5eb2;" text="Funcionários" textFill="WHITE">
+            <Button layoutX="18.0" layoutY="383.0" mnemonicParsing="false" onAction="#abrirPaginaProdutos" prefHeight="51.0" prefWidth="163.0" style="-fx-background-color: #1f5eb2;" text="Produtos" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="17.0" />
                </font>
+               <graphic>
+                  <ImageView fitHeight="39.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/Sem%20título.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
-            <Button layoutY="329.0" mnemonicParsing="false" onAction="#abrirPaginaProdutos" prefHeight="32.0" prefWidth="209.0" style="-fx-background-color: #1f5eb2;" text="Produtos" textFill="WHITE">
+            <Button layoutX="13.0" layoutY="278.0" mnemonicParsing="false" onAction="#abrirPaginaClientes" prefHeight="65.0" prefWidth="173.0" style="-fx-background-color: #1f5eb2;" text="Clientes" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="58.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/iconClientes.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="14.0" layoutY="663.0" mnemonicParsing="false" onAction="#onCancelar" style="-fx-background-color: #1f5eb2;" text="SAIR" textFill="#fffdfd">
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagens/iconVoltarBranco.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <font>
                   <Font size="15.0" />
                </font>

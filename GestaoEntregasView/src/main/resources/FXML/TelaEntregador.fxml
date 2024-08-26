@@ -19,7 +19,10 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="41.0" layoutY="114.0" prefHeight="36.0" prefWidth="561.0" />
+            <TextField layoutX="41.0" layoutY="114.0" prefHeight="36.0" prefWidth="561.0" promptText="15/07/2024">
+               <font>
+                  <Font size="17.0" />
+               </font></TextField>
             <Button layoutX="463.0" layoutY="174.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text="Emitir" textFill="#f8f4f4">
                <font>
                   <Font size="17.0" />
@@ -61,6 +64,21 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="581.0" layoutY="333.0" prefHeight="36.0" prefWidth="561.0" />
+      <TextField layoutX="581.0" layoutY="333.0" prefHeight="36.0" prefWidth="561.0" promptText="16/06/2024">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
+      <Button layoutX="1168.0" layoutY="661.0" mnemonicParsing="false" style="-fx-background-color: #1f5eb2;" text="SAIR" textFill="#fffdfd">
+         <graphic>
+            <ImageView fitHeight="38.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/iconVoltarBranco.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

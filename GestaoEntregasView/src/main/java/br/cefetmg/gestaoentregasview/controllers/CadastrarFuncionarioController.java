@@ -54,6 +54,11 @@ public class CadastrarFuncionarioController implements Initializable {
     void abrirPaginaClientes(ActionEvent event) {
         MainFX.changedScreen("TelaVisualizarClientes", null);
     }
+    
+    @FXML
+    void onCancelar(ActionEvent event) {
+        MainFX.changedScreen("TelaLogin", null);
+    }
 
     @FXML
     void abrirPaginaFuncionarios(ActionEvent event) {
@@ -144,10 +149,6 @@ public class CadastrarFuncionarioController implements Initializable {
         }
     }
 
-    @FXML
-    void onCancelar(ActionEvent event) {
-        MainFX.changedScreen("Sair", null);
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

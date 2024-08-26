@@ -82,7 +82,7 @@ public class CadastrarClienteController implements Initializable {
 
     @FXML
     void onCancelar(ActionEvent event) {
-        MainFX.changedScreen("Sair", null);
+        MainFX.changedScreen("TelaLogin", null);
     }
 
     private void verificarCampos() {

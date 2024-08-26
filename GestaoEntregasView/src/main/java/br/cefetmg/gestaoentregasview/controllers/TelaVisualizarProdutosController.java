@@ -26,6 +26,11 @@ public class TelaVisualizarProdutosController implements Initializable {
     private final ArrayList<TextField> listTextFields = new ArrayList<>();
 
     private final Alert alert = new Alert(AlertType.NONE);
+    
+    @FXML
+    void onCancelar(ActionEvent event) {
+        MainFX.changedScreen("TelaLogin", null);
+    }
 
     @FXML
     void abrirPaginaClientes(ActionEvent event) {
