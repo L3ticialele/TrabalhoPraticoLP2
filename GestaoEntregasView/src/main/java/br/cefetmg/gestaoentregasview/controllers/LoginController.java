@@ -4,6 +4,7 @@ import br.cefetmg.gestaoentregascontroller.UsuarioController;
 import br.cefetmg.gestaoentregasentidades.Usuario;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasview.MainFX;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -28,7 +29,7 @@ public class LoginController implements Initializable {
     
     private Usuario user;
 
-    public void BotaoEntrar(ActionEvent e) throws PersistenciaException {
+    public void BotaoEntrar(ActionEvent e) throws PersistenciaException, IOException {
         String senha = campoSenha.getText();
         String cpf = campoCpf.getText();
         user = usuarioController.login(cpf, senha);

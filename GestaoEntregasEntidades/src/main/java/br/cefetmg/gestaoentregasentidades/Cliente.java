@@ -29,8 +29,8 @@ public class Cliente extends Usuario{
     public Cliente() {
     }
 
-    public Cliente(String nome, String logradouro, String bairro, String cnpj, String cpf, Empresa empresa, String senha, String telefone) {
-        super(senha, telefone, nome, empresa, "Cliente", cpf);
+    public Cliente(String nome, String logradouro, String bairro, String cnpj, String cpf, String senha, String telefone) {
+        super(senha, telefone, nome, "Cliente", cpf);
         pedidos = new ArrayList<>();
         this.logradouro = logradouro;
         this.bairro = bairro;

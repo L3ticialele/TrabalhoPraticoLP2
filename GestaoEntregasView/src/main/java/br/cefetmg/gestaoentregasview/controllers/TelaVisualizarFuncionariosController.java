@@ -4,6 +4,7 @@ import br.cefetmg.gestaoentregascontroller.FuncionarioController;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasview.MainFX;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -44,27 +45,27 @@ public class TelaVisualizarFuncionariosController implements Initializable {
     }
 
     @FXML
-    void abrirPaginaClientes(ActionEvent event) {
+    void abrirPaginaClientes(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarClientes", null);
     }
     
     @FXML
-    void abrirPaginaFuncionarios(ActionEvent event) {
+    void abrirPaginaFuncionarios(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarFuncionarios", null);
     }
 
     @FXML
-    void abrirPaginaPedidos(ActionEvent event) {
+    void abrirPaginaPedidos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarPedidos", null);
     }
 
     @FXML
-    void abrirPaginaProdutos(ActionEvent event) {
+    void abrirPaginaProdutos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
     }
     
     @FXML
-    void cadastrarFuncionario(){
+    void cadastrarFuncionario() throws IOException{
         MainFX.changedScreen("TelaCadastrarFuncionario", null);
     }
     

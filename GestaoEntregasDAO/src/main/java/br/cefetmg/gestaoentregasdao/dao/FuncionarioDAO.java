@@ -95,7 +95,6 @@ public class FuncionarioDAO implements IFuncionarioDAO{
             if (funcionarioPersistido != null) {
                 funcionarioPersistido.setId(funcionario.getId());
                 funcionarioPersistido.setNome(funcionario.getNome());
-                funcionarioPersistido.setEmpresa(funcionario.getEmpresa());
                 funcionarioPersistido.setSenha(funcionario.getSenha());
                 funcionarioPersistido.setTelefone(funcionario.getTelefone());
                 funcionarioPersistido.setTipoPerfil(funcionario.getTipoPerfil());

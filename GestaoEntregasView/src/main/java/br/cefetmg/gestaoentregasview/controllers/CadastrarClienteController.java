@@ -4,6 +4,7 @@ import br.cefetmg.gestaoentregascontroller.ClienteController;
 import br.cefetmg.gestaoentregascontroller.ValidaCampos;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasview.MainFX;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -17,7 +18,7 @@ import javafx.scene.control.TextField;
 public class CadastrarClienteController implements Initializable {
     
     @FXML
-    private Label labelSenhaForte;
+    private final Label labelSenhaForte = new Label();
 
     @FXML
     private TextField textFieldBairro;
@@ -52,7 +53,7 @@ public class CadastrarClienteController implements Initializable {
     private final ValidaCampos validador = new ValidaCampos();
 
     @FXML
-    private void cadastrarCliente(ActionEvent event) throws PersistenciaException {
+    private void cadastrarCliente(ActionEvent event) throws PersistenciaException, IOException {
         alert.setAlertType(Alert.AlertType.NONE);
         String nome, telefone, cnpj, cpf, logradouro, bairro, senha;
         verificarCampos();
@@ -67,7 +68,7 @@ public class CadastrarClienteController implements Initializable {
             logradouro = textFieldLogradouro.getText();
             bairro = textFieldBairro.getText();
             senha = textFieldSenha.getText();
-            if (clienteController.cadastrarCliente(nome, logradouro, bairro, cnpj, cpf, null, senha, telefone)) {
+            if (clienteController.cadastrarCliente(nome, logradouro, bairro, cnpj, cpf, senha, telefone)) {
                 alert.setAlertType(Alert.AlertType.INFORMATION);
                 alert.setContentText("Cliente cadastrado com sucesso! ");
                 abrirPaginaClientes(event);
@@ -81,13 +82,13 @@ public class CadastrarClienteController implements Initializable {
     }
 
     @FXML
-    void onCancelar(ActionEvent event) {
+    void  onCancelar(ActionEvent event) throws IOException {
         MainFX.changedScreen("Sair", null);
     }
 
     private void verificarCampos() {
         for (int i = 0; i < listTextFields.size(); i++) {
-            if (listTextFields.get(i).getText().equals("") || listTextFields.get(i).getText() == null) {
+            if (listTextFields.get(i).getText() == null || listTextFields.get(i).getText().equals("") ) {
                 alert.setAlertType(Alert.AlertType.WARNING);
                 alert.setTitle("Atenção!");
                 alert.setContentText("Preencha todo os campos.");
@@ -97,7 +98,7 @@ public class CadastrarClienteController implements Initializable {
     
     private void validarCampos() throws PersistenciaException{
         alert.setAlertType(Alert.AlertType.WARNING);
-        labelSenhaForte.setText(null);
+        labelSenhaForte.setText("");
         if (!textFieldSenha.getText().equals(textFieldConfirmar.getText())) {
             alert.setContentText("Confirme sua senha.");
         }
@@ -138,23 +139,27 @@ public class CadastrarClienteController implements Initializable {
     }
 
     @FXML
-    void abrirPaginaClientes(ActionEvent event) {
+    void abrirPaginaClientes(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarClientes", null);
+        setToNull();
     }
 
     @FXML
-    void abrirPaginaFuncionarios(ActionEvent event) {
+    void abrirPaginaFuncionarios(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarFuncionarios", null);
+        setToNull();
     }
 
     @FXML
-    void abrirPaginaPedidos(ActionEvent event) {
+    void abrirPaginaPedidos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarPedidos", null);
+        setToNull();
     }
 
     @FXML
-    void abrirPaginaProdutos(ActionEvent event) {
+    void abrirPaginaProdutos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
+        setToNull();
     }
 
     @Override

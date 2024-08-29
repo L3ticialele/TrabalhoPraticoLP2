@@ -94,7 +94,7 @@ public class ProdutoDAO implements IProdutoDAO{
 
             if (produtoPersistido != null) {
                 produtoPersistido.setId(produto.getId());
-                produtoPersistido.setItem(produto.getItem());
+                produtoPersistido.setPedido(produto.getPedido());
                 produtoPersistido.setLocalizacao(produto.getLocalizacao());
                 produtoPersistido.setNome(produto.getNome());
                 return true;

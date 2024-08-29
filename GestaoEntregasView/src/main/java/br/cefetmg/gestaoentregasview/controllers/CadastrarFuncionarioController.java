@@ -12,6 +12,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasview.MainFX;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -50,28 +51,32 @@ public class CadastrarFuncionarioController implements Initializable {
 
     private final ValidaCampos validador = new ValidaCampos();
 
-    private @FXML
-    void abrirPaginaClientes(ActionEvent event) {
+    @FXML
+    void abrirPaginaClientes(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarClientes", null);
+        setToNull();
     }
 
     @FXML
-    void abrirPaginaFuncionarios(ActionEvent event) {
+    void abrirPaginaFuncionarios(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarFuncionarios", null);
+        setToNull();
     }
 
     @FXML
-    void abrirPaginaPedidos(ActionEvent event) {
+    void abrirPaginaPedidos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarPedidos", null);
+        setToNull();
     }
 
     @FXML
-    void abrirPaginaProdutos(ActionEvent event) {
+    void abrirPaginaProdutos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
+        setToNull();
     }
 
     @FXML
-    void cadastrarFuncionario(ActionEvent event) throws PersistenciaException {
+    void cadastrarFuncionario(ActionEvent event) throws PersistenciaException, IOException {
         alert.setAlertType(AlertType.NONE);
         String nome, senha, telefone, tipo, confirmarSenha, cpf;
         verificarCampos();
@@ -86,7 +91,7 @@ public class CadastrarFuncionarioController implements Initializable {
             tipo = choiceBoxTipo.getValue();
             confirmarSenha = textFieldConfirmar.getText();
             cpf = textFieldCpf.getText();
-            if (funcionarioController.cadastrarFuncionario(nome, senha, telefone, null, tipo, cpf)) {
+            if (funcionarioController.cadastrarFuncionario(nome, senha, telefone, tipo, cpf)) {
                 alert.setAlertType(AlertType.INFORMATION);
                 alert.setContentText("Funcionário cadastrado com sucesso!");
                 abrirPaginaFuncionarios(event);
@@ -131,7 +136,7 @@ public class CadastrarFuncionarioController implements Initializable {
 
     private void verificarCampos() {
         for (int i = 0; i < listTextFields.size(); i++) {
-            if (listTextFields.get(i).getText().equals("") || listTextFields.get(i).getText() == null) {
+            if (listTextFields.get(i).getText() == null || listTextFields.get(i).getText().equals("")) {
                 alert.setAlertType(AlertType.WARNING);
                 alert.setTitle("Atenção!");
                 alert.setContentText("Preencha todo os campos.");
@@ -145,7 +150,7 @@ public class CadastrarFuncionarioController implements Initializable {
     }
 
     @FXML
-    void onCancelar(ActionEvent event) {
+    void onCancelar(ActionEvent event) throws IOException {
         MainFX.changedScreen("Sair", null);
     }
 

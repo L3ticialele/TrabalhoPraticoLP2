@@ -7,7 +7,6 @@
     <class>br.cefetmg.gestaoentregasentidades.Pedido</class>
     <class>br.cefetmg.gestaoentregasentidades.Funcionario</class>
     <class>br.cefetmg.gestaoentregasentidades.Produto</class>
-    <class>br.cefetmg.gestaoentregasentidades.Empresa</class>
     <class>br.cefetmg.gestaoentregasentidades.Usuario</class>
     <class>br.cefetmg.gestaoentregasentidades.Item</class>
     <properties>

@@ -4,14 +4,11 @@ package br.cefetmg.gestaoentregasentidades;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,9 +25,6 @@ public class Usuario implements Serializable{
     private String senha;
     @Column(name="nome_usuario")
     private String nome;
-    @ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="id_empresa", nullable = true)
-    private Empresa empresa;
     @Column(name="cpf_usuario")
     private String cpf;
     private String tipo;
@@ -39,11 +33,10 @@ public class Usuario implements Serializable{
         
     }
     
-    public Usuario(String senha, String telefone, String nome, Empresa empresa, String tipo, String cpf){
+    public Usuario(String senha, String telefone, String nome, String tipo, String cpf){
         this.senha = senha;
         this.telefone = telefone;
         this.nome = nome;
-        this.empresa = empresa;
         this.tipo = tipo;
         this.cpf = cpf;
     }
@@ -81,16 +74,6 @@ public class Usuario implements Serializable{
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-    
-    
     
     public void setSenha(String senha){
         this.senha = senha;

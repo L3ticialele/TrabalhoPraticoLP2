@@ -37,7 +37,7 @@ public class Pedido implements Serializable{
     private Cliente cliente;
     @OneToMany(fetch = FetchType.EAGER, cascade =
             CascadeType.ALL, mappedBy = "pedido")
-    private ArrayList<Item> items;
+    private ArrayList<Produto> produtos;
     @Column(name="marca")
     private String marca;
     @Column(name="quantidade")
@@ -59,7 +59,7 @@ public class Pedido implements Serializable{
     }
 
     public Pedido(Date data, double valorTotal, String status, Cliente cliente, String marca, int quantidade, double valorUnitario, String pagamento, String endereco, Funcionario entregador, String observacoes) {
-        items = new ArrayList<>();
+        produtos = new ArrayList<>();
         for (Status s : Status.values()) {
             if(status.equals(s.toString()))
                 this.status = s;
@@ -142,7 +142,11 @@ public class Pedido implements Serializable{
         this.entregador = entregador;
     }
     
-    
+    public String getNomeProduto(){
+        if(!produtos.isEmpty())
+            return produtos.get(1).getNome();
+       return null;
+    }
 
     public int getId() {
         return id;
@@ -152,16 +156,16 @@ public class Pedido implements Serializable{
         this.id = id;
     }
 
-    public ArrayList<Item> getItems() {
-        return items;
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
     }
 
-    public void setItems(ArrayList<Item> items) {
-        this.items = items;
+    public void setProdutos(ArrayList<Produto> produtos) {
+        this.produtos = produtos;
     }
     
-    public void setItem(Item item){
-        items.add(item);
+    public void setProduto(Produto produto){
+        produtos.add(produto);
     }
 
     public Cliente getCliente() {
@@ -196,7 +200,19 @@ public class Pedido implements Serializable{
         this.status = status;
     }
     
+    public String getNomeEntregador(){
+        return this.entregador.getNome();
+    }
     
+    public String getNomeCliente(){
+        return this.cliente.getNome();
+    }
     
+    public String getCpfCliente(){
+        return this.cliente.getCpf();
+    }
     
+    public String getTelefoneCliente(){
+        return this.cliente.getTelefone();
+    }
 }

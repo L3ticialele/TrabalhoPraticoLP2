@@ -4,6 +4,7 @@ package br.cefetmg.gestaoentregasdao.dao;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasdao.interfaces.IPedidoDAO;
 import br.cefetmg.gestaoentregasentidades.Cliente;
+import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -97,7 +98,7 @@ public class PedidoDAO implements IPedidoDAO{
                 pedidoPersistido.setId(pedido.getId());
                 pedidoPersistido.setCliente(pedido.getCliente());
                 pedidoPersistido.setData(pedido.getData());
-                pedidoPersistido.setItems(pedido.getItems());
+                pedidoPersistido.setProdutos(pedido.getProdutos());
                 pedidoPersistido.setStatus(pedido.getStatus());
                 pedidoPersistido.setValorTotal(pedido.getValorTotal());
                 pedidoPersistido.setObservacoes(pedido.getObservacoes());
@@ -106,30 +107,6 @@ public class PedidoDAO implements IPedidoDAO{
             } else {
                 System.out.println("Não foi possível encontrar o pedido com o id: " + pedido.getId());
                 return false;
-            }
-        } catch (Exception ex) {
-            entityManager.getTransaction().rollback();
-            throw ex;
-        } finally {
-            entityManager.close();
-        }
-    }
-    
-    @Override
-    public List<Pedido> listarPorCliente(Cliente cliente){
-        EntityManagerFactory entityManagerFactory
-                = Persistence.createEntityManagerFactory("persistence");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
-
-        try {
-            entityManager.getTransaction().begin();
-            Query query = entityManager.createQuery("FROM Pedido AS p WHERE p.id =:id ");
-            query.setParameter("id", cliente.getId());
-            List<Pedido> pedidos = query.getResultList();
-            if (!pedidos.isEmpty()) {
-                return pedidos;
-            } else {
-                return null;
             }
         } catch (Exception ex) {
             entityManager.getTransaction().rollback();
@@ -152,6 +129,54 @@ public class PedidoDAO implements IPedidoDAO{
             List<Pedido> pedidoPersistido = query.getResultList();
             if (!pedidoPersistido.isEmpty()) {
                 return pedidoPersistido.get(0);
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            entityManager.getTransaction().rollback();
+            throw ex;
+        } finally {
+            entityManager.close();
+        }
+    }
+    
+    @Override
+    public List<Pedido> procurarPorCliente(Cliente cliente) throws PersistenciaException {
+        EntityManagerFactory entityManagerFactory
+                = Persistence.createEntityManagerFactory("persistence");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("FROM Pedido AS p WHERE p.cliente =:id ");
+            query.setParameter("id", cliente.getId());
+            List<Pedido> pedidoPersistido = query.getResultList();
+            if (!pedidoPersistido.isEmpty()) {
+                return pedidoPersistido;
+            } else {
+                return null;
+            }
+        } catch (Exception ex) {
+            entityManager.getTransaction().rollback();
+            throw ex;
+        } finally {
+            entityManager.close();
+        }
+    }
+    
+    @Override
+    public List<Pedido> procurarPorEntregador(Funcionario entregador) throws PersistenciaException {
+        EntityManagerFactory entityManagerFactory
+                = Persistence.createEntityManagerFactory("persistence");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+
+        try {
+            entityManager.getTransaction().begin();
+            Query query = entityManager.createQuery("FROM Pedido AS p WHERE p.entregador =:id ");
+            query.setParameter("id", entregador.getId());
+            List<Pedido> pedidoPersistido = query.getResultList();
+            if (!pedidoPersistido.isEmpty()) {
+                return pedidoPersistido;
             } else {
                 return null;
             }
