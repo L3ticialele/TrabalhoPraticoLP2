@@ -6,11 +6,14 @@ import br.cefetmg.gestaoentregasdao.interfaces.IPedidoDAO;
 import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
+import br.cefetmg.gestaoentregasentidades.Produto;
+import br.cefetmg.gestaoentregasentidades.Usuario;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class PedidoController {
+
     IPedidoDAO pedidoDAO = new PedidoDAO();
     Pedido pedido;
 
@@ -19,23 +22,38 @@ public class PedidoController {
         return pedidoDAO.inserir(pedido);
     }
 
-    public ArrayList<Pedido> listarPedidos(Cliente cliente) throws PersistenciaException {
-        return (ArrayList<Pedido>)pedidoDAO.listarPorCliente(cliente);
-    }
-    
-    public List<Pedido> listarPedidos() throws PersistenciaException{
+    public List<Pedido> listarPedidos() throws PersistenciaException {
         return pedidoDAO.listarTodos();
     }
-    
-    public ArrayList<Pedido> atualizaDadosCliente(int ultimoPedido) throws PersistenciaException{
+
+    public ArrayList<Pedido> listarPedidosPorCliente(Cliente cliente) throws PersistenciaException {
+        return (ArrayList<Pedido>) pedidoDAO.procurarPorCliente(cliente);
+    }
+
+    public ArrayList<Pedido> listarPedidosPorEntregador(Funcionario funcionario) throws PersistenciaException {
+        return (ArrayList<Pedido>) pedidoDAO.procurarPorEntregador(funcionario);
+    }
+
+    public ArrayList<Pedido> atualizaDadosPedido(int ultimoPedido, Usuario usuario) throws PersistenciaException {
         ArrayList<Pedido> listaPedidos = new ArrayList<>();
         String status, marca, pagamento, endereco, observacoes;
         double valorTotal, valorUnitario;
-        Cliente cliente; 
+        Cliente cliente;
         Funcionario entregador;
+        ArrayList<Produto> produto;
         int quantidade;
         List<Pedido> pedidos = listarPedidos();
-        for (int i=ultimoPedido; i<pedidos.size(); i++){
+        if (usuario != null) {
+            switch (usuario.getTipo()) {
+                case "Cliente":
+                    pedidos = listarPedidosPorCliente((Cliente) usuario);
+                    break;
+                case "Funcionario":
+                    pedidos = listarPedidosPorEntregador((Funcionario) usuario);
+                    break;
+            }
+        }
+        for (int i = ultimoPedido; i < pedidos.size(); i++) {
             status = pedidos.get(i).getStatus().toString();
             valorTotal = pedidos.get(i).getValorTotal();
             marca = pedidos.get(i).getMarca();
@@ -46,9 +64,12 @@ public class PedidoController {
             observacoes = pedidos.get(i).getObservacoes();
             cliente = pedidos.get(i).getCliente();
             entregador = pedidos.get(i).getEntregador();
-            pedido = new Pedido(null, valorTotal, status, cliente,  marca,  quantidade,  valorUnitario,  pagamento,  endereco,  entregador, observacoes);
+            produto = pedidos.get(i).getProdutos();
+            pedido = new Pedido(null, valorTotal, status, cliente, marca, quantidade, valorUnitario, pagamento, endereco, entregador, observacoes);
+            pedido.setProdutos(produto);
             listaPedidos.add(pedido);
         }
         return listaPedidos;
     }
+
 }

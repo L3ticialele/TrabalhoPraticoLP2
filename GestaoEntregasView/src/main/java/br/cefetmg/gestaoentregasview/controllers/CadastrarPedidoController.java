@@ -3,16 +3,19 @@ package br.cefetmg.gestaoentregasview.controllers;
 import br.cefetmg.gestaoentregascontroller.ClienteController;
 import br.cefetmg.gestaoentregascontroller.FuncionarioController;
 import br.cefetmg.gestaoentregascontroller.PedidoController;
+import br.cefetmg.gestaoentregascontroller.ProdutoController;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -52,6 +55,8 @@ public class CadastrarPedidoController {
 
     private final FuncionarioController funcionarioController = new FuncionarioController();
 
+    private final ProdutoController produtoController = new ProdutoController();
+
     private Pedido pedido;
 
     private Alert alert;
@@ -60,35 +65,43 @@ public class CadastrarPedidoController {
 
     private Funcionario entregador;
 
+    private ArrayList<String> listaProdutos;
+
+    private ArrayList<Object> lista;
+
     @FXML
-    void abrirPaginaClientes(ActionEvent event) {
+    void abrirPaginaClientes(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarClientes", null);
+        limparCampos();
     }
 
     @FXML
-    void abrirPaginaFuncionarios(ActionEvent event) {
+    void abrirPaginaFuncionarios(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarFuncionarios", null);
+        limparCampos();
     }
 
     @FXML
-    void abrirPaginaPedidos(ActionEvent event) {
+    void abrirPaginaPedidos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarPedidos", null);
+        limparCampos();
     }
 
     @FXML
-    void abrirPaginaProdutos(ActionEvent event) {
+    void abrirPaginaProdutos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
+        limparCampos();
     }
 
     @FXML
-    public void salvarPedido() throws PersistenciaException {
+    public void salvarPedido() throws PersistenciaException, IOException {
         alert = new Alert(AlertType.NONE);
         String nomeProduto, endereco, marca, formaPagamento, observacoes, cpf;
         int quantidade;
         double valorUnitario, valorTotal;
         Date data = new Date();
-        cliente = clienteController.buscarClientePorCpf(textFieldCpfCliente.getText());
         verificarCampos();
+        cliente = clienteController.buscarClientePorCpf(textFieldCpfCliente.getText());
         if (!alert.getAlertType().equals(AlertType.WARNING)) {
             nomeProduto = comboBoxProduto.getSelectionModel().getSelectedItem();
             endereco = textFieldEndereco.getText();
@@ -100,10 +113,11 @@ public class CadastrarPedidoController {
             observacoes = textAreaObservacoes.getText();
             cpf = textFieldCpfCliente.getText();
             entregador = funcionarioController.buscarFuncionarioPorNome(comboBoxEntregadores.getValue());
-            if (pedidoController.cadastrarPedido(data, valorTotal, "", cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
+            if (pedidoController.cadastrarPedido(data, valorTotal, "EMPREPARACAO", cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
                 alert.setAlertType(AlertType.INFORMATION);
                 alert.setContentText("Pedido cadastrado com sucesso! ");
                 MainFX.changedScreen("TelaVisualizarPedidos", null);
+                limparCampos();
             } else {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setContentText("Ocorreu um erro ao cadastrar o pedido.");
@@ -115,18 +129,13 @@ public class CadastrarPedidoController {
 
     private void verificarCampos() {
         for (int i = 0; i < listTextField.size(); i++) {
-            if (listTextField.get(i).getText() == null || listTextField.get(i).getText().equals("")) {
+            if (listTextField.get(i).getText() == null || listTextField.get(i).getText().equals("")){
                 alert.setAlertType(AlertType.WARNING);
                 alert.setContentText("Preencha todos os campos.");
                 alert.setTitle("Atenção!");
             }
         }
-        if (textAreaObservacoes.getText() == null || textAreaObservacoes.getText().equals("")) {
-            alert.setAlertType(AlertType.WARNING);
-            alert.setContentText("Preencha todos os campos.");
-            alert.setTitle("Atenção!");
-        }
-        if (cliente == null) {
+        if (!alert.getAlertType().equals(AlertType.WARNING) && cliente == null) {
             alert.setAlertType(AlertType.WARNING);
             alert.setContentText("Cliente não encontrado.");
             alert.setTitle("Atenção!");
@@ -146,21 +155,32 @@ public class CadastrarPedidoController {
     }
 
     @FXML
-    private void onCancelar() {
+    private void onCancelar() throws IOException {
         MainFX.changedScreen("Sair", null);
 
     }
 
-    @FXML
-    private void initialize() {
+    private void iniciaComboBox() {
         try {
-            listaFuncionarios = funcionarioController.nomeFuncionarios(funcionarioController.listarFuncionarios());
+            listaFuncionarios = funcionarioController.nomeEntregadores(funcionarioController.listarFuncionarios());
+            listaProdutos = produtoController.nomeProdutos(produtoController.listarProdutos());
         } catch (PersistenciaException ex) {
             Logger.getLogger(CadastrarPedidoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        comboBoxProduto.setItems(FXCollections.observableArrayList("Produto 1", "Produto 2", "Produto 3"));
+        comboBoxProduto.setItems(FXCollections.observableArrayList(listaProdutos));
         comboBoxEntregadores.setItems(FXCollections.observableArrayList(listaFuncionarios));
+         Platform.runLater(()->{
+            comboBoxProduto.requestFocus();
+        });
+         System.out.println("Carregou produtos...");
+        
+    }
+
+    @FXML
+    private void initialize() {
+
+        iniciaComboBox();
         listTextField.add(textFieldQuantidade);
         listTextField.add(textFieldValorUnitario);
         listTextField.add(textFieldValorTotal);

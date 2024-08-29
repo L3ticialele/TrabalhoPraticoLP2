@@ -89,7 +89,6 @@ public class ClienteDAO implements IClienteDAO {
                 clientePersistido.setLogradouro(cliente.getLogradouro());
                 clientePersistido.setBairro(cliente.getBairro());
                 clientePersistido.setCnpj(cliente.getCnpj());
-                clientePersistido.setEmpresa(cliente.getEmpresa());
                 clientePersistido.setPedidos(cliente.getPedidos());
                 entityManager.getTransaction().commit();
                 return true;

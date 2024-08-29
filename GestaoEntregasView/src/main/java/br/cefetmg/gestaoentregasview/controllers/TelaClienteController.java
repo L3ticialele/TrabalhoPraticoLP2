@@ -5,10 +5,13 @@ import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,48 +56,44 @@ public class TelaClienteController implements Initializable {
 
     @FXML
     private TableView<Pedido> tabelaPedidos;
-
-    private String linha;
-
-    private String[] palavras;
-
-    private ArrayList<Pedido> pedidos = new ArrayList<>();
-
-    private int ultimaLinhaLida;
-
-    private Pedido pedido;
+    
+    private final PedidoController pedidoController = new PedidoController();
+    
+    private ArrayList<Pedido> listaPedidos;
+    
+    private int ultimoPedido;
     
     private Cliente cliente;
 
     @FXML
-    void abrirPaginaClientes(ActionEvent event) {
+    void abrirPaginaClientes(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarClientes", null);
     }
 
     @FXML
-    void abrirPaginaFuncionarios(ActionEvent event) {
+    void abrirPaginaFuncionarios(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarFuncionarios", null);
     }
 
     @FXML
-    void abrirPaginaPedidos(ActionEvent event) {
+    void abrirPaginaPedidos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarPedidos", null);
     }
 
     @FXML
-    void abrirPaginaProdutos(ActionEvent event) {
+    void abrirPaginaProdutos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
     }
-    
-    @FXML
-    public void atualizarDados() throws PersistenciaException {
-        PedidoController pedidoController = new PedidoController();
-        pedidoController.listarPedidos(cliente);
-    }
 
+    @FXML
+    private void atualizarDados() throws PersistenciaException{
+        listaPedidos = pedidoController.atualizaDadosPedido(ultimoPedido, cliente);
+        tabelaPedidos.setItems(FXCollections.observableArrayList(listaPedidos));
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ultimaLinhaLida = 0;
+        ultimoPedido = 0;
 
         colunaEndereco.setCellValueFactory(
                 new PropertyValueFactory<>("endereco"));
@@ -115,11 +114,21 @@ public class TelaClienteController implements Initializable {
         colunaData.setCellValueFactory(
                 new PropertyValueFactory<>("data"));
         colunaEntregador.setCellValueFactory(
-                new PropertyValueFactory<>("entregador"));
+                new PropertyValueFactory<>("nomeEntregador"));
         colunaTelefone.setCellValueFactory(
-                new PropertyValueFactory<>("telefone"));
+                new PropertyValueFactory<>("telefoneCliente"));
 
-      //  atualizarDados();
+        try {
+            atualizarDados();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(TelaClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
+            if(viewData.getClass().equals(Cliente.class)){
+                cliente = (Cliente) viewData;
+            }
+        });
     }
     
     

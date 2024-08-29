@@ -37,14 +37,17 @@
             <Font name="Malgun Gothic" size="70.0" />
          </font>
       </Label>
-      <TableView layoutX="72.0" layoutY="237.0" prefHeight="442.0" prefWidth="446.0">
+      <TableView fx:id="tabelaEntregas" layoutX="72.0" layoutY="237.0" prefHeight="442.0" prefWidth="446.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Situação" />
-          <TableColumn prefWidth="75.0" text="Endereço" />
-            <TableColumn prefWidth="94.0" text="Nome Cliente" />
-            <TableColumn prefWidth="86.0" text="Telefone " />
-            <TableColumn prefWidth="116.0" text="Data para entrega" />
+          <TableColumn fx:id="colunaSituacao" prefWidth="75.0" text="Situação" />
+          <TableColumn fx:id="colunaEndereco" prefWidth="75.0" text="Endereço" />
+            <TableColumn fx:id="colunaNome" prefWidth="94.0" text="Nome Cliente" />
+            <TableColumn fx:id="colunaTelefone" prefWidth="86.0" text="Telefone " />
+            <TableColumn fx:id="colunaData" prefWidth="116.0" text="Data para entrega" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Label layoutX="72.0" layoutY="193.0" text="Entregas" textFill="#1f5eb2">
          <font>

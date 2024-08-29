@@ -24,71 +24,56 @@ public class MainFX extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        try {
-            stage = primaryStage;
-
-            primaryStage.setTitle("Gestão de Entregas");
-            
-            telaLogin = new Scene(loaderFXML("/fxml/TelaLogin"),  1280, 720);
-            
-            telaVisualizarPedidos = new Scene(loaderFXML("/fxml/TelaVisualizarPedidos"),  1280, 720);
-            
-            telaEntregador = new Scene(loaderFXML("/fxml/TelaEntregador"),  1280, 720);
-           
-            telaVisualizarClientes = new Scene(loaderFXML("/fxml/TelaVisualizarClientes"), 1280, 720);
-           
-            telaCadastrarPedido = new Scene(loaderFXML("/fxml/TelaCadastrarPedido"),  1280, 720);
-            
-            telaCadastrarCliente = new Scene(loaderFXML("/fxml/TelaCadastrarCliente"), 1280, 720);
-       
-            telaCadastrarFuncionario = new Scene(loaderFXML("/fxml/TelaCadastrarFuncionario"),  1280, 720);
-            
-            telaCliente = new Scene(loaderFXML("/fxml/TelaCliente"),  1280, 720);
-            
-            telaVisualizarFuncionarios = new Scene(loaderFXML("/fxml/TelaVisualizarFuncionarios"),  1280, 720);
-
-            telaVisualizarProdutos = new Scene(loaderFXML("/fxml/TelaVisualizarProdutos"), 1280, 720);
-
-            primaryStage.setScene(telaLogin);
-            primaryStage.show();
-        } catch (IOException e) {
-        }
+        stage = primaryStage;
+        telaLogin = new Scene(loaderFXML("/fxml/TelaLogin"),  1280, 720);
+        primaryStage.setScene(telaLogin);
+        primaryStage.show();
     }
     
-    public Parent loaderFXML(String caminho) throws IOException{
-        return FXMLLoader.load(getClass().getResource(caminho + ".fxml"));
+    public static Parent loaderFXML(String caminho) throws IOException{
+        return FXMLLoader.load(MainFX.class.getResource(caminho + ".fxml"));
     }
 
-    public static void changedScreen(String tela, Object userData) {
+    public static void changedScreen(String tela, Object userData) throws IOException {
         switch (tela) {
             case "TelaLogin":
+                telaLogin = new Scene(loaderFXML("/fxml/TelaLogin"),  1280, 720);
                 stage.setScene(telaLogin);
                 break;
               case "TelaVisualizarPedidos":
+                telaVisualizarPedidos = new Scene(loaderFXML("/fxml/TelaVisualizarPedidos"),  1280, 720);
                 stage.setScene(telaVisualizarPedidos);
                 break;
             case "TelaCadastrarFuncionario":
+                 telaCadastrarFuncionario = new Scene(loaderFXML("/fxml/TelaCadastrarFuncionario"),  1280, 720);
                  stage.setScene(telaCadastrarFuncionario);
                  break;
             case "TelaVisualizarClientes":
+                 telaVisualizarClientes = new Scene(loaderFXML("/fxml/TelaVisualizarClientes"), 1280, 720);
                  stage.setScene(telaVisualizarClientes);  
                  break;
             case "TelaCadastrarPedido":
+                telaCadastrarPedido = new Scene(new MainFX().loaderFXML("/fxml/TelaCadastrarPedido"),  1280, 720);
                 stage.setScene(telaCadastrarPedido);
                 break;
             case "TelaCadastrarCliente":
+                telaCadastrarCliente = new Scene(loaderFXML("/fxml/TelaCadastrarCliente"), 1280, 720);
                 stage.setScene(telaCadastrarCliente);
                 break;
             case "TelaCliente":
+                telaCliente = new Scene(loaderFXML("/fxml/TelaCliente"),  1280, 720);
                 stage.setScene(telaCliente);
                 break;
             case "TelaEntregador":
+                telaEntregador = new Scene(loaderFXML("/fxml/TelaEntregador"),  1280, 720);
                 stage.setScene(telaEntregador);
                 break;
             case "TelaVisualizarFuncionarios":
+                telaVisualizarFuncionarios = new Scene(loaderFXML("/fxml/TelaVisualizarFuncionarios"),  1280, 720);
                 stage.setScene(telaVisualizarFuncionarios);
                 break;
             case "TelaVisualizarProdutos":
+                telaVisualizarProdutos = new Scene(loaderFXML("/fxml/TelaVisualizarProdutos"), 1280, 720);
                 stage.setScene(telaVisualizarProdutos);
                 break;
             case "Sair":

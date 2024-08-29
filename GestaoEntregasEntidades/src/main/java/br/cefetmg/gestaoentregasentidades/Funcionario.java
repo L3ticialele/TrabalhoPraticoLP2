@@ -20,8 +20,8 @@ public class Funcionario extends Usuario{
     public Funcionario() {
     }
 
-    public Funcionario(String nome, String senha, String telefone, Empresa empresa, String perfil, String cpf){
-        super(senha, telefone, nome, empresa, "Funcionario", cpf);
+    public Funcionario(String nome, String senha, String telefone, String perfil, String cpf){
+        super(senha, telefone, nome, "Funcionario", cpf);
         setTipoPerfil(perfil);
     }
 

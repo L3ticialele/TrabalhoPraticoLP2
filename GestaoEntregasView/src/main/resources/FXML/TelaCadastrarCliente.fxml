@@ -111,7 +111,7 @@
                   <Font size="17.0" />
                </font>
             </TextField>
-            <TextField fx:id="textFieldCnpj" layoutX="394.0" layoutY="341.0" prefHeight="38.0" prefWidth="335.0" promptText="999.999.999-99">
+            <TextField fx:id="textFieldCnpj" layoutX="394.0" layoutY="341.0" prefHeight="38.0" prefWidth="335.0" promptText="XX.XXX.XXX/0001-XX">
                <font>
                   <Font size="17.0" />
                </font>

@@ -65,8 +65,8 @@
             <TableColumn fx:id="colunaValorUnitario" prefWidth="91.0" text="Valor Unitário" />
             <TableColumn fx:id="colunaValorTotal" prefWidth="73.0" text="Valor Total" />
             <TableColumn fx:id="colunaEntregador" prefWidth="90.66668701171875" text="Entregador" />
-            <TableColumn prefWidth="77.3333740234375" text="CPF Cliente" />
-            <TableColumn prefWidth="129.3333740234375" text="Observações" />
+            <TableColumn fx:id="colunaCpfCliente" prefWidth="77.3333740234375" text="CPF Cliente" />
+            <TableColumn fx:id="colunaObservacoes" prefWidth="129.3333740234375" text="Observações" />
             <TableColumn fx:id="colunaStatus" prefWidth="84.6666259765625" text="Status" />
          </columns>
          <columnResizePolicy>

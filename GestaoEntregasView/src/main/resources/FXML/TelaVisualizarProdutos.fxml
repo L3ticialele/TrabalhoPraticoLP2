@@ -67,12 +67,14 @@
             <Font size="50.0" />
          </font>
       </Label>
-      <TableView layoutX="228.0" layoutY="187.0" prefHeight="481.0" prefWidth="287.0">
+      <TableView fx:id="tabelaProdutos" layoutX="228.0" layoutY="187.0" prefHeight="481.0" prefWidth="287.0">
          <columns>
-            <TableColumn prefWidth="116.0" text="Nome " />
-            <TableColumn prefWidth="112.0" text="Localização" />
-            <TableColumn prefWidth="58.0" />
+            <TableColumn fx:id="colunaNome" prefWidth="116.0" text="Nome " />
+            <TableColumn fx:id="colunaLocalizacao" prefWidth="112.0" text="Localização" />
          </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Label layoutX="600.0" layoutY="275.0" text="Nome:">
          <font>
