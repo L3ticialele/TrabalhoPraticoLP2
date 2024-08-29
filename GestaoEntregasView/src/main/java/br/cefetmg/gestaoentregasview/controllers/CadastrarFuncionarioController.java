@@ -74,6 +74,12 @@ public class CadastrarFuncionarioController implements Initializable {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
         setToNull();
     }
+    
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+        setToNull();
+    }
 
     @FXML
     void cadastrarFuncionario(ActionEvent event) throws PersistenciaException, IOException {

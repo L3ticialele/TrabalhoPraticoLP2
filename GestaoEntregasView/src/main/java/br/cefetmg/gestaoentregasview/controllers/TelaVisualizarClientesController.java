@@ -70,6 +70,11 @@ public class TelaVisualizarClientesController implements Initializable {
     }
     
     @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+    }
+    
+    @FXML
     private void atualizarDados() throws PersistenciaException{
         listaClientes = clienteController.atualizaDadosCliente(ultimoCliente);
         tabelaClientes.setItems(FXCollections.observableArrayList(listaClientes));

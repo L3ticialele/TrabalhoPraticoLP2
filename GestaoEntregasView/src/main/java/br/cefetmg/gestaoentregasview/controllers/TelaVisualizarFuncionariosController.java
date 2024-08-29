@@ -69,6 +69,11 @@ public class TelaVisualizarFuncionariosController implements Initializable {
         MainFX.changedScreen("TelaCadastrarFuncionario", null);
     }
     
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ultimoFuncionario = 0;

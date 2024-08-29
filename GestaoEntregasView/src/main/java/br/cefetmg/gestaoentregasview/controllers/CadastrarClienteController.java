@@ -161,6 +161,12 @@ public class CadastrarClienteController implements Initializable {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
         setToNull();
     }
+    
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+        setToNull();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

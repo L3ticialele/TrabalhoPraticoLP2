@@ -84,6 +84,12 @@ public class TelaClienteController implements Initializable {
     void abrirPaginaProdutos(ActionEvent event) throws IOException {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
     }
+    
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+  
+    }
 
     @FXML
     private void atualizarDados() throws PersistenciaException{

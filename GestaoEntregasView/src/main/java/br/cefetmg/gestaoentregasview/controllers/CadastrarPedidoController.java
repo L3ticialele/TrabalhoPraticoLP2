@@ -92,6 +92,12 @@ public class CadastrarPedidoController {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
         limparCampos();
     }
+    
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+        limparCampos();
+    }
 
     @FXML
     public void salvarPedido() throws PersistenciaException, IOException {

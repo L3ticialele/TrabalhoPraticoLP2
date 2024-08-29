@@ -51,6 +51,10 @@ public class TelaEntregadorController implements Initializable {
         listaPedidos = pedidoController.atualizaDadosPedido(ultimoPedido, entregador);
         tabelaEntregas.setItems(FXCollections.observableArrayList(listaPedidos));
     }
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {

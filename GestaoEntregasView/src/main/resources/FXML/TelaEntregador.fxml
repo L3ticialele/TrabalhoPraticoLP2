@@ -65,5 +65,17 @@
          </font>
       </Label>
       <TextField layoutX="581.0" layoutY="333.0" prefHeight="36.0" prefWidth="561.0" />
+      <Button layoutX="1003.0" layoutY="119.0" mnemonicParsing="false" onAction="#abrirPaginaLogin" prefHeight="54.0" prefWidth="139.0" style="-fx-background-color: 0;" text="SAIR" textFill="#1f5eb2">
+         <font>
+            <Font size="17.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="42.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagens/iconVoltarAzul.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </AnchorPane>
