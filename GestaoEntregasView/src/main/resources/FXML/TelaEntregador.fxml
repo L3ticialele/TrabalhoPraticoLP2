@@ -19,8 +19,11 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField layoutX="41.0" layoutY="114.0" prefHeight="36.0" prefWidth="561.0" />
-            <Button layoutX="463.0" layoutY="174.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text="Emitir" textFill="#f8f4f4">
+            <TextField fx:id="dataFim" layoutX="41.0" layoutY="114.0" prefHeight="36.0" prefWidth="561.0" promptText="99/99/9999">
+               <font>
+                  <Font size="17.0" />
+               </font></TextField>
+            <Button layoutX="463.0" layoutY="174.0" mnemonicParsing="false" onAction="#gerarRelatorio" prefHeight="50.0" prefWidth="139.0" style="-fx-background-color: #1f5eb2;" text="Emitir" textFill="#f8f4f4">
                <font>
                   <Font size="17.0" />
                </font>
@@ -64,7 +67,10 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="581.0" layoutY="333.0" prefHeight="36.0" prefWidth="561.0" />
+      <TextField fx:id="dataInicio" layoutX="581.0" layoutY="333.0" prefHeight="36.0" prefWidth="561.0" promptText="99/99/9999">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
       <Button layoutX="1003.0" layoutY="119.0" mnemonicParsing="false" onAction="#abrirPaginaLogin" prefHeight="54.0" prefWidth="139.0" style="-fx-background-color: 0;" text="SAIR" textFill="#1f5eb2">
          <font>
             <Font size="17.0" />
