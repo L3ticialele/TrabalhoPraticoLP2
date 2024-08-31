@@ -115,9 +115,10 @@ public class CadastrarClienteController implements Initializable {
         else if(!validador.verificaExistenciaCPF(textFieldCpf.getText())){
             alert.setContentText("Já existe um usuário cadastrado com esse CPF.");
         }
-        else if(!validador.isCNPJ(textFieldCnpj.getText())){
-            alert.setContentText("CNPJ inválido.");
-        }
+        else if(textFieldCnpj.getText() != ""){
+            if(!validador.isCNPJ(textFieldCnpj.getText())){
+                alert.setContentText("CNPJ inválido.");
+        }}
         else if(!validador.validaNome(textFieldNome.getText())){
             alert.setContentText("Nome inválido.");
         }
@@ -174,7 +175,6 @@ public class CadastrarClienteController implements Initializable {
         listTextFields.add(textFieldTelefone);
         listTextFields.add(textFieldBairro);
         listTextFields.add(textFieldLogradouro);
-        listTextFields.add(textFieldCnpj);
         listTextFields.add(textFieldCpf);
         MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
         });

@@ -31,7 +31,7 @@
                <font>
                   <Font size="17.0" />
                </font></TextField>
-            <Button layoutX="552.0" layoutY="450.0" mnemonicParsing="false" onAction="#cadastrarFuncionario" prefHeight="37.0" prefWidth="128.0" style="-fx-background-color: #1f5eb2;" text="Cadastrar" textFill="WHITE">
+            <Button layoutX="570.0" layoutY="447.0" mnemonicParsing="false" onAction="#cadastrarFuncionario" prefHeight="37.0" prefWidth="128.0" style="-fx-background-color: #1f5eb2;" text="Cadastrar" textFill="WHITE">
                <font>
                   <Font size="17.0" />
                </font>
@@ -75,6 +75,12 @@
                </font>
             </Label>
             <Label fx:id="labelSenhaForte" layoutX="42.0" layoutY="425.0" prefHeight="17.0" prefWidth="654.0" textFill="RED" />
+            <Label layoutX="291.0" layoutY="452.0" text="Comissão:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="comissao" layoutX="384.0" layoutY="447.0" prefHeight="37.0" prefWidth="150.0" promptText="Somente para entregador " />
          </children>
       </AnchorPane>
       <AnchorPane prefHeight="722.0" prefWidth="199.0" style="-fx-background-color: #1f5eb2;">

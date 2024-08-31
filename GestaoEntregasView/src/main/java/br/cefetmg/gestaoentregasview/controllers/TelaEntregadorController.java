@@ -117,7 +117,10 @@ public class TelaEntregadorController implements Initializable {
         else {
             ultimoPedido = 0;
             listaPedidos = pedidoController.atualizaDadosPedido(ultimoPedido, entregador);
-            entregadorController.gerarRelatorio(inicio, fim, listaPedidos);
+            entregadorController.gerarRelatorio(inicio, fim, listaPedidos, entregador);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Verifique seu relatório no Exlorador de arquivos.");
+            alert.show();
         }}
         catch(DateTimeParseException e){
             alert.setAlertType(Alert.AlertType.ERROR);

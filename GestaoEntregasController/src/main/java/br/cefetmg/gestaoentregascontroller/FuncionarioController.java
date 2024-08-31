@@ -13,7 +13,12 @@ public class FuncionarioController {
     private final IFuncionarioDAO funcionarioDAO = new FuncionarioDAO();
     private Funcionario funcionario;
     
-    public boolean cadastrarFuncionario(String nome, String senha, String telefone, String perfil,String cpf) throws PersistenciaException{
+    public boolean cadastrarFuncionarioE(String nome, String senha, String telefone, String perfil,String cpf, String comissao) throws PersistenciaException{
+        funcionario = new Funcionario( nome,  senha,  telefone,  perfil, cpf, comissao);
+        return funcionarioDAO.inserir(funcionario);
+    }
+    
+    public boolean cadastrarFuncionarioA(String nome, String senha, String telefone, String perfil,String cpf) throws PersistenciaException{
         funcionario = new Funcionario( nome,  senha,  telefone,  perfil, cpf);
         return funcionarioDAO.inserir(funcionario);
     }
@@ -30,7 +35,7 @@ public class FuncionarioController {
             nome = funcionarios.get(i).getNome();
             telefone = funcionarios.get(i).getTelefone();
             tipoPerfil = funcionarios.get(i).getTipoPerfil().toString();
-            funcionario = new Funcionario( nome,  null,  telefone, tipoPerfil , null);
+            funcionario = new Funcionario( nome,  null,  telefone, tipoPerfil , null, null);
             listaFuncionarios.add(funcionario);
         }
         return listaFuncionarios;

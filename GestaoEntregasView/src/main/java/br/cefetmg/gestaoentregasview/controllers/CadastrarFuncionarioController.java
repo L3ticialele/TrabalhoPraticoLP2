@@ -22,7 +22,10 @@ public class CadastrarFuncionarioController implements Initializable {
     
     @FXML
     private Label labelSenhaForte;
-
+    
+    @FXML
+    private TextField comissao;
+    
     @FXML
     private ChoiceBox<String> choiceBoxTipo;
 
@@ -84,7 +87,7 @@ public class CadastrarFuncionarioController implements Initializable {
     @FXML
     void cadastrarFuncionario(ActionEvent event) throws PersistenciaException, IOException {
         alert.setAlertType(AlertType.NONE);
-        String nome, senha, telefone, tipo, confirmarSenha, cpf;
+        String nome, senha, telefone, tipo, confirmarSenha, cpf, comisao;
         verificarCampos();
         if (!alert.getContentText().equals("Preencha todo os campos.")) {
             validarCampos();
@@ -96,8 +99,17 @@ public class CadastrarFuncionarioController implements Initializable {
             telefone = textFieldTelefone.getText();
             tipo = choiceBoxTipo.getValue();
             confirmarSenha = textFieldConfirmar.getText();
+            comisao = comissao.getText();
             cpf = textFieldCpf.getText();
-            if (funcionarioController.cadastrarFuncionario(nome, senha, telefone, tipo, cpf)) {
+            
+            if(tipo == "Entregador"){
+                funcionarioController.cadastrarFuncionarioE(nome, senha, telefone, tipo, cpf, comisao);
+                alert.setAlertType(AlertType.INFORMATION);
+                alert.setContentText("Funcionário cadastrado com sucesso!");
+                abrirPaginaFuncionarios(event);
+                setToNull();
+            }
+            else if (funcionarioController.cadastrarFuncionarioA(nome, senha, telefone, tipo, cpf)) {
                 alert.setAlertType(AlertType.INFORMATION);
                 alert.setContentText("Funcionário cadastrado com sucesso!");
                 abrirPaginaFuncionarios(event);
@@ -129,9 +141,9 @@ public class CadastrarFuncionarioController implements Initializable {
             labelSenhaForte.setText("*Senha forte:  deve conter pelo menos 1 caractere, 1 letra maiúscula, 1 número e 6 digitos.");
         } else if (!validador.validarTelefone(textFieldTelefone.getText())) {
             alert.setContentText("Número de telefone inválido.");
-        } else if (!validador.isCPF(textFieldCpf.getText())) {
+        } /*else if (!validador.isCPF(textFieldCpf.getText())) {
             alert.setContentText("CPF inválido.");
-        } else if (!validador.verificaExistenciaCPF(textFieldCpf.getText())) {
+        }*/ else if (!validador.verificaExistenciaCPF(textFieldCpf.getText())) {
             alert.setContentText("Já existe um usuário cadastrado com esse CPF.");
         } else if (!validador.validaNome(textFieldNome.getText())) {
             alert.setContentText("Nome inválido.");
