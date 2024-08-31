@@ -8,6 +8,7 @@ import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -93,7 +94,7 @@ public class TelaEntregadorController implements Initializable {
         });
     }
 
-    public void gerarRelatorio() throws IOException, PersistenciaException {
+    public void gerarRelatorio() throws IOException, PersistenciaException, ParseException {
         alert = new Alert(Alert.AlertType.NONE);
         String inicio = dataInicio.getText();
         String fim = dataFim.getText();
@@ -115,7 +116,6 @@ public class TelaEntregadorController implements Initializable {
             alert.show();
         }
         else {
-            ultimoPedido = 0;
             listaPedidos = pedidoController.atualizaDadosPedido(ultimoPedido, entregador);
             entregadorController.gerarRelatorio(inicio, fim, listaPedidos, entregador);
             alert.setAlertType(Alert.AlertType.INFORMATION);

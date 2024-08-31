@@ -10,6 +10,8 @@ import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -38,6 +40,8 @@ public class CadastrarPedidoController {
     private TextField textFieldMarca;
     @FXML
     private TextField textFieldFormaPagamento;
+    @FXML
+    private TextField textFielData;
     @FXML
     private TextField textFieldEndereco;
     @FXML
@@ -100,7 +104,7 @@ public class CadastrarPedidoController {
     }
 
     @FXML
-    public void salvarPedido() throws PersistenciaException, IOException {
+    public void salvarPedido() throws PersistenciaException, IOException, ParseException {
         alert = new Alert(AlertType.NONE);
         String nomeProduto, endereco, marca, formaPagamento, observacoes, cpf;
         int quantidade;
@@ -118,6 +122,9 @@ public class CadastrarPedidoController {
             formaPagamento = textFieldFormaPagamento.getText();
             observacoes = textAreaObservacoes.getText();
             cpf = textFieldCpfCliente.getText();
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+            String datas = textFielData.getText();
+            data = formato.parse(datas);
             entregador = funcionarioController.buscarFuncionarioPorNome(comboBoxEntregadores.getValue());
             if (pedidoController.cadastrarPedido(data, valorTotal, "EMPREPARACAO", cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
                 alert.setAlertType(AlertType.INFORMATION);
