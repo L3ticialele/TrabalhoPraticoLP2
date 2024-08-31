@@ -15,9 +15,9 @@ public class EntregadorController {
 
     public void gerarRelatorio(String inicio, String fim, ArrayList<Pedido>pedidos, Funcionario entregador) throws IOException, ParseException {
        
-        Funcionario entregado = entregador;
+    
         LocalDate dataAtual = LocalDate.now();
-        double valorComissao = valorComissao(entregado.getComissao());
+        double valorComissao = valorComissao(entregador.getComissao());
         
         try (BufferedWriter relatorio = new BufferedWriter(new FileWriter(dataAtual + ".txt"))) {
             relatorio.write("Relatório de entregas" + dataAtual);

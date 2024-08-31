@@ -19,12 +19,22 @@
                   <Font size="17.0" />
                </font>
             </Button>
-            <Label layoutX="399.0" layoutY="285.0" prefHeight="27.0" prefWidth="147.0" text="Entregador:">
+            <Label layoutX="390.0" layoutY="362.0" prefHeight="27.0" prefWidth="147.0" text="Entregador:">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <ComboBox fx:id="comboBoxEntregadores" layoutX="400.0" layoutY="317.0" prefHeight="36.0" prefWidth="372.0" />
+            <ComboBox fx:id="comboBoxEntregadores" layoutX="390.0" layoutY="389.0" prefHeight="36.0" prefWidth="372.0" />
+            <Label layoutX="390.0" layoutY="285.0" text="Data:">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textFieldData" layoutX="390.0" layoutY="312.0" prefHeight="40.0" prefWidth="372.0" promptText=" 99/99/9999">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
       <ComboBox fx:id="comboBoxProduto" layoutX="326.0" layoutY="176.0" prefHeight="25.0" prefWidth="116.0" />
@@ -59,7 +69,7 @@
          <font>
             <Font size="17.0" />
          </font></TextField>
-      <TextArea fx:id="textAreaObservacoes" layoutX="234.0" layoutY="550.0" prefHeight="81.0" prefWidth="748.0" promptText="Observações">
+      <TextArea fx:id="textAreaObservacoes" layoutX="234.0" layoutY="550.0" prefHeight="87.0" prefWidth="359.0" promptText="Observações">
          <font>
             <Font size="17.0" />
          </font></TextArea>

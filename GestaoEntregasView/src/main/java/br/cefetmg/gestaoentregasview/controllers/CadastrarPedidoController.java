@@ -41,7 +41,7 @@ public class CadastrarPedidoController {
     @FXML
     private TextField textFieldFormaPagamento;
     @FXML
-    private TextField textFielData;
+    private TextField textFieldData;
     @FXML
     private TextField textFieldEndereco;
     @FXML
@@ -123,7 +123,7 @@ public class CadastrarPedidoController {
             observacoes = textAreaObservacoes.getText();
             cpf = textFieldCpfCliente.getText();
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-            String datas = textFielData.getText();
+            String datas = textFieldData.getText();
             data = formato.parse(datas);
             entregador = funcionarioController.buscarFuncionarioPorNome(comboBoxEntregadores.getValue());
             if (pedidoController.cadastrarPedido(data, valorTotal, "EMPREPARACAO", cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
