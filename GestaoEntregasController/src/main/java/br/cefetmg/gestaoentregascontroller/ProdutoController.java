@@ -42,4 +42,9 @@ public class ProdutoController {
         }
         return listaProdutos;
     }
+    
+    public Produto buscarProdutoPorNome(String nomeProduto) throws PersistenciaException{
+        produto = produtoDAO.procurarPorNome(nomeProduto);
+        return produto;
+    }
 }

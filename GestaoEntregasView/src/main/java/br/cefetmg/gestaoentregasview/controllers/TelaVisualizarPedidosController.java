@@ -101,6 +101,11 @@ public class TelaVisualizarPedidosController implements Initializable {
     }
     
     @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+    }
+    
+    @FXML
     void atualizarDados() throws PersistenciaException{
         listaPedidos = pedidoController.atualizaDadosPedido(ultimoPedido, null);
         tabelaPedidos.setItems(FXCollections.observableArrayList(listaPedidos));

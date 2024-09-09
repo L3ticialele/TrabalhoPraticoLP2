@@ -40,7 +40,10 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="campoCpf" layoutX="813.0" layoutY="279.0" pickOnBounds="false" prefHeight="35.0" prefWidth="387.0" />
+      <TextField fx:id="campoCpf" layoutX="813.0" layoutY="279.0" pickOnBounds="false" prefHeight="35.0" prefWidth="387.0">
+         <font>
+            <Font size="17.0" />
+         </font></TextField>
       <Label layoutX="700.0" layoutY="383.0" prefHeight="27.0" prefWidth="82.0" text="Senha:">
          <font>
             <Font size="20.0" />
@@ -56,6 +59,9 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <PasswordField fx:id="campoSenha" layoutX="814.0" layoutY="380.0" prefHeight="35.0" prefWidth="387.0" />
+      <PasswordField fx:id="campoSenha" layoutX="814.0" layoutY="380.0" prefHeight="35.0" prefWidth="387.0">
+         <font>
+            <Font size="17.0" />
+         </font></PasswordField>
    </children>
 </AnchorPane>

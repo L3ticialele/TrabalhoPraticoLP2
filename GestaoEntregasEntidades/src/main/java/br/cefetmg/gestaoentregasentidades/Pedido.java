@@ -26,8 +26,8 @@ public class Pedido implements Serializable{
     @Column(name="id_pedido")
     private int id;
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="data")
-    private Date data;
+    @Column(name="data_pedido")
+    private Date dataPedido;
     @Column(name="valor_total")
     private double valorTotal;
     @Column(name="status")
@@ -65,7 +65,7 @@ public class Pedido implements Serializable{
                 this.status = s;
         }
         setStatus(status);
-        this.data = data;
+        this.dataPedido = data;
         this.valorTotal = valorTotal;
         this.cliente = cliente;
         this.marca = marca;
@@ -176,12 +176,12 @@ public class Pedido implements Serializable{
         this.cliente = cliente;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataPedido() {
+        return dataPedido;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataPedido(Date data) {
+        this.dataPedido = data;
     }
 
     public double getValorTotal() {

@@ -113,10 +113,11 @@ public class CadastrarClienteController implements Initializable {
                 alert.setContentText("CPF inválido.");
         }
         else if(!validador.verificaExistenciaCPF(textFieldCpf.getText())){
+            System.out.print("afs");
             alert.setContentText("Já existe um usuário cadastrado com esse CPF.");
         }
         else if(!validador.isCNPJ(textFieldCnpj.getText())){
-            alert.setContentText("CNPJ inválido.");
+                alert.setContentText("CNPJ inválido.");
         }
         else if(!validador.validaNome(textFieldNome.getText())){
             alert.setContentText("Nome inválido.");
@@ -161,6 +162,12 @@ public class CadastrarClienteController implements Initializable {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
         setToNull();
     }
+    
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+        setToNull();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -168,7 +175,6 @@ public class CadastrarClienteController implements Initializable {
         listTextFields.add(textFieldTelefone);
         listTextFields.add(textFieldBairro);
         listTextFields.add(textFieldLogradouro);
-        listTextFields.add(textFieldCnpj);
         listTextFields.add(textFieldCpf);
         MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
         });

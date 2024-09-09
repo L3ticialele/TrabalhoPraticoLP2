@@ -8,8 +8,14 @@ import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasentidades.Cliente;
 import br.cefetmg.gestaoentregasentidades.Funcionario;
 import br.cefetmg.gestaoentregasentidades.Pedido;
+import br.cefetmg.gestaoentregasentidades.Produto;
 import br.cefetmg.gestaoentregasview.MainFX;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -68,6 +74,8 @@ public class CadastrarPedidoController {
     private ArrayList<String> listaProdutos;
 
     private ArrayList<Object> lista;
+    
+    private Produto produto;
 
     @FXML
     void abrirPaginaClientes(ActionEvent event) throws IOException {
@@ -92,16 +100,22 @@ public class CadastrarPedidoController {
         MainFX.changedScreen("TelaVisualizarProdutos", null);
         limparCampos();
     }
+    
+    @FXML
+    void abrirPaginaLogin(ActionEvent event) throws IOException {
+        MainFX.changedScreen("TelaLogin", null);
+        limparCampos();
+    }
 
     @FXML
-    public void salvarPedido() throws PersistenciaException, IOException {
+    public void salvarPedido() throws PersistenciaException, IOException, ParseException {
         alert = new Alert(AlertType.NONE);
         String nomeProduto, endereco, marca, formaPagamento, observacoes, cpf;
         int quantidade;
         double valorUnitario, valorTotal;
         Date data = new Date();
-        verificarCampos();
         cliente = clienteController.buscarClientePorCpf(textFieldCpfCliente.getText());
+        verificarCampos();
         if (!alert.getAlertType().equals(AlertType.WARNING)) {
             nomeProduto = comboBoxProduto.getSelectionModel().getSelectedItem();
             endereco = textFieldEndereco.getText();
@@ -112,8 +126,9 @@ public class CadastrarPedidoController {
             formaPagamento = textFieldFormaPagamento.getText();
             observacoes = textAreaObservacoes.getText();
             cpf = textFieldCpfCliente.getText();
+            produto = produtoController.buscarProdutoPorNome(nomeProduto);
             entregador = funcionarioController.buscarFuncionarioPorNome(comboBoxEntregadores.getValue());
-            if (pedidoController.cadastrarPedido(data, valorTotal, "EMPREPARACAO", cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes)) {
+            if (pedidoController.cadastrarPedido(data, valorTotal, "EMPREPARACAO", cliente, marca, quantidade, valorUnitario, formaPagamento, endereco, entregador, observacoes, produto)) {
                 alert.setAlertType(AlertType.INFORMATION);
                 alert.setContentText("Pedido cadastrado com sucesso! ");
                 MainFX.changedScreen("TelaVisualizarPedidos", null);
