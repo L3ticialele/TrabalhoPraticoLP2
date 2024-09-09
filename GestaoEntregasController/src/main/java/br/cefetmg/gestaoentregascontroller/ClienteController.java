@@ -4,6 +4,7 @@ import br.cefetmg.gestaoentregasdao.dao.ClienteDAO;
 import br.cefetmg.gestaoentregasdao.exception.PersistenciaException;
 import br.cefetmg.gestaoentregasdao.interfaces.IClienteDAO;
 import br.cefetmg.gestaoentregasentidades.Cliente;
+import br.cefetmg.gestaoentregasentidades.Pedido;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,13 +25,16 @@ public class ClienteController {
     public ArrayList<Cliente> atualizaDadosCliente(int ultimoCliente) throws PersistenciaException{
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         String nome, telefone, bairro, logradouro;
+        ArrayList<Pedido> pedidos;
         List<Cliente> clientes = listarClientes();
         for (int i=ultimoCliente; i<clientes.size(); i++){
             nome = clientes.get(i).getNome();
             telefone = clientes.get(i).getTelefone();
             bairro = clientes.get(i).getBairro();
             logradouro = clientes.get(i).getLogradouro(); 
+            pedidos = clientes.get(i).getPedidos();
             cliente = new Cliente(nome,  logradouro,  bairro,  null, null,  null, telefone);
+            cliente.setPedidos(pedidos);
             listaClientes.add(cliente);
         }
         return listaClientes;

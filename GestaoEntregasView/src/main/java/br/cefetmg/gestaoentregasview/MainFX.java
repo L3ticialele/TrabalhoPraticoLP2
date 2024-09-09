@@ -53,7 +53,7 @@ public class MainFX extends Application {
                  stage.setScene(telaVisualizarClientes);  
                  break;
             case "TelaCadastrarPedido":
-                telaCadastrarPedido = new Scene(new MainFX().loaderFXML("/fxml/TelaCadastrarPedido"),  1280, 720);
+                telaCadastrarPedido = new Scene(loaderFXML("/fxml/TelaCadastrarPedido"),  1280, 720);
                 stage.setScene(telaCadastrarPedido);
                 break;
             case "TelaCadastrarCliente":

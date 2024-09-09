@@ -17,8 +17,10 @@ public class PedidoController {
     IPedidoDAO pedidoDAO = new PedidoDAO();
     Pedido pedido;
 
-    public boolean cadastrarPedido(Date data, double valorTotal, String status, Cliente cliente, String marca, int quantidade, double valorUnitario, String pagamento, String endereco, Funcionario entregador, String observacoes) throws PersistenciaException {
+    public boolean cadastrarPedido(Date data, double valorTotal, String status, Cliente cliente, String marca, int quantidade, double valorUnitario, String pagamento, String endereco, Funcionario entregador, String observacoes, Produto produto) throws PersistenciaException {
         pedido = new Pedido(data, valorTotal, status, cliente, marca, quantidade, valorUnitario, pagamento, endereco, entregador, observacoes);
+        pedido.setProduto(produto);
+        cliente.setPedido(pedido);
         return pedidoDAO.inserir(pedido);
     }
 
@@ -42,6 +44,7 @@ public class PedidoController {
         Funcionario entregador;
         ArrayList<Produto> produto;
         int quantidade;
+        Date data;
         List<Pedido> pedidos = listarPedidos();
         if (usuario != null) {
             switch (usuario.getTipo()) {
@@ -51,23 +54,12 @@ public class PedidoController {
                 case "Funcionario":
                     pedidos = listarPedidosPorEntregador((Funcionario) usuario);
                     break;
+                default:
+                    break;
             }
         }
         for (int i = ultimoPedido; i < pedidos.size(); i++) {
-            status = pedidos.get(i).getStatus().toString();
-            valorTotal = pedidos.get(i).getValorTotal();
-            marca = pedidos.get(i).getMarca();
-            quantidade = pedidos.get(i).getQuantidade();
-            valorUnitario = pedidos.get(i).getValorUnitario();
-            pagamento = pedidos.get(i).getPagamento();
-            endereco = pedidos.get(i).getEndereco();
-            observacoes = pedidos.get(i).getObservacoes();
-            cliente = pedidos.get(i).getCliente();
-            entregador = pedidos.get(i).getEntregador();
-            produto = pedidos.get(i).getProdutos();
-            pedido = new Pedido(null, valorTotal, status, cliente, marca, quantidade, valorUnitario, pagamento, endereco, entregador, observacoes);
-            pedido.setProdutos(produto);
-            listaPedidos.add(pedido);
+            listaPedidos.add(pedidos.get(i));
         }
         return listaPedidos;
     }

@@ -13,7 +13,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,7 +30,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class TelaEntregadorController implements Initializable {
 
     @FXML
-    private TableColumn<Pedido, String> colunaData;
+    private TableColumn<Pedido, Date> colunaData;
 
     @FXML
     private TableColumn<Pedido, String> colunaEndereco;
@@ -75,23 +78,28 @@ public class TelaEntregadorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ultimoPedido = 0;
+        MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
+           if(newString.equals("TelaEntregador")){
+               entregador = (Funcionario) viewData;
+           }
+        });
 
         colunaNome.setCellValueFactory(
                 new PropertyValueFactory<>("nomeCliente"));
         colunaEndereco.setCellValueFactory(
                 new PropertyValueFactory<>("endereco"));
         colunaData.setCellValueFactory(
-                new PropertyValueFactory<>("data"));
+                new PropertyValueFactory<>("dataPedido"));
         colunaSituacao.setCellValueFactory(
                 new PropertyValueFactory<>("status"));
         colunaTelefone.setCellValueFactory(
                 new PropertyValueFactory<>("telefoneCliente"));
-
-        MainFX.addOnChangeScreenListener((String newString, Object viewData) -> {
-            if (viewData.getClass().equals(Funcionario.class)) {
-                entregador = (Funcionario) viewData;
-            }
-        });
+        
+        try {
+            atualizarDados();
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(TelaEntregadorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void gerarRelatorio() throws IOException, PersistenciaException, ParseException {
@@ -116,7 +124,6 @@ public class TelaEntregadorController implements Initializable {
             alert.show();
         }
         else {
-            listaPedidos = pedidoController.atualizaDadosPedido(ultimoPedido, entregador);
             entregadorController.gerarRelatorio(inicio, fim, listaPedidos, entregador);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Verifique seu relatório no Exlorador de arquivos.");

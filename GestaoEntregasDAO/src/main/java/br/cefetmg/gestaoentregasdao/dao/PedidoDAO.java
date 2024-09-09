@@ -50,6 +50,7 @@ public class PedidoDAO implements IPedidoDAO{
                         "Id: " + pedido.getId()
                         + " Valor Total: " + pedido.getValorTotal()
                         + " Status: " + pedido.getStatus()
+                        + " Data: " + pedido.getDataPedido()
                 );
             }
         }
@@ -97,7 +98,7 @@ public class PedidoDAO implements IPedidoDAO{
             if (pedidoPersistido != null) {
                 pedidoPersistido.setId(pedido.getId());
                 pedidoPersistido.setCliente(pedido.getCliente());
-                pedidoPersistido.setData(pedido.getData());
+                pedidoPersistido.setDataPedido(pedido.getDataPedido());
                 pedidoPersistido.setProdutos(pedido.getProdutos());
                 pedidoPersistido.setStatus(pedido.getStatus());
                 pedidoPersistido.setValorTotal(pedido.getValorTotal());
