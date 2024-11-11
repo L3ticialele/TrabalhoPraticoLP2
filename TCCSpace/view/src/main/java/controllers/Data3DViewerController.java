@@ -6,8 +6,7 @@ import br.cefetmg.space.view.MainFX;
 import gui3d.LineChartManager;
 import gui3d.Model3D;
 import gui3d.Updater;
-import java.net.URL;
-import java.util.ResourceBundle;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -141,19 +140,19 @@ public class Data3DViewerController {
     private Button botaoCubesat;
 
     @FXML
-    private Button botaoEquipe;
+    private Button botaoSuporte;
 
     @FXML
-    private Button botaoExplorar;
+    private Button botaoPerfil;
 
     @FXML
     private Button botaoHome;
 
     @FXML
-    private ImageView iconeEquipes;
+    private ImageView iconeSuporte;
 
     @FXML
-    private ImageView iconeExplorar;
+    private ImageView iconePerfil;
 
     @FXML
     private MeshView meshVIew3D;
@@ -163,55 +162,50 @@ public class Data3DViewerController {
     private CubeSatDTO cubesat;
 
     @FXML
-    void explorarToPourple(MouseEvent event) {
-        botaoExplorar.setStyle("-fx-text-fill: #8C52FF;"
+    void perfilToPourple(MouseEvent event) {
+        botaoPerfil.setStyle("-fx-text-fill: #8C52FF;"
                 + "-fx-background-color: 0;");
-        iconeExplorar.setImage(new Image("file:src/main/resources/images/iconeExplorarLilas.png"));
+        iconePerfil.setImage(new Image("file:src/main/resources/images/userLilas.png"));
     }
 
     @FXML
-    void explorarToWhite(MouseEvent event) {
-        botaoExplorar.setStyle("-fx-text-fill: white;"
+    void perfilToWhite(MouseEvent event) {
+        botaoPerfil.setStyle("-fx-text-fill: white;"
                 + "-fx-background-color: 0;");
-        iconeExplorar.setImage(new Image("file:src/main/resources/images/iconeExplorar.png"));
+        iconePerfil.setImage(new Image("file:src/main/resources/images/user.png"));
     }
 
     @FXML
-    void equipesToPourple(MouseEvent event) {
-        botaoEquipe.setStyle("-fx-text-fill: #8C52FF;"
+    void suporteToPourple(MouseEvent event) {
+        botaoSuporte.setStyle("-fx-text-fill: #8C52FF;"
                 + "-fx-background-color: 0;");
-        iconeEquipes.setImage(new Image("file:src/main/resources/images/iconeEquipesLilas.png"));
+        iconeSuporte.setImage(new Image("file:src/main/resources/images/suporteLilas.png"));
     }
 
     @FXML
-    void equipesToWhite(MouseEvent event) {
-        botaoEquipe.setStyle("-fx-text-fill: white;"
+    void suporteToWhite(MouseEvent event) {
+        botaoSuporte.setStyle("-fx-text-fill: white;"
                 + "-fx-background-color: 0;");
-        iconeEquipes.setImage(new Image("file:src/main/resources/images/iconeEquipes.png"));
+        iconeSuporte.setImage(new Image("file:src/main/resources/images/suport.png"));
     }
 
     @FXML
-    void telaCadastrarCubesat(ActionEvent event) {
+    void telaCadastrarCubesat(ActionEvent event) throws IOException {
         MainFX.changedScreen("Cadastrar Cubesat", usuario);
     }
 
     @FXML
-    void apresentaTelaCubesat(ActionEvent event) {
-        MainFX.changedScreen("Cubesat", usuario);
+    void apresentaTelaSuporte(ActionEvent event) throws IOException {
+        MainFX.changedScreen("Suporte", usuario);
     }
 
     @FXML
-    void apresentaTelaEquipe(ActionEvent event) {
-        MainFX.changedScreen("Equipes", usuario);
+    void apresentaTelaPerfil(ActionEvent event) throws IOException {
+        MainFX.changedScreen("Perfil", usuario);
     }
 
     @FXML
-    void apresentaTelaExplorar(ActionEvent event) {
-        MainFX.changedScreen("Explorar", usuario);
-    }
-
-    @FXML
-    void apresentarTelaInicial(ActionEvent event) {
+    void apresentarTelaInicial(ActionEvent event) throws IOException {
         MainFX.changedScreen("Tela Inicial", usuario);
     }
 
